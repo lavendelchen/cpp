@@ -6,17 +6,17 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/05 22:24:30 by shaas             #+#    #+#              #
-#    Updated: 2022/07/05 22:24:39 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/06 18:18:26 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phoneBook
 
 CC = c++
 
 CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = megaphone.cpp
+SRC = main.cpp PhoneBook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

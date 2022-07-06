@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:32:16 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/06 15:06:13 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/06 21:17:59 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@
 
 class PhoneBook {
 	private:
-		Contact	contacts[8];
-		short	newContactPlace;
-	
-	public:
+		Contact	_contacts[8];
+		short	_numOfContacts;
+		short	_newContactPlace;
+		void	printContacts(void);
+		void	printContactInfo(int index);
 
-		PhoneBook(void) { newContactPlace = 0; }
+	public:
+		PhoneBook(void) { _numOfContacts = 0; _newContactPlace = 0; }
 		void addContact(void);
-}
+		void searchContact(void);
+} ;
 
 #endif
