@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:32:20 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/05 22:50:58 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/06 14:32:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,11 @@
 #include <string>
 
 class Contact {
-	std::string firstName;
-	std::string firstName;
-	std::string firstName;
-	std::string firstName;
-	std::string firstName;
-	
-	private:
-		std::string firstName;
-		std::string firstName;
-		std::string firstName;
+	std::string	firstName;
+	std::string	lastName;
+	std::string	nickname;
+	std::string	phoneNumber;
+	std::string	darkestSecret;
 }
 
 Hausaufgabenheft:
