@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:04:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/06 21:18:44 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/09 19:47:31 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void PhoneBook::addContact(void) {
 	getContactInfo("Nickname: ", _contacts[_newContactPlace].nickname);
 	getContactInfo("Phone number: ", _contacts[_newContactPlace].phoneNumber);
 	getContactInfo("Darkest secret: ", _contacts[_newContactPlace].darkestSecret);
-	std::cout << "CONTACT SAVED!\n\n";
+	std::cout << "CONTACT SAVED!\n";
 	if (_numOfContacts < 8)
 		_numOfContacts++;
 	_newContactPlace++;
@@ -50,12 +50,12 @@ static void printColumn(std::string &string, char separator)
 	std::cout << separator;
 }
 
-void PhoneBook::printContacts(void)
+void PhoneBook::printAllContacts(void)
 {
 	for (short i = 0; i < 8; i++) {
-		if (_contacts[i].firstName == "") //o-ooh
+		if (_contacts[i].firstName == "")
 			break ;
-		std::cout << std::setw(10) << i + 1 << '|'; // remember to subtract in search
+		std::cout << std::setw(10) << i + 1 << '|';
 		printColumn(_contacts[i].firstName, '|');
 		printColumn(_contacts[i].lastName, '|');
 		printColumn(_contacts[i].nickname, '\n');
@@ -64,7 +64,7 @@ void PhoneBook::printContacts(void)
 }
 
 bool isNum(std::string &str) {
-	for (int i = 0; i < str.size(); i++) {
+	for (size_t i = 0; i < str.size(); i++) {
 		if (str[i] < '0' || str[i] > '9')
 			return (false);
 	}
@@ -72,21 +72,29 @@ bool isNum(std::string &str) {
 }
 
 void PhoneBook::printContactInfo(int index) {
-	
+	std::cout << "First Name: " << _contacts[index].firstName;
+	std::cout << "\nLast Name: " << _contacts[index].lastName;
+	std::cout << "\nNickname: " << _contacts[index].nickname;
+	std::cout << "\nPhone number: " << _contacts[index].phoneNumber;
+	std::cout << "\nDarkest secret: " << _contacts[index].darkestSecret;
+	std::cout << std::endl;
 }
 
 void PhoneBook::searchContact(void) {
-	printContacts();
+	if (_numOfContacts == 0) {
+		std::cout << "Error: No contacts added yet\n";
+		return ;
+	}
+	printAllContacts();
 
 	std::string index_str;
 	int			index;
-
 	while (!std::cin.eof()) {
-		std::cout << "Please enter the index of a contact to view contact information: ";
+		std::cout << "\nPlease enter the index of a contact to view contact information: ";
 		getline(std::cin, index_str);
 		if (isNum(index_str)) {
 			index = atoi(index_str.c_str());
-			if (index <= _numOfContacts)
+			if (index <= _numOfContacts && index > 0)
 				return (printContactInfo(index - 1));
 		}
 		std::cout << "Error: Please enter a valid index\n";

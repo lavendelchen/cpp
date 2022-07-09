@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:32:16 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/06 21:17:59 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/09 19:31:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class PhoneBook {
 		Contact	_contacts[8];
 		short	_numOfContacts;
 		short	_newContactPlace;
-		void	printContacts(void);
+		void	printAllContacts(void);
 		void	printContactInfo(int index);
 
 	public:
