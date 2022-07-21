@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:57:54 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/12 00:06:21 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/21 19:06:30 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ class Zombie {
 		std::string name;
 
 	public:
-		Zombie* newZombie(std::string name);
+		Zombie() { };
+		Zombie(std::string name);
+		~Zombie();
 		void announce(void);
 } ;
 

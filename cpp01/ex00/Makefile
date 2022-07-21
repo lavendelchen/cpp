@@ -6,11 +6,11 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 17:49:39 by shaas             #+#    #+#              #
-#    Updated: 2022/07/11 17:57:43 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/21 19:24:20 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phoneBook
+NAME = BraiiiiiiinnnzzzZ
 
 CC = c++
 
@@ -41,9 +41,7 @@ fclean: clean
 re: fclean all
 
 exe:
-	@printf $(LIGHTYELLOW)
 	./$(NAME)
-	@printf $(RESET)
 
 both: $(NAME) exe
 
