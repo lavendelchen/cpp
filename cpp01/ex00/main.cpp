@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:11:35 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/21 19:23:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/21 21:25:10 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	randomChump(std::string name);
 Zombie*	newZombie(std::string name);
 
-int main(void) {
+int main(void) { // why memleak??????
 	Zombie mike = Zombie("Mike");
 	mike.announce();
 

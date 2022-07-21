@@ -6,13 +6,19 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 00:21:39 by shaas             #+#    #+#              #
-#    Updated: 2022/07/05 22:22:23 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/21 21:30:06 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = megaphone
 
-CC = c++
+OS := $(shell uname)
+ifeq ($(OS), Darwin)
+	CC = c++
+endif
+ifeq ($(OS), Linux)
+	CC = g++
+endif
 
 CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 

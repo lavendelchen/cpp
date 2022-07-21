@@ -6,13 +6,19 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 17:49:39 by shaas             #+#    #+#              #
-#    Updated: 2022/07/21 19:24:20 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/21 21:29:42 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = BraiiiiiiinnnzzzZ
 
-CC = c++
+OS := $(shell uname)
+ifeq ($(OS), Darwin)
+	CC = c++
+endif
+ifeq ($(OS), Linux)
+	CC = g++
+endif
 
 CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 

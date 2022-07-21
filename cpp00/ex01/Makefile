@@ -6,13 +6,19 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/05 22:24:30 by shaas             #+#    #+#              #
-#    Updated: 2022/07/06 18:18:26 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/21 21:29:55 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phoneBook
 
-CC = c++
+OS := $(shell uname)
+ifeq ($(OS), Darwin)
+	CC = c++
+endif
+ifeq ($(OS), Linux)
+	CC = g++
+endif
 
 CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 
