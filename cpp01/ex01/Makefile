@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/11 17:49:39 by shaas             #+#    #+#              #
-#    Updated: 2022/07/21 21:42:38 by shaas            ###   ########.fr        #
+#    Created: 2022/07/21 21:36:02 by shaas             #+#    #+#              #
+#    Updated: 2022/07/21 22:01:52 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = BraiiiiiiinnnzzzZ
+NAME = MoarBrainz
 
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
@@ -24,7 +24,7 @@ CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 DIR_OBJ = obj/
 
-SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRC = main.cpp Zombie.cpp zombieHorde.cpp
 
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o) #$(SRC:.cpp=.o)
 
