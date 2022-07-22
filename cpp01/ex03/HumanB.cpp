@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 23:08:17 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/21 23:14:06 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/22 19:34:39 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,13 @@
 #include <iostream>
 
 void HumanB::attack() {
-	std::cout << this->name << " attacks with their " << this->weapon;
+	std::cout << this->name << " attacks with their " << this->weapon->getType() << std::endl;
+}
+
+void HumanB::setWeapon(Weapon& weapon) {
+	this->weapon = &weapon;
+}
+
+HumanB::HumanB(std::string name) {
+	this->name = name;
 }

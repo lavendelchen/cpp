@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 23:08:05 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/21 23:24:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/22 19:34:47 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 #include <iostream>
 
 void HumanA::attack() {
-	std::cout << this->name << " attacks with their " << this->weapon;
+	std::cout << this->name << " attacks with their " << this->weapon.getType() << std::endl;
 }
 
-HumanA::HumanA(std::string name, Weapon weapon) {
+HumanA::HumanA(std::string name, Weapon& weapon) : weapon(weapon) {
 	this->name = name;
-	this->weapon = weapon;
 }
