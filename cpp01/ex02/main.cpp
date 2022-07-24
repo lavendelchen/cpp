@@ -6,14 +6,14 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 22:43:39 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/21 22:43:42 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/24 17:44:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
 
-int main(void) {
+int main(void) { // how do references work??
 	std::string		string = "HI THIS IS BRAIN";
 	std::string*	stringPTR = &string;
 	std::string&	stringREF = string;
