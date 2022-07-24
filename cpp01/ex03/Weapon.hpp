@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 22:53:30 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/22 18:27:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/24 17:30:58 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ class Weapon {
 
 	public:
 		Weapon(std::string type);
-		const std::string&	getType(void);
 		void				setType(std::string type);
+		const std::string&	getType(void);
 } ;
 
 #endif

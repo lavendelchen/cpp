@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 23:13:32 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/22 19:32:22 by shaas            ###   ########.fr       */
+/*   Updated: 2022/07/24 17:29:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class HumanB {
 	public:
 		HumanB(std::string name);
 		void setWeapon(Weapon& weapon);
-
 		void attack();
 } ;
 

@@ -6,14 +6,14 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 22:52:10 by shaas             #+#    #+#              #
-#    Updated: 2022/07/21 22:53:14 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/24 17:36:14 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = UnnecessaryViolence
 
 OS := $(shell uname)
-ifeq ($(OS), Darwin)
+ifeq ($(OS), Darwin) # change to reflect wsl. uname -r: 5.10.102.1-microsoft-standard-WSL2 || uname -a: Linux SvenjasThinkPad 5.10.102.1-microsoft-standard-WSL2 #1 SMP Wed Mar 2 00:30:59 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux || uname -n: SvenjasThinkPad || uname -o: GNU/Linux
 	CC = c++
 endif
 ifeq ($(OS), Linux)
