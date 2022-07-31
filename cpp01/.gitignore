@@ -68,4 +68,5 @@ dkms.conf
 
 # personal
 .DS_Store
-.vscode
+.vscode/
+*.replace

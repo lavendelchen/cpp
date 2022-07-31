@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 17:48:44 by shaas             #+#    #+#              #
-#    Updated: 2022/07/24 17:50:46 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/31 23:58:05 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ ifeq ($(OS), Darwin) # change to reflect wsl. uname -r: 5.10.102.1-microsoft-sta
 	CC = c++
 endif
 ifeq ($(OS), Linux)
-	CC = g++
+	CC = c++
 endif
 
 CC_FLAGS = -Wall -Wextra -Werror -std=c++98
