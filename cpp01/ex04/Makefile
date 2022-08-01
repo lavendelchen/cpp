@@ -6,18 +6,17 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 17:48:44 by shaas             #+#    #+#              #
-#    Updated: 2022/07/31 23:58:05 by shaas            ###   ########.fr        #
+#    Updated: 2022/08/01 19:34:08 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = SedIsForLosers
 
-OS := $(shell uname)
-ifeq ($(OS), Darwin) # change to reflect wsl. uname -r: 5.10.102.1-microsoft-standard-WSL2 || uname -a: Linux SvenjasThinkPad 5.10.102.1-microsoft-standard-WSL2 #1 SMP Wed Mar 2 00:30:59 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux || uname -n: SvenjasThinkPad || uname -o: GNU/Linux
+ISDOCKER := $(shell ls -a /)
+ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
 	CC = c++
-endif
-ifeq ($(OS), Linux)
-	CC = c++
+else
+	CC = g++
 endif
 
 CC_FLAGS = -Wall -Wextra -Werror -std=c++98
@@ -27,6 +26,10 @@ DIR_OBJ = obj/
 SRC = main.cpp
 
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o)
+
+print:
+	@printf "$(ISDOCKER)\n"
+	@printf "$(CC)\n"
 
 all: $(NAME)
 

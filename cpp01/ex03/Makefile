@@ -6,17 +6,16 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 22:52:10 by shaas             #+#    #+#              #
-#    Updated: 2022/07/24 17:51:12 by shaas            ###   ########.fr        #
+#    Updated: 2022/08/01 19:34:31 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = UnnecessaryViolence
 
-OS := $(shell uname)
-ifeq ($(OS), Darwin) # change to reflect wsl. uname -r: 5.10.102.1-microsoft-standard-WSL2 || uname -a: Linux SvenjasThinkPad 5.10.102.1-microsoft-standard-WSL2 #1 SMP Wed Mar 2 00:30:59 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux || uname -n: SvenjasThinkPad || uname -o: GNU/Linux
+ISDOCKER := $(shell ls -a /)
+ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
 	CC = c++
-endif
-ifeq ($(OS), Linux)
+else
 	CC = g++
 endif
 

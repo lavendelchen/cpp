@@ -6,17 +6,16 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 21:36:02 by shaas             #+#    #+#              #
-#    Updated: 2022/07/21 22:01:52 by shaas            ###   ########.fr        #
+#    Updated: 2022/08/01 19:34:47 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = MoarBrainz
 
-OS := $(shell uname)
-ifeq ($(OS), Darwin)
+ISDOCKER := $(shell ls -a /)
+ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
 	CC = c++
-endif
-ifeq ($(OS), Linux)
+else
 	CC = g++
 endif
 

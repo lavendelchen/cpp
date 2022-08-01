@@ -6,17 +6,16 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 22:43:47 by shaas             #+#    #+#              #
-#    Updated: 2022/07/21 22:44:06 by shaas            ###   ########.fr        #
+#    Updated: 2022/08/01 19:34:39 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = HiThisIsBrain
 
-OS := $(shell uname)
-ifeq ($(OS), Darwin)
+ISDOCKER := $(shell ls -a /)
+ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
 	CC = c++
-endif
-ifeq ($(OS), Linux)
+else
 	CC = g++
 endif
 
