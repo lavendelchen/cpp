@@ -6,17 +6,16 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 00:21:39 by shaas             #+#    #+#              #
-#    Updated: 2022/07/21 21:30:06 by shaas            ###   ########.fr        #
+#    Updated: 2022/08/01 19:37:21 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = megaphone
 
-OS := $(shell uname)
-ifeq ($(OS), Darwin)
+ISDOCKER := $(shell ls -a /)
+ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
 	CC = c++
-endif
-ifeq ($(OS), Linux)
+else
 	CC = g++
 endif
 

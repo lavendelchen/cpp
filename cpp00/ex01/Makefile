@@ -6,17 +6,16 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/05 22:24:30 by shaas             #+#    #+#              #
-#    Updated: 2022/07/21 21:29:55 by shaas            ###   ########.fr        #
+#    Updated: 2022/08/01 19:37:16 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phoneBook
 
-OS := $(shell uname)
-ifeq ($(OS), Darwin)
+ISDOCKER := $(shell ls -a /)
+ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
 	CC = c++
-endif
-ifeq ($(OS), Linux)
+else
 	CC = g++
 endif
 
