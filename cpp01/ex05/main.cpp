@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 22:11:12 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/07 00:02:47 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/07 00:11:38 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(void) {
 	Harl.complain("debug");
 	Harl.complain("NOOOOOO");
 	Harl.complain("warnig");
+	Harl.complain("");
 	Harl.complain("error");
 	Harl.complain("info");
 
