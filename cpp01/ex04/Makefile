@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/24 17:48:44 by shaas             #+#    #+#              #
-#    Updated: 2022/08/01 19:34:08 by shaas            ###   ########.fr        #
+#    Updated: 2022/09/06 20:55:50 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,15 +27,11 @@ SRC = main.cpp
 
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o)
 
-print:
-	@printf "$(ISDOCKER)\n"
-	@printf "$(CC)\n"
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CC_FLAGS) $(OBJ) -o $(NAME)
-	@printf $(CYAN)"$(NAME) created\n"$(RESET)
+	@printf $(GREEN)"$(NAME) created\n"$(RESET)
 
 $(DIR_OBJ)%.o:	%.cpp
 	@mkdir -p $(dir $@)
@@ -53,8 +49,9 @@ fclean: clean
 re: fclean all
 
 exe:
-	@printf $(MAGENTA)"Executing $(NAME)\n"$(RESET)
+	@printf $(GREEN)
 	./$(NAME)
+	@printf $(RESET)
 
 both: $(NAME) exe
 
