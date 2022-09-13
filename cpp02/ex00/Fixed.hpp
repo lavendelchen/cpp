@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 09:53:24 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/13 23:35:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/14 00:08:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class Fixed {
 	private:
-		int					num;
+		int					rawBits;
 		static const int	rhsBits = 8;
 
 	public:
