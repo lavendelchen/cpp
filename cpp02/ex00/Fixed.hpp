@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/09 09:53:24 by shaas             #+#    #+#             */
+/*   Updated: 2022/09/09 09:54:27 by shaas            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -6,19 +18,15 @@
 
 class Fixed
 {
+	private:
+	
 
 	public:
-
 		Fixed();
-		Fixed( Fixed const & src );
+		Fixed(Fixed const &orig);
 		~Fixed();
 
 		Fixed &		operator=( Fixed const & rhs );
-
-	private:
-
 };
-
-std::ostream &			operator<<( std::ostream & o, Fixed const & i );
 
 #endif /* *********************************************************** FIXED_H */
