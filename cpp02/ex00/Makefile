@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/09 09:41:19 by shaas             #+#    #+#              #
-#    Updated: 2022/09/09 09:44:54 by shaas            ###   ########.fr        #
+#    Updated: 2022/09/13 23:44:15 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 DIR_OBJ = obj/
 
-SRC = main.cpp #Fixed.cpp
+SRC = main.cpp Fixed.cpp
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o)
 
 all: $(NAME)
