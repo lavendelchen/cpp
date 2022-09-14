@@ -1,171 +1,102 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.cpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 00:01:25 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/15 01:20:20 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
-ClapTrap::ClapTrap() {
-	this->rawBits = 0;
+ClapTrap::ClapTrap(std::string name) {
+	std::cout << "Default constructor called" << std::endl;
+	this->name = name;
+	this->hitPoints = 10;
+	this->energyPoints = 10;
+	this->attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &orig) {
-	this->rawBits = orig.getRawBits();
+	std::cout << "Copy constructor called" << std::endl;
+	this->name = orig.name;
+	this->hitPoints = orig.hitPoints;
+	this->energyPoints = orig.hitPoints;
+	this->attackDamage = orig.attackDamage;
 }
 
-ClapTrap::ClapTrap(const int num) {
-	std::cout << "hellloooooo this is the int constructor called with " << num << std::endl;
-	this->rawBits = num << ClapTrap::rhsBits;
-}
-
-ClapTrap::ClapTrap(const float num) {
-	this->rawBits = roundf(num * (1 << ClapTrap::rhsBits));
-}
-
-/* -------------------------------- DESTRUCTOR -------------------------------- */
-ClapTrap::~ClapTrap() {
-}
-
-/* --------------------------------- PUBLIC METHODS --------------------------------- */
-int	ClapTrap::getRawBits() const {
-	return (this->rawBits);
-}
-
-void	ClapTrap::setRawBits(int const raw) {
-	this->rawBits = raw;
-}
-
-float	ClapTrap::toFloat(void) const {
-	return ((float)this->rawBits / (float)(1 << ClapTrap::rhsBits));
-}
-
-int		ClapTrap::toInt(void) const {
-	return (this->rawBits >> ClapTrap::rhsBits);
-}
-
-	/*static methods*/
-
-ClapTrap&	ClapTrap::min(ClapTrap &num1, ClapTrap &num2) {
-	if (num1 <= num2)
-		return (num1);
-	return (num2);
-}
-
-const ClapTrap&	ClapTrap::min(const ClapTrap &num1, const ClapTrap &num2) {
-	if (num1.getRawBits() <= num2.getRawBits())
-		return (num1);
-	return (num2);
-}
-
-ClapTrap&	ClapTrap::max(ClapTrap &num1, ClapTrap &num2) {
-	if (num1 >= num2)
-		return (num1);
-	return (num2);
-}
-
-const ClapTrap&	ClapTrap::max(const ClapTrap &num1, const ClapTrap &num2) {
-	if (num1.getRawBits() >= num2.getRawBits())
-		return (num1);
-	return (num2);
-}
-
-/* --------------------------------- OVERLOAD --------------------------------- */
 ClapTrap&	ClapTrap::operator=(ClapTrap const &rhs) {
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs) {
-		this->rawBits = rhs.getRawBits();
+		this->name = rhs.name;
+		this->hitPoints = rhs.hitPoints;
+		this->energyPoints = rhs.hitPoints;
+		this->attackDamage = rhs.attackDamage;
 	}
 	return *this;
 }
 
-bool	ClapTrap::operator>(ClapTrap const &rhs) {
-	if (this->getRawBits() > rhs.getRawBits())
-		return (true);
-	return (false);
+/* -------------------------------- DESTRUCTOR -------------------------------- */
+ClapTrap::~ClapTrap() {
+	std::cout << "Destructor called" << std::endl;
 }
 
-bool	ClapTrap::operator<(ClapTrap const &rhs) {
-	if (this->getRawBits() < rhs.getRawBits())
-		return (true);
-	return (false);
+/* --------------------------------- PUBLIC METHODS --------------------------------- */
+void ClapTrap::attack(const std::string& target) {
+	if (this->energyPoints > 0 && this->hitPoints > 0) {
+		std::cout	<< "ClapTrap " << this->name << " attacks " << target
+					<< ", causing " << this->attackDamage
+					<< " points of damage!" << std::endl;
+		this->energyPoints--;
+	}
+	else {
+		std::cout	<< "ClapTrap " << this->name
+					<< " doesn't have enough energy and hit points left to attack."
+					<< std::endl;
+	}
 }
 
-bool	ClapTrap::operator>=(ClapTrap const &rhs) {
-	if (this->getRawBits() >= rhs.getRawBits())
-		return (true);
-	return (false);
+void ClapTrap::takeDamage(unsigned int amount) {
+	std::cout	<< "ClapTrap " << this->name << " takes "
+				<< amount << " damage!" << std::endl;
+	if ((this->hitPoints - (int)amount) < 0)
+		this->hitPoints = 0;
+	else
+		this->hitPoints-=amount;
 }
 
-bool	ClapTrap::operator<=(ClapTrap const &rhs) {
-	if (this->getRawBits() <= rhs.getRawBits())
-		return (true);
-	return (false);
+void ClapTrap::beRepaired(unsigned int amount) {
+	if (this->energyPoints > 0 && this->hitPoints > 0) {
+		std::cout	<< "ClapTrap " << this->name << " repairs itself, regaining "
+					<< amount << " hit points!" << std::endl;
+		if ((this->hitPoints + (int)amount) > 10)
+			this->hitPoints = 10;
+		else
+			this->hitPoints+=amount;
+		this->energyPoints--;
+	}
+	else {
+		std::cout	<< "ClapTrap " << this->name
+					<< " doesn't have enough energy and hit points left to repair itself."
+					<< std::endl;
+	}
 }
 
-bool	ClapTrap::operator==(ClapTrap const &rhs) {
-	if (this->getRawBits() == rhs.getRawBits())
-		return (true);
-	return (false);
+void	ClapTrap::printAttributes(std::ostream &out) {
+	out << "\nName: " << this->name
+		<< "\nHit Points: " << this->hitPoints
+		<< "\nEnergy Points: " << this->energyPoints
+		<< "\nAttack Damage: " << this->attackDamage
+		<< "\n" << std::endl;
 }
 
-bool	ClapTrap::operator!=(ClapTrap const &rhs) {
-	if (this->getRawBits() != rhs.getRawBits())
-		return (true);
-	return (false);
-}
+/* --------------------------------- OVERLOAD --------------------------------- */
 
-ClapTrap	ClapTrap::operator+(ClapTrap const &rhs) {
-	ClapTrap result;
-	result.setRawBits(this->getRawBits() + rhs.getRawBits());
-	return (result);
-}
-
-ClapTrap	ClapTrap::operator-(ClapTrap const &rhs) {
-	ClapTrap result;
-	result.setRawBits(this->getRawBits() - rhs.getRawBits());
-	return (result);
-}
-
-ClapTrap	ClapTrap::operator*(ClapTrap const &rhs) {
-	ClapTrap result(this->toFloat() * rhs.toFloat());
-	return (result);
-}
-
-ClapTrap	ClapTrap::operator/(ClapTrap const &rhs) {
-	ClapTrap result(this->toFloat() / rhs.toFloat());
-	return (result);
-}
-
-ClapTrap&	ClapTrap::operator++() {
-	this->setRawBits(this->getRawBits() + 1);
-	return (*this);
-}
-
-ClapTrap	ClapTrap::operator++(int) {
-	ClapTrap	old(*this);
-	this->setRawBits(this->getRawBits() + 1);
-	return (old);
-}
-
-ClapTrap&	ClapTrap::operator--() {
-	this->setRawBits(this->getRawBits() - 1);
-	return (*this);
-}
-
-ClapTrap	ClapTrap::operator--(int) {
-	ClapTrap	old(*this);
-	this->setRawBits(this->getRawBits() - 1);
-	return (old);
-}
-
-std::ostream&	operator<<(std::ostream &out, ClapTrap const &ClapTrap) {
-	out << ClapTrap.toFloat();
+std::ostream&	operator<<(std::ostream &out, ClapTrap &clapTrap) {
+	clapTrap.printAttributes(out);
 	return (out);
 }
