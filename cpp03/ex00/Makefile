@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2022/09/15 00:23:45 by shaas            ###   ########.fr        #
+#    Updated: 2022/09/15 00:27:22 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CC_FLAGS) $(OBJ) -o $(NAME)
-	@printf $(BLUE)"$(NAME) created\n"$(RESET)
+	@printf $(YELLOW)"$(NAME) created\n"$(RESET)
 
 $(DIR_OBJ)%.o:	%.cpp
 	@mkdir -p $(dir $@)
@@ -48,7 +48,7 @@ fclean: clean
 re: fclean all
 
 exe:
-	@printf $(BLUE)
+	@printf $(YELLOW)
 	./$(NAME)
 	@printf $(RESET)
 
