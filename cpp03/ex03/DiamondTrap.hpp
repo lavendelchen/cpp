@@ -10,24 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
 # include <iostream>
 # include <string>
-# include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-class ScavTrap: public ClapTrap {
+class DiamondTrap: public ScavTrap, public FragTrap {
 	public:
-		ScavTrap();
-		ScavTrap(std::string name);
-		ScavTrap(ScavTrap const &orig);
-		ScavTrap& operator=(ScavTrap const &rhs);
-		~ScavTrap();
+		DiamondTrap();
+		DiamondTrap(std::string name);
+		DiamondTrap(DiamondTrap const &orig);
+		DiamondTrap& operator=(DiamondTrap const &rhs);
+		~DiamondTrap();
 
 		void guardGate();
 };
 
-std::ostream&	operator<<(std::ostream &out, ScavTrap &scavTrap);
+std::ostream&	operator<<(std::ostream &out, DiamondTrap &DiamondTrap);
 
 #endif
