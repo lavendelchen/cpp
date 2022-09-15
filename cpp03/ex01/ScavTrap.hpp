@@ -10,30 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
 # include <iostream>
 # include <string>
+# include "ClapTrap.hpp"
 
-class ClapTrap {
-	protected:
-		std::string	name;
-		int			hitPoints;
-		int			energyPoints;
-		int			attackDamage;
-
+class ScavTrap: public ClapTrap {
 	public:
-		ClapTrap();
-		ClapTrap(std::string name);
-		ClapTrap(ClapTrap const &orig);
-		ClapTrap& operator=(ClapTrap const &rhs);
-		~ClapTrap();
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(ScavTrap const &orig);
+		ScavTrap& operator=(ScavTrap const &rhs);
+		~ScavTrap();
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		void	printAttributes(std::ostream &out);
+		void guardGate();
 };
 
 std::ostream&	operator<<(std::ostream &out, ClapTrap &clapTrap);

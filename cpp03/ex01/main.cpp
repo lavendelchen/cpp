@@ -6,37 +6,40 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 01:42:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/15 16:18:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void) {
-	ClapTrap littleRobot("Little Robot");
-	ClapTrap littlerRobot(littleRobot);
-	ClapTrap littlestRobot;
-	littlestRobot = littleRobot;
+	ScavTrap scavvyRobot("Scavvy Robot");
+	ScavTrap scavvierRobot(scavvyRobot);
+	ScavTrap scavviestRobot;
+	scavviestRobot = scavvyRobot;
 
-	std::cout << littleRobot;
-	std::cout << littlerRobot;
-	std::cout << littlestRobot;
+	std::cout << scavvyRobot;
+	std::cout << scavvierRobot;
+	std::cout << scavviestRobot;
 
-	littleRobot.attack("the big bad guy");
-	std::cout << littleRobot;
+	scavvyRobot.attack("the big bad guy");
+	std::cout << scavvyRobot;
 
-	littleRobot.takeDamage(2);
-	std::cout << littleRobot;
+	scavvyRobot.takeDamage(2);
+	std::cout << scavvyRobot;
 
-	littleRobot.beRepaired(1);
-	std::cout << littleRobot;
+	scavvyRobot.beRepaired(1);
+	std::cout << scavvyRobot;
 
-	littleRobot.takeDamage(20);
-	std::cout << littleRobot;
+	scavvyRobot.takeDamage(200);
+	std::cout << scavvyRobot;
 
-	littleRobot.attack("the big bad guy");
-	littleRobot.beRepaired(20);
+	scavvyRobot.attack("the big bad guy");
+	scavvyRobot.beRepaired(20);
+
+	scavvyRobot.guardGate();
 
 	return (0);
 }

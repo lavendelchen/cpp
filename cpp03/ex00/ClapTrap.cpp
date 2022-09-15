@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 01:42:45 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/15 16:17:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ ClapTrap::ClapTrap(const ClapTrap &orig) {
 	std::cout << "Copy constructor called" << std::endl;
 	this->name = orig.name;
 	this->hitPoints = orig.hitPoints;
-	this->energyPoints = orig.hitPoints;
+	this->energyPoints = orig.energyPoints;
 	this->attackDamage = orig.attackDamage;
 }
 
@@ -42,7 +42,7 @@ ClapTrap&	ClapTrap::operator=(ClapTrap const &rhs) {
 	if (this != &rhs) {
 		this->name = rhs.name;
 		this->hitPoints = rhs.hitPoints;
-		this->energyPoints = rhs.hitPoints;
+		this->energyPoints = rhs.energyPoints;
 		this->attackDamage = rhs.attackDamage;
 	}
 	return *this;
@@ -81,10 +81,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	if (this->energyPoints > 0 && this->hitPoints > 0) {
 		std::cout	<< "ClapTrap " << this->name << " repairs itself, regaining "
 					<< amount << " hit points!" << std::endl;
-		if ((this->hitPoints + (int)amount) > 10)
-			this->hitPoints = 10;
-		else
-			this->hitPoints+=amount;
+		this->hitPoints+=amount;
 		this->energyPoints--;
 	}
 	else {
