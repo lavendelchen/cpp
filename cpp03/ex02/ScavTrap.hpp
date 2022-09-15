@@ -28,6 +28,6 @@ class ScavTrap: public ClapTrap {
 		void guardGate();
 };
 
-std::ostream&	operator<<(std::ostream &out, ClapTrap &clapTrap);
+std::ostream&	operator<<(std::ostream &out, ScavTrap &scavTrap);
 
 #endif

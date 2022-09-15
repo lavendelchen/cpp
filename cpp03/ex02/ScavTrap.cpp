@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 16:19:19 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/15 16:44:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void ScavTrap::guardGate() {
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
-std::ostream&	operator<<(std::ostream &out, ScavTrap &ScavTrap) {
-	ScavTrap.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, ScavTrap &scavTrap) {
+	scavTrap.printAttributes(out);
 	return (out);
 }

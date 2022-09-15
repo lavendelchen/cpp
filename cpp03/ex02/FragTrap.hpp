@@ -10,24 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
 # include <iostream>
 # include <string>
 # include "ClapTrap.hpp"
 
-class ScavTrap: public ClapTrap {
+class FragTrap: public ClapTrap {
 	public:
-		ScavTrap();
-		ScavTrap(std::string name);
-		ScavTrap(ScavTrap const &orig);
-		ScavTrap& operator=(ScavTrap const &rhs);
-		~ScavTrap();
+		FragTrap();
+		FragTrap(std::string name);
+		FragTrap(FragTrap const &orig);
+		FragTrap& operator=(FragTrap const &rhs);
+		~FragTrap();
 
-		void guardGate();
+		void highFivesGuys(void);
 };
 
-std::ostream&	operator<<(std::ostream &out, ScavTrap &scavTrap);
+std::ostream&	operator<<(std::ostream &out, FragTrap &fragTrap);
 
 #endif
