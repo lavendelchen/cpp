@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 16:50:24 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/22 23:59:44 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ FragTrap::FragTrap(std::string name): ClapTrap(name) {
 
 FragTrap::FragTrap(const FragTrap &orig): ClapTrap(orig) {
 	std::cout << "FragTrap copy constructor called" << std::endl;
-	this->hitPoints = orig.hitPoints;
-	this->energyPoints = orig.energyPoints;
-	this->attackDamage = orig.attackDamage;
 }
 
 FragTrap&	FragTrap::operator=(FragTrap const &rhs) {

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 16:44:28 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/23 00:00:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name) {
 
 ScavTrap::ScavTrap(const ScavTrap &orig): ClapTrap(orig) {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
-	this->hitPoints = orig.hitPoints;
-	this->energyPoints = orig.energyPoints;
-	this->attackDamage = orig.attackDamage;
 }
 
 ScavTrap&	ScavTrap::operator=(ScavTrap const &rhs) {
