@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/22 21:37:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/23 00:35:11 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,34 @@
 #include "DiamondTrap.hpp"
 
 int main(void) {
-	FragTrap fragmentedRobot("fragmented Robot");
-	FragTrap moreFragmentedRobot(fragmentedRobot);
-	FragTrap mostFragmentedRobot;
-	mostFragmentedRobot = fragmentedRobot;
+	DiamondTrap expensiveRobot("expensive Robot");
+	DiamondTrap moreExpensiveRobot(expensiveRobot);
+	DiamondTrap mostExpensiveRobot;
+	mostExpensiveRobot = expensiveRobot;
 
-	std::cout << fragmentedRobot;
-	std::cout << moreFragmentedRobot;
-	std::cout << mostFragmentedRobot;
+	std::cout << expensiveRobot;
+	std::cout << moreExpensiveRobot;
+	std::cout << mostExpensiveRobot;
 
-	fragmentedRobot.attack("the big bad guy");
-	std::cout << fragmentedRobot;
+	expensiveRobot.attack("the big bad guy");
+	std::cout << expensiveRobot;
 
-	fragmentedRobot.takeDamage(2);
-	std::cout << fragmentedRobot;
+	expensiveRobot.ClapTrap::attack("some weirdo");
+	std::cout << expensiveRobot;
 
-	fragmentedRobot.beRepaired(1);
-	std::cout << fragmentedRobot;
+	expensiveRobot.takeDamage(2);
+	std::cout << expensiveRobot;
 
-	fragmentedRobot.takeDamage(200);
-	std::cout << fragmentedRobot;
+	expensiveRobot.beRepaired(1);
+	std::cout << expensiveRobot;
 
-	fragmentedRobot.attack("the big bad guy");
-	fragmentedRobot.beRepaired(20);
+	expensiveRobot.takeDamage(200);
+	std::cout << expensiveRobot;
 
-	fragmentedRobot.highFivesGuys();
+	expensiveRobot.attack("the big bad guy");
+	expensiveRobot.beRepaired(20);
 
-	std::cout << "\n\n\nITS DIAMOND TIME\n\n\n";
-	DiamondTrap expensiveRobot;
-	std::cout << "\n\n\nDIAMOND TIME OVER\n\n\n";
+	expensiveRobot.whoAmI();
 
 	return (0);
 }
