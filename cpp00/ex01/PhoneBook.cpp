@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:04:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/07/11 17:33:31 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/22 23:28:42 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,26 @@
 
 #include "PhoneBook.hpp"
 
-static void getContactInfo(const std::string &prompt, std::string &infoStorage) {
+static std::string getContactInfo(const std::string &prompt) {
+	std::string	infoStorage;
+
 	while (!std::cin.eof()) {
 		std::cout << prompt;
 		getline(std::cin, infoStorage);
 		if (infoStorage != "")
-			return ;
+			return (infoStorage);
 		std::cout << "Error: Field can't be empty\n";
 	}
+	return (infoStorage);
 }
 
 void PhoneBook::addContact(void) {
 	std::cout << "\nNEW CONTACT\n";
-	getContactInfo("First Name: ", _contacts[_newContactPlace].firstName);
-	getContactInfo("Last Name: ", _contacts[_newContactPlace].lastName);
-	getContactInfo("Nickname: ", _contacts[_newContactPlace].nickname);
-	getContactInfo("Phone number: ", _contacts[_newContactPlace].phoneNumber);
-	getContactInfo("Darkest secret: ", _contacts[_newContactPlace].darkestSecret);
+	_contacts[_newContactPlace].setFirstName(getContactInfo("First Name: "));
+	_contacts[_newContactPlace].setLastName(getContactInfo("Last Name: "));
+	_contacts[_newContactPlace].setNickname(getContactInfo("Nickname: "));
+	_contacts[_newContactPlace].setPhoneNumber(getContactInfo("Phone Number: "));
+	_contacts[_newContactPlace].setDarkestSecret(getContactInfo("Darkest Secret: "));
 	std::cout << "CONTACT SAVED!\n";
 	if (_numOfContacts < 8)
 		_numOfContacts++;
@@ -42,7 +45,7 @@ void PhoneBook::addContact(void) {
 		_newContactPlace = 0;
 }
 
-static void printColumn(std::string &string, char separator)
+static void printColumn(const std::string &string, char separator)
 {
 	if (string.size() <= 10)
 		std::cout << std::setw(10) << string;
@@ -54,12 +57,12 @@ static void printColumn(std::string &string, char separator)
 void PhoneBook::printAllContacts(void)
 {
 	for (short i = 0; i < 8; i++) {
-		if (_contacts[i].firstName == "")
+		if (_contacts[i].getFirstName() == "")
 			break ;
 		std::cout << std::setw(10) << i + 1 << '|';
-		printColumn(_contacts[i].firstName, '|');
-		printColumn(_contacts[i].lastName, '|');
-		printColumn(_contacts[i].nickname, '\n');
+		printColumn(_contacts[i].getFirstName(), '|');
+		printColumn(_contacts[i].getLastName(), '|');
+		printColumn(_contacts[i].getNickname(), '\n');
 	}
 	std::cout << std::endl;
 }
@@ -73,11 +76,11 @@ bool isNum(std::string &str) {
 }
 
 void PhoneBook::printContactInfo(int index) {
-	std::cout << "First Name: " << _contacts[index].firstName;
-	std::cout << "\nLast Name: " << _contacts[index].lastName;
-	std::cout << "\nNickname: " << _contacts[index].nickname;
-	std::cout << "\nPhone number: " << _contacts[index].phoneNumber;
-	std::cout << "\nDarkest secret: " << _contacts[index].darkestSecret;
+	std::cout << "First Name: " << _contacts[index].getFirstName();
+	std::cout << "\nLast Name: " << _contacts[index].getLastName();
+	std::cout << "\nNickname: " << _contacts[index].getNickname();
+	std::cout << "\nPhone number: " << _contacts[index].getPhoneNumber();
+	std::cout << "\nDarkest secret: " << _contacts[index].getDarkestSecret();
 	std::cout << std::endl;
 }
 
