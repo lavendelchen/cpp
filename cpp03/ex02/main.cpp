@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 16:54:02 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/22 21:33:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,31 @@
 #include "FragTrap.hpp"
 
 int main(void) {
-	FragTrap FragmentedRobot("Fragmented Robot");
-	FragTrap MoreFragmentedRobot(FragmentedRobot);
-	FragTrap MostFragmentedRobot;
-	MostFragmentedRobot = FragmentedRobot;
+	FragTrap fragmentedRobot("fragmented Robot");
+	FragTrap moreFragmentedRobot(fragmentedRobot);
+	FragTrap mostFragmentedRobot;
+	mostFragmentedRobot = fragmentedRobot;
 
-	std::cout << FragmentedRobot;
-	std::cout << MoreFragmentedRobot;
-	std::cout << MostFragmentedRobot;
+	std::cout << fragmentedRobot;
+	std::cout << moreFragmentedRobot;
+	std::cout << mostFragmentedRobot;
 
-	FragmentedRobot.attack("the big bad guy");
-	std::cout << FragmentedRobot;
+	fragmentedRobot.attack("the big bad guy");
+	std::cout << fragmentedRobot;
 
-	FragmentedRobot.takeDamage(2);
-	std::cout << FragmentedRobot;
+	fragmentedRobot.takeDamage(2);
+	std::cout << fragmentedRobot;
 
-	FragmentedRobot.beRepaired(1);
-	std::cout << FragmentedRobot;
+	fragmentedRobot.beRepaired(1);
+	std::cout << fragmentedRobot;
 
-	FragmentedRobot.takeDamage(200);
-	std::cout << FragmentedRobot;
+	fragmentedRobot.takeDamage(200);
+	std::cout << fragmentedRobot;
 
-	FragmentedRobot.attack("the big bad guy");
-	FragmentedRobot.beRepaired(20);
+	fragmentedRobot.attack("the big bad guy");
+	fragmentedRobot.beRepaired(20);
 
-	FragmentedRobot.highFivesGuys();
+	fragmentedRobot.highFivesGuys();
 
 	return (0);
 }
