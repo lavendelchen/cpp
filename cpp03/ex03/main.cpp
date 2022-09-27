@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/23 00:35:11 by shaas            ###   ########.fr       */
+/*   Updated: 2022/09/27 20:58:30 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "DiamondTrap.hpp"
 
 int main(void) {
-	DiamondTrap expensiveRobot("expensive Robot");
+	DiamondTrap expensiveRobot("expensive robot");
 	DiamondTrap moreExpensiveRobot(expensiveRobot);
 	DiamondTrap mostExpensiveRobot;
 	mostExpensiveRobot = expensiveRobot;
