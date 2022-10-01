@@ -16,34 +16,18 @@
 
 Animal::Animal() {
 	std::cout << "Animal default constructor called" << std::endl;
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->attackDamage = 0;
-}
-
-Animal::Animal(std::string name) {
-	std::cout << "Animal name constructor called" << std::endl;
-	this->name = name;
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->attackDamage = 0;
+	this->type = "idk";
 }
 
 Animal::Animal(const Animal &orig) {
 	std::cout << "Animal copy constructor called" << std::endl;
-	this->name = orig.name;
-	this->hitPoints = orig.hitPoints;
-	this->energyPoints = orig.energyPoints;
-	this->attackDamage = orig.attackDamage;
+	this->type = orig.type;
 }
 
 Animal&	Animal::operator=(Animal const &rhs) {
 	std::cout << "Animal copy assignment operator called" << std::endl;
 	if (this != &rhs) {
-		this->name = rhs.name;
-		this->hitPoints = rhs.hitPoints;
-		this->energyPoints = rhs.energyPoints;
-		this->attackDamage = rhs.attackDamage;
+		this->type = rhs.type;
 	}
 	return *this;
 }
@@ -54,54 +38,14 @@ Animal::~Animal() {
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
-void Animal::attack(const std::string& target) {
-	if (this->energyPoints > 0 && this->hitPoints > 0) {
-		std::cout	<< "Animal " << this->name << " attacks " << target
-					<< ", causing " << this->attackDamage
-					<< " points of damage!" << std::endl;
-		this->energyPoints--;
-	}
-	else {
-		std::cout	<< "Animal " << this->name
-					<< " doesn't have enough energy and hit points left to attack."
-					<< std::endl;
-	}
-}
-
-void Animal::takeDamage(unsigned int amount) {
-	std::cout	<< "Animal " << this->name << " takes "
-				<< amount << " damage!" << std::endl;
-	if ((this->hitPoints - (int)amount) < 0)
-		this->hitPoints = 0;
-	else
-		this->hitPoints-=amount;
-}
-
-void Animal::beRepaired(unsigned int amount) {
-	if (this->energyPoints > 0 && this->hitPoints > 0) {
-		std::cout	<< "Animal " << this->name << " repairs itself, regaining "
-					<< amount << " hit points!" << std::endl;
-		this->hitPoints+=amount;
-		this->energyPoints--;
-	}
-	else {
-		std::cout	<< "Animal " << this->name
-					<< " doesn't have enough energy and hit points left to repair itself."
-					<< std::endl;
-	}
-}
 
 void	Animal::printAttributes(std::ostream &out) {
-	out << "\nName: " << this->name
-		<< "\nHit Points: " << this->hitPoints
-		<< "\nEnergy Points: " << this->energyPoints
-		<< "\nAttack Damage: " << this->attackDamage
-		<< "\n" << std::endl;
+	out << this->type;
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
-std::ostream&	operator<<(std::ostream &out, Animal &Animal) {
-	Animal.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, Animal &animal) {
+	animal.printAttributes(out);
 	return (out);
 }

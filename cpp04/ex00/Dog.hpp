@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                          :+:      :+:    :+:   */
+/*   Animal.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,19 +15,16 @@
 
 # include <iostream>
 # include <string>
-# include "ClapTrap.hpp"
+# include "Animal.hpp"
 
-class Dog: virtual public ClapTrap {
+class Dog: virtual public Animal {
 	public:
 		Dog();
-		Dog(std::string name);
 		Dog(Dog const &orig);
 		Dog& operator=(Dog const &rhs);
 		~Dog();
-
-		void highFivesGuys(void);
 };
 
-std::ostream&	operator<<(std::ostream &out, Dog &fragTrap);
+std::ostream&	operator<<(std::ostream &out, Dog &dog);
 
 #endif

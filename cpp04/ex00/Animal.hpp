@@ -18,24 +18,17 @@
 
 class Animal {
 	protected:
-		std::string	name;
-		int			hitPoints;
-		int			energyPoints;
-		int			attackDamage;
+		std::string	type;
 
 	public:
 		Animal();
-		Animal(std::string name);
 		Animal(Animal const &orig);
 		Animal& operator=(Animal const &rhs);
 		~Animal();
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		void	printAttributes(std::ostream &out);
+		void printAttributes(std::ostream &out);
 };
 
-std::ostream&	operator<<(std::ostream &out, Animal &Animal);
+std::ostream&	operator<<(std::ostream &out, Animal &animal);
 
 #endif

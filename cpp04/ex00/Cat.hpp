@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                          :+:      :+:    :+:   */
+/*   Animal.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,19 +15,16 @@
 
 # include <iostream>
 # include <string>
-# include "ClapTrap.hpp"
+# include "Animal.hpp"
 
-class Cat: virtual public ClapTrap {
+class Cat: virtual public Animal {
 	public:
 		Cat();
-		Cat(std::string name);
 		Cat(Cat const &orig);
 		Cat& operator=(Cat const &rhs);
 		~Cat();
-
-		void guardGate();
 };
 
-std::ostream&	operator<<(std::ostream &out, Cat &Cat);
+std::ostream&	operator<<(std::ostream &out, Cat &cat);
 
 #endif

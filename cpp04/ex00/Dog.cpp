@@ -16,30 +16,17 @@
 
 Dog::Dog() {
 	std::cout << "Dog default constructor called" << std::endl;
-	this->hitPoints = 100;
-	this->energyPoints = 100;
-	this->attackDamage = 30;
+	this->type = "Dog";
 }
 
-Dog::Dog(std::string name) {
-	std::cout << "Dog name constructor called" << std::endl;
-	this->name = name;
-	this->hitPoints = 100;
-	this->energyPoints = 100;
-	this->attackDamage = 30;
-}
-
-Dog::Dog(const Dog &orig): ClapTrap(orig) {
+Dog::Dog(const Dog &orig): Animal(orig) {
 	std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog&	Dog::operator=(Dog const &rhs) {
 	std::cout << "Dog copy assignment operator called" << std::endl;
 	if (this != &rhs) {
-		this->name = rhs.name;
-		this->hitPoints = rhs.hitPoints;
-		this->energyPoints = rhs.energyPoints;
-		this->attackDamage = rhs.attackDamage;
+		this->type = rhs.type;
 	}
 	return *this;
 }
@@ -50,10 +37,6 @@ Dog::~Dog() {
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
-
-void Dog::highFivesGuys(void) {
-	std::cout << "Dog " << this->name << " wants a high five :)" << std::endl;
-}
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 

@@ -16,30 +16,17 @@
 
 Cat::Cat() {
 	std::cout << "Cat default constructor called" << std::endl;
-	this->hitPoints = 100;
-	this->energyPoints = 50;
-	this->attackDamage = 20;
+	this->type = "Cat";
 }
 
-Cat::Cat(std::string name) {
-	std::cout << "Cat name constructor called" << std::endl;
-	this->name = name;
-	this->hitPoints = 100;
-	this->energyPoints = 50;
-	this->attackDamage = 20;
-}
-
-Cat::Cat(const Cat &orig): ClapTrap(orig) {
+Cat::Cat(const Cat &orig): Animal(orig) {
 	std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat&	Cat::operator=(Cat const &rhs) {
 	std::cout << "Cat copy assignment operator called" << std::endl;
 	if (this != &rhs) {
-		this->name = rhs.name;
-		this->hitPoints = rhs.hitPoints;
-		this->energyPoints = rhs.energyPoints;
-		this->attackDamage = rhs.attackDamage;
+		this->type = rhs.type;
 	}
 	return *this;
 }
@@ -50,10 +37,6 @@ Cat::~Cat() {
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
-
-void Cat::guardGate() {
-	std::cout << "Cat " << this->name << " is now in gatekeeper mode!" << std::endl;
-}
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
