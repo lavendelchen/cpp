@@ -44,7 +44,7 @@ void	Cat::makeSound() const {
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
-std::ostream&	operator<<(std::ostream &out, Cat &Cat) {
-	Cat.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, Cat &cat) {
+	cat.printAttributes(out);
 	return (out);
 }

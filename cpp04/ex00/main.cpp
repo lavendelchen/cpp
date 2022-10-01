@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/01 21:22:40 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/01 23:55:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,44 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongClasses/WrongAnimal.hpp"
+#include "WrongClasses/WrongDog.hpp"
+#include "WrongClasses/WrongCat.hpp"
 
-int main(void) {
-	Animal randomAnimal;
-	std::cout << randomAnimal << std::endl;
-
-	Dog doggy;
-	std::cout << "\n";
-	Dog doggggy;
-	doggggy = doggy;
-	std::cout << "\n";
-
-	Cat cat;
-	std::cout << "\n";
-	Cat cats;
-	cats = cat;
-	std::cout << "\n";
-	return (0);
+int main() {
+	{
+		std::cout << "-----CORRECT USAGE-----\n\n";
+		Animal* meta = new Animal();
+		Animal* j = new Dog();
+		Animal* i = new Cat();
+	
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+	
+		i->makeSound();
+		j->makeSound();
+		meta->makeSound();
+	
+		delete i;
+		delete j;
+		delete meta;
+	}
+	{
+		std::cout << "\n-----WRONG USAGE-----\n\n";
+		WrongAnimal* meta = new WrongAnimal();
+		WrongAnimal* j = new WrongDog();
+		WrongAnimal* i = new WrongCat();
+	
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+	
+		i->makeSound();
+		j->makeSound();
+		meta->makeSound();
+	
+		delete i;
+		delete j;
+		delete meta;
+	}
+	return 0;
 }

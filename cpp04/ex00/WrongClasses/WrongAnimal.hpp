@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                          :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/14 23:42:33 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/01 23:43:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # include <iostream>
 # include <string>
 
-class Animal {
+class WrongAnimal {
 	protected:
 		std::string	type;
 
 	public:
-		Animal();
-		Animal(Animal const &orig);
-		Animal& operator=(Animal const &rhs);
-		~Animal();
+		WrongAnimal();
+		WrongAnimal(WrongAnimal const &orig);
+		WrongAnimal& operator=(WrongAnimal const &rhs);
+		virtual ~WrongAnimal();
 
 		void				printAttributes(std::ostream &out);
 		const std::string	getType(void);
-		virtual void		makeSound() const;
+		void				makeSound() const;
 };
 
-std::ostream&	operator<<(std::ostream &out, Animal &animal);
+std::ostream&	operator<<(std::ostream &out, WrongAnimal &wrongAnimal);
 
 #endif

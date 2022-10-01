@@ -24,7 +24,7 @@ class Animal {
 		Animal();
 		Animal(Animal const &orig);
 		Animal& operator=(Animal const &rhs);
-		~Animal();
+		virtual ~Animal();
 
 		void				printAttributes(std::ostream &out);
 		const std::string	getType(void);

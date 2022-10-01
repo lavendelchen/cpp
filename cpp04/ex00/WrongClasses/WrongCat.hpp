@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                          :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/14 23:42:33 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/01 23:25:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
 # include <iostream>
 # include <string>
-# include "Animal.hpp"
+# include "WrongAnimal.hpp"
 
-class Cat: virtual public Animal {
+class WrongCat: virtual public WrongAnimal {
 	public:
-		Cat();
-		Cat(Cat const &orig);
-		Cat& operator=(Cat const &rhs);
-		~Cat();
+		WrongCat();
+		WrongCat(WrongCat const &orig);
+		WrongCat& operator=(WrongCat const &rhs);
+		~WrongCat();
 
 		void	makeSound() const;
 };
 
-std::ostream&	operator<<(std::ostream &out, Cat &cat);
+std::ostream&	operator<<(std::ostream &out, WrongCat &wrongCat);
 
 #endif

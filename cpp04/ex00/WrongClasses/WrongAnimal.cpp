@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                       :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 16:17:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/01 23:25:31 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 
-Animal::Animal() {
-	std::cout << "Animal default constructor called" << std::endl;
+WrongAnimal::WrongAnimal() {
+	std::cout << "WrongAnimal default constructor called" << std::endl;
 	this->type = "idk";
 }
 
-Animal::Animal(const Animal &orig) {
-	std::cout << "Animal copy constructor called" << std::endl;
+WrongAnimal::WrongAnimal(const WrongAnimal &orig) {
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 	this->type = orig.type;
 }
 
-Animal&	Animal::operator=(Animal const &rhs) {
-	std::cout << "Animal copy assignment operator called" << std::endl;
+WrongAnimal&	WrongAnimal::operator=(WrongAnimal const &rhs) {
+	std::cout << "WrongAnimal copy assignment operator called" << std::endl;
 	if (this != &rhs) {
 		this->type = rhs.type;
 	}
@@ -33,27 +33,27 @@ Animal&	Animal::operator=(Animal const &rhs) {
 }
 
 /* -------------------------------- DESTRUCTOR -------------------------------- */
-Animal::~Animal() {
-	std::cout << "Animal destructor called" << std::endl;
+WrongAnimal::~WrongAnimal() {
+	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 
-void	Animal::printAttributes(std::ostream &out) {
+void	WrongAnimal::printAttributes(std::ostream &out) {
 	out << this->type;
 }
 
-const std::string	Animal::getType(void) {
+const std::string	WrongAnimal::getType(void) {
 	return (this->type);
 }
 
-void	Animal::makeSound() const {
+void	WrongAnimal::makeSound() const {
 	std::cout << "...\n";
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
-std::ostream&	operator<<(std::ostream &out, Animal &animal) {
-	animal.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, WrongAnimal &wrongAnimal) {
+	wrongAnimal.printAttributes(out);
 	return (out);
 }

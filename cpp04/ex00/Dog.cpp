@@ -44,7 +44,7 @@ void	Dog::makeSound() const {
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
-std::ostream&	operator<<(std::ostream &out, Dog &Dog) {
-	Dog.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, Dog &dog) {
+	dog.printAttributes(out);
 	return (out);
 }
