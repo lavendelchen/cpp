@@ -43,6 +43,10 @@ void	Animal::printAttributes(std::ostream &out) {
 	out << this->type;
 }
 
+const std::string	Animal::getType(void) {
+	return (this->type);
+}
+
 /* --------------------------------- OVERLOAD --------------------------------- */
 
 std::ostream&	operator<<(std::ostream &out, Animal &animal) {

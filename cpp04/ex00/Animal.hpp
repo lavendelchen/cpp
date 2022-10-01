@@ -26,7 +26,9 @@ class Animal {
 		Animal& operator=(Animal const &rhs);
 		~Animal();
 
-		void printAttributes(std::ostream &out);
+		void				printAttributes(std::ostream &out);
+		const std::string	getType(void);
+		void				makeSound();
 };
 
 std::ostream&	operator<<(std::ostream &out, Animal &animal);
