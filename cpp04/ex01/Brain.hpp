@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/02 20:17:24 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/02 19:30:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 # include <iostream>
 # include <string>
-# include "Animal.hpp"
-# include "Brain.hpp"
 
-class Dog: virtual public Animal {
+class Brain {
 	private:
-		Brain	*brain;
+		static const int	ideaNum = 100;
+		std::string			ideas[ideaNum];
 
 	public:
-		Dog();
-		Dog(Dog const &orig);
-		Dog& operator=(Dog const &rhs);
-		~Dog();
+		Brain();
+		Brain(Brain const &orig);
+		Brain& operator=(Brain const &rhs);
+		~Brain();
 
-		virtual void	printAttributes(std::ostream &out);
-		void			makeSound() const;
+		void				printAttributes(std::ostream &out);
+		const std::string	getType(void);
 };
 
-std::ostream&	operator<<(std::ostream &out, Dog &dog);
+std::ostream&	operator<<(std::ostream &out, Brain &brain);
 
 #endif

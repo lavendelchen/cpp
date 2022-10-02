@@ -1,59 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/02 20:18:49 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/01 23:57:36 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Brain.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 
-Dog::Dog() {
-	std::cout << "Dog default constructor called" << std::endl;
-	this->type = "Dog";
-	this->brain = new Brain;
+Brain::Brain() {
+	std::cout << "Brain default constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &orig): Animal(orig) {
-	std::cout << "Dog copy constructor called" << std::endl;
-	this->brain = new Brain(*(orig.brain));
+Brain::Brain(const Brain &orig) {
+	std::cout << "Brain copy constructor called" << std::endl;
+	for (int i = 0; i < this->ideaNum; i++) {
+		this->ideas[i] = orig.ideas[i];
+	}
 }
 
-Dog&	Dog::operator=(Dog const &rhs) {
-	std::cout << "Dog copy assignment operator called" << std::endl;
+Brain&	Brain::operator=(Brain const &rhs) {
+	std::cout << "Brain copy assignment operator called" << std::endl;
 	if (this != &rhs) {
-		this->type = rhs.type;
-		this->brain = new Brain(*(rhs.brain));
+		for (int i = 0; i < this->ideaNum; i++) {
+			this->ideas[i] = rhs.ideas[i];
+		}
 	}
 	return *this;
 }
 
 /* -------------------------------- DESTRUCTOR -------------------------------- */
-Dog::~Dog() {
-	std::cout << "Dog destructor called" << std::endl;
-	delete this->brain;
+Brain::~Brain() {
+	std::cout << "Brain destructor called" << std::endl;
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 
-void	Dog::printAttributes(std::ostream &out) {
-	this->Animal::printAttributes(out);
-	this->brain->printAttributes(out);
+void	Brain::printAttributes(std::ostream &out) {
+	for (int i = 0; i < this->ideaNum; i++) {
+		if (!this->ideas[i].empty()) 
+			out << "Idea " << i + 1 << ": " << this->ideas[i] << '\n';
+	}
 }
 
-void	Dog::makeSound() const {
-	std::cout << "Wuff! 🐶\n";
+const std::string	Brain::getType(void) {
+	return (this->type);
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
-std::ostream&	operator<<(std::ostream &out, Dog &dog) {
-	dog.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, Brain &brain) {
+	brain.printAttributes(out);
 	return (out);
 }
