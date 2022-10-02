@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 00:01:25 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/02 18:37:51 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ Fixed::Fixed(const Fixed &orig) {
 }
 
 Fixed::Fixed(const int num) {
-	std::cout << "hellloooooo this is the int constructor called with " << num << std::endl;
 	this->rawBits = num << Fixed::rhsBits;
 }
 
