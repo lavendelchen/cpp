@@ -6,11 +6,11 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2022/10/01 23:49:35 by shaas            ###   ########.fr        #
+#    Updated: 2022/10/02 00:00:15 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Polymorphism
+NAME = WorldOnFire
 
 ISDOCKER := $(shell ls -a /)
 ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/01 23:57:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/01 23:26:43 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 
-Cat::Cat() {
-	std::cout << "Cat default constructor called" << std::endl;
-	this->type = "Cat";
+WrongCat::WrongCat() {
+	std::cout << "WrongCat default constructor called" << std::endl;
+	this->type = "WrongCat";
 }
 
-Cat::Cat(const Cat &orig): Animal(orig) {
-	std::cout << "Cat copy constructor called" << std::endl;
+WrongCat::WrongCat(const WrongCat &orig): WrongAnimal(orig) {
+	std::cout << "WrongCat copy constructor called" << std::endl;
 }
 
-Cat&	Cat::operator=(Cat const &rhs) {
-	std::cout << "Cat copy assignment operator called" << std::endl;
+WrongCat&	WrongCat::operator=(WrongCat const &rhs) {
+	std::cout << "WrongCat copy assignment operator called" << std::endl;
 	if (this != &rhs) {
 		this->type = rhs.type;
 	}
@@ -32,19 +32,19 @@ Cat&	Cat::operator=(Cat const &rhs) {
 }
 
 /* -------------------------------- DESTRUCTOR -------------------------------- */
-Cat::~Cat() {
-	std::cout << "Cat destructor called" << std::endl;
+WrongCat::~WrongCat() {
+	std::cout << "WrongCat destructor called" << std::endl;
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 
-void	Cat::makeSound() const {
+void	WrongCat::makeSound() const {
 	std::cout << "Meowwww 😺\n";
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 
-std::ostream&	operator<<(std::ostream &out, Cat &cat) {
-	cat.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, WrongCat &wrongCat) {
+	wrongCat.printAttributes(out);
 	return (out);
 }
