@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/02 19:30:54 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/03 19:14:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ class Brain {
 		Brain& operator=(Brain const &rhs);
 		~Brain();
 
-		void				printAttributes(std::ostream &out);
-		const std::string	getType(void);
+		void	printAttributes(std::ostream &out);
 };
 
 std::ostream&	operator<<(std::ostream &out, Brain &brain);

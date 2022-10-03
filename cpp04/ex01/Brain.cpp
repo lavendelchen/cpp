@@ -49,10 +49,6 @@ void	Brain::printAttributes(std::ostream &out) {
 	}
 }
 
-const std::string	Brain::getType(void) {
-	return (this->type);
-}
-
 /* --------------------------------- OVERLOAD --------------------------------- */
 
 std::ostream&	operator<<(std::ostream &out, Brain &brain) {
