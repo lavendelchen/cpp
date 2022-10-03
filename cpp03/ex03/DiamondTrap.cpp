@@ -65,12 +65,9 @@ void	DiamondTrap::whoAmI() {
 }
 
 void	DiamondTrap::printAttributes(std::ostream &out) {
-	out << "\nName: " << this->name
-		<< "\nClapTrap Name: " << this->ClapTrap::name
-		<< "\nHit Points: " << this->hitPoints
-		<< "\nEnergy Points: " << this->energyPoints
-		<< "\nAttack Damage: " << this->attackDamage
-		<< "\n" << std::endl;
+	out	<< "Name: " << this->name
+		<< "\nClapTrap ";
+	this->ClapTrap::printAttributes(out);
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */

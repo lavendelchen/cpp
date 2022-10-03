@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/23 00:59:08 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/03 17:45:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,20 @@ ScavTrap::~ScavTrap() {
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
+
+void ScavTrap::attack(const std::string& target) {
+	if (this->energyPoints > 0 && this->hitPoints > 0) {
+		std::cout	<< "ScavTrap " << this->name << " attacks " << target
+					<< ", causing " << this->attackDamage
+					<< " points of damage!" << std::endl;
+		this->energyPoints--;
+	}
+	else {
+		std::cout	<< "ScavTrap " << this->name
+					<< " doesn't have enough energy and hit points left to attack."
+					<< std::endl;
+	}
+}
 
 void ScavTrap::guardGate() {
 	std::cout << "ScavTrap " << this->name << " is now in gatekeeper mode!" << std::endl;

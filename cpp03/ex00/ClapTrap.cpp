@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 16:17:17 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/03 18:02:49 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ void ClapTrap::beRepaired(unsigned int amount) {
 }
 
 void	ClapTrap::printAttributes(std::ostream &out) {
-	out << "\nName: " << this->name
+	out << "Name: " << this->name
 		<< "\nHit Points: " << this->hitPoints
 		<< "\nEnergy Points: " << this->energyPoints
 		<< "\nAttack Damage: " << this->attackDamage
-		<< "\n" << std::endl;
+		<< std::endl;
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/15 01:42:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/03 18:00:44 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ int main(void) {
 	ClapTrap littlestRobot;
 	littlestRobot = littleRobot;
 
-	std::cout << littleRobot;
-	std::cout << littlerRobot;
-	std::cout << littlestRobot;
+	std::cout << littleRobot << '\n';
+	std::cout << littlerRobot << '\n';
+	std::cout << littlestRobot << '\n';
 
 	littleRobot.attack("the big bad guy");
-	std::cout << littleRobot;
+	std::cout << '\n' << littleRobot << '\n';
 
 	littleRobot.takeDamage(2);
-	std::cout << littleRobot;
+	std::cout << '\n' << littleRobot << '\n';
 
 	littleRobot.beRepaired(1);
-	std::cout << littleRobot;
+	std::cout << '\n' << littleRobot << '\n';
 
 	littleRobot.takeDamage(20);
-	std::cout << littleRobot;
+	std::cout << '\n' << littleRobot << '\n';
 
 	littleRobot.attack("the big bad guy");
 	littleRobot.beRepaired(20);

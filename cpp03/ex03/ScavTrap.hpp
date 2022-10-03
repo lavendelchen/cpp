@@ -25,7 +25,8 @@ class ScavTrap: virtual public ClapTrap {
 		ScavTrap& operator=(ScavTrap const &rhs);
 		~ScavTrap();
 
-		void guardGate();
+		void	attack(const std::string& target);
+		void	guardGate();
 };
 
 std::ostream&	operator<<(std::ostream &out, ScavTrap &scavTrap);

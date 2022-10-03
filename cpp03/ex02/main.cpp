@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/09/22 21:33:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/03 18:05:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ int main(void) {
 	FragTrap mostFragmentedRobot;
 	mostFragmentedRobot = fragmentedRobot;
 
-	std::cout << fragmentedRobot;
-	std::cout << moreFragmentedRobot;
-	std::cout << mostFragmentedRobot;
+	std::cout << fragmentedRobot << '\n';
+	std::cout << moreFragmentedRobot << '\n';
+	std::cout << mostFragmentedRobot << '\n';
 
 	fragmentedRobot.attack("the big bad guy");
-	std::cout << fragmentedRobot;
+	std::cout << '\n' << fragmentedRobot << '\n';
 
 	fragmentedRobot.takeDamage(2);
-	std::cout << fragmentedRobot;
+	std::cout << '\n' << fragmentedRobot << '\n';
 
 	fragmentedRobot.beRepaired(1);
-	std::cout << fragmentedRobot;
+	std::cout << '\n' << fragmentedRobot << '\n';
 
 	fragmentedRobot.takeDamage(200);
-	std::cout << fragmentedRobot;
+	std::cout << '\n' << fragmentedRobot << '\n';
 
 	fragmentedRobot.attack("the big bad guy");
 	fragmentedRobot.beRepaired(20);
