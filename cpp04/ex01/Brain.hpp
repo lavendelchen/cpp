@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/03 19:14:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/07 18:43:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 
 class Brain {
 	private:
-		static const int	ideaNum = 100;
-		std::string			ideas[ideaNum];
+		static const unsigned int	ideaNum = 100;
+		std::string					ideas[ideaNum];
+		unsigned int				index;
 
 	public:
 		Brain();
@@ -27,7 +28,9 @@ class Brain {
 		Brain& operator=(Brain const &rhs);
 		~Brain();
 
-		void	printAttributes(std::ostream &out);
+		void				printAttributes(std::ostream &out);
+		void				addIdea(std::string& idea);
+		const std::string&	getIdea(unsigned int index);
 };
 
 std::ostream&	operator<<(std::ostream &out, Brain &brain);
