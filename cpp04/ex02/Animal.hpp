@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/02 20:11:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 16:28:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Animal {
 
 		virtual void		printAttributes(std::ostream &out);
 		const std::string	getType(void);
-		virtual void		makeSound() const;
+		virtual void		makeSound() const = 0;
 };
 
 std::ostream&	operator<<(std::ostream &out, Animal &animal);

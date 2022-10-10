@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/01 23:57:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 16:29:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ void	Animal::printAttributes(std::ostream &out) {
 
 const std::string	Animal::getType(void) {
 	return (this->type);
-}
-
-void	Animal::makeSound() const {
-	std::cout << "...\n";
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
