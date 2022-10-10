@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/07 18:46:13 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:25:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Cat: virtual public Animal {
 
 		virtual void		printAttributes(std::ostream &out);
 		void				makeSound() const;
-		void				addIdea(std::string& idea);
+		void				addIdea(std::string idea);
 		const std::string&	getIdea(unsigned int index);
 };
 

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/07 18:48:44 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:27:08 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	Dog::makeSound() const {
 	std::cout << "Wuff! 🐶\n";
 }
 
-void	Dog::addIdea(std::string& idea) {
+void	Dog::addIdea(std::string idea) {
 	this->brain->addIdea(idea);
 }
 
 const std::string&	Dog::getIdea(unsigned int index) {
-	this->brain->getIdea(index);
+	return (this->brain->getIdea(index));
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */

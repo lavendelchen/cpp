@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/07 18:43:12 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:39:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <iostream>
 # include <string>
+# ifndef uint
+#  define uint unsigned int
+# endif
 
 class Brain {
 	private:
@@ -29,7 +32,7 @@ class Brain {
 		~Brain();
 
 		void				printAttributes(std::ostream &out);
-		void				addIdea(std::string& idea);
+		void				addIdea(std::string idea);
 		const std::string&	getIdea(unsigned int index);
 };
 

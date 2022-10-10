@@ -21,7 +21,7 @@ Brain::Brain() {
 
 Brain::Brain(const Brain &orig) {
 	std::cout << "Brain copy constructor called" << std::endl;
-	for (int i = 0; i < this->ideaNum; i++) {
+	for (uint i = 0; i < this->ideaNum; i++) {
 		this->ideas[i] = orig.ideas[i];
 	}
 	this->index = orig.index;
@@ -30,7 +30,7 @@ Brain::Brain(const Brain &orig) {
 Brain&	Brain::operator=(Brain const &rhs) {
 	std::cout << "Brain copy assignment operator called" << std::endl;
 	if (this != &rhs) {
-		for (int i = 0; i < this->ideaNum; i++) {
+		for (uint i = 0; i < this->ideaNum; i++) {
 			this->ideas[i] = rhs.ideas[i];
 		}
 		this->index = rhs.index;
@@ -46,13 +46,13 @@ Brain::~Brain() {
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 
 void	Brain::printAttributes(std::ostream &out) {
-	for (int i = 0; i < this->ideaNum; i++) {
+	for (uint i = 0; i < this->ideaNum; i++) {
 		if (!this->ideas[i].empty()) 
 			out << "Idea " << i + 1 << ": " << this->ideas[i] << '\n';
 	}
 }
 
-void	Brain::addIdea(std::string& idea) {
+void	Brain::addIdea(std::string idea) {
 	this->ideas[this->index] = idea;
 	index++;
 	if (this->index >= this->ideaNum)

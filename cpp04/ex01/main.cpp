@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 00:22:50 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/07 18:45:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:29:29 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int main() {
 	}
 
 	Cat* cat1 = new Cat;
+	cat1->addIdea("i want to eat");
+	cat1->addIdea("i want to sleep");
+	cat1->addIdea("i want to play");
 	Cat* cat2 = new Cat(*cat1);
 	delete cat1;
 	std::cout << "CAT2: " << *cat2 << std::endl;

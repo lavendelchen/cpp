@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/07 18:48:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:30:18 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ Cat::~Cat() {
 
 void	Cat::printAttributes(std::ostream &out) {
 	this->Animal::printAttributes(out);
+	out << '\n';
 	this->brain->printAttributes(out);
 }
 
@@ -51,12 +52,12 @@ void	Cat::makeSound() const {
 	std::cout << "Meowwww 😺\n";
 }
 
-void	Cat::addIdea(std::string& idea) {
+void	Cat::addIdea(std::string idea) {
 	this->brain->addIdea(idea);
 }
 
 const std::string&	Cat::getIdea(unsigned int index) {
-	this->brain->getIdea(index);
+	return (this->brain->getIdea(index));
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
