@@ -59,8 +59,14 @@ void	Brain::addIdea(std::string idea) {
 		index = 0;
 }
 
+/**
+ * @param index 1 is first element, not 0.
+ */
 const std::string&	Brain::getIdea(unsigned int index) {
-	return (this->ideas[index]);
+	if (index != 0)
+		return (this->ideas[index - 1]);
+	std::cout << "read the function description honey this ain't how it works" << std::endl;
+	return (this->ideas[0]);
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */

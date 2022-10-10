@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/10 14:30:18 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:46:38 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void	Cat::addIdea(std::string idea) {
 	this->brain->addIdea(idea);
 }
 
+/**
+ * @param index 1 is first element, not 0.
+ */
 const std::string&	Cat::getIdea(unsigned int index) {
 	return (this->brain->getIdea(index));
 }

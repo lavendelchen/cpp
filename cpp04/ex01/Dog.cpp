@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/10 14:27:08 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:46:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	Dog::addIdea(std::string idea) {
 	this->brain->addIdea(idea);
 }
 
+/**
+ * @param index 1 is first element, not 0.
+ */
 const std::string&	Dog::getIdea(unsigned int index) {
 	return (this->brain->getIdea(index));
 }
