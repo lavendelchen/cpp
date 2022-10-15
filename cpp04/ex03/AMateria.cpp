@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:39:09 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/15 20:45:17 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/15 22:00:01 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ const std::string& AMateria::getType() const {
 }
 
 //virtual void AMateria::use(ICharacter& target) {
-//	
+//	std::cout << "* how would this ever affect " << target.name << "? *" << std::endl;
 //}
 
 void	AMateria::printAttributes(std::ostream &out) {

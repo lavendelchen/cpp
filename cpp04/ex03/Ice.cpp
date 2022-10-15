@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/15 21:44:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/15 22:02:32 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ Ice::~Ice() {
 AMateria*	Ice::clone() const {
 	return (new Ice(*this));
 }
+
+//void	Ice::use(ICharacter& target) {
+//	"* shoots an ice bolt at " << target.name << " *" << std::endl;
+//}
 
 void	Ice::printAttributes(std::ostream &out) {
 	this->AMateria::printAttributes(out);

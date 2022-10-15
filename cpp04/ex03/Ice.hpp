@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/15 21:44:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/15 22:00:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class Ice: virtual public AMateria {
 
 		void		printAttributes(std::ostream &out);
 		AMateria*	clone() const;
+//		void		use(ICharacter& target);
 };
 
 std::ostream&	operator<<(std::ostream &out, Ice &ice);
