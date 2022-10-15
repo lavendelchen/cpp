@@ -28,7 +28,7 @@ class Cure: virtual public AMateria {
 
 		void		printAttributes(std::ostream &out);
 		AMateria*	clone() const;
-//		void		use(ICharacter& target);
+		void		use(ICharacter& target);
 };
 
 std::ostream&	operator<<(std::ostream &out, Cure &cure);

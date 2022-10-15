@@ -47,9 +47,43 @@ Character::~Character() {
 void	Character::printAttributes(std::ostream &out) {
 	out << "Inventory:\n";
 	for (int i = 0; i < this->inventorySize; i++) {
-		out << "Slot " << i + 1 << ": ";
+		out << "Slot " << i << ": ";
 		inventory[i] == NULL ? out << "[empty]\n" :
 		out << *inventory[i] << '\n';
+	}
+}
+
+const std::string&	Character::getName() const {
+	return (this->name);
+}
+
+/* flaw of this method that i'm too lazy to fix:
+1 item can be equipped multiple times, there is no check for that */
+void	Character::equip(AMateria* m) {
+	for (int i = 0; i < this->inventorySize; i++) {
+		if (this->inventory[i] == NULL) {
+			inventory[i] = m;
+			return ;
+		}
+	}
+}
+
+void	Character::unequip(int idx) {
+
+	if (idx >= this->inventorySize || idx < 0) {
+		std::cout << "Requested slot is out of bounds, cannot be unequipped" << std::endl;
+		return ;
+	}
+	this->inventory[idx] = NULL;
+}
+
+void	Character::use(int idx, ICharacter& target) {
+	if (idx >= this->inventorySize || idx < 0) {
+		std::cout << "Requested slot is out of bounds, cannot be used" << std::endl;
+		return ;
+	}
+	if (this->inventory[idx] != NULL) {
+		inventory[idx]->use(target);
 	}
 }
 
