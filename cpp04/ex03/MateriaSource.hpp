@@ -18,19 +18,17 @@
 
 class MateriaSource: virtual public IMateriaSource {
 	private:
-		std::string			name;
-		static const int	inventorySize = 4;
-		AMateria*			inventory[inventorySize];
+		static const int	memorySize = 4;
+		AMateria*			memory[memorySize];
 
 	public:
 		MateriaSource();
-		MateriaSource(std::string name);
 		MateriaSource(const MateriaSource &orig);
 		MateriaSource& operator=(const MateriaSource &rhs);
 		~MateriaSource();
 
 		void		printAttributes(std::ostream &out);
-		void		learnMateria(AMateria*);
+		void		learnMateria(AMateria* src);
 		AMateria*	createMateria(const std::string& type);
 };
 

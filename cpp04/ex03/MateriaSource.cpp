@@ -15,36 +15,26 @@
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 MateriaSource::MateriaSource() {
 	std::cout << "MateriaSource default constructor called" << std::endl;
-	for (int i = 0; i < this->inventorySize; i++) {
-		inventory[i] = NULL;
-	}
-}
-
-MateriaSource::MateriaSource(std::string name) {
-	std::cout << "MateriaSource name constructor called" << std::endl;
-	this->name = name;
-	for (int i = 0; i < this->inventorySize; i++) {
-		inventory[i] = NULL;
+	for (int i = 0; i < this->memorySize; i++) {
+		memory[i] = NULL;
 	}
 }
 
 MateriaSource::MateriaSource(const MateriaSource &orig) {
 	std::cout << "MateriaSource copy constructor called" << std::endl;
-	this->name = orig.name;
-	for (int i = 0; i < this->inventorySize; i++) {
-		orig.inventory[i] == NULL ? this->inventory[i] = NULL :
-		this->inventory[i] = orig.inventory[i]->clone();
+	for (int i = 0; i < this->memorySize; i++) {
+		orig.memory[i] == NULL ? this->memory[i] = NULL :
+		this->memory[i] = orig.memory[i]->clone();
 	}
 }
 
 MateriaSource&	MateriaSource::operator=(MateriaSource const &rhs) {
 	std::cout << "MateriaSource copy assignment operator called" << std::endl;
 	if (this != &rhs) {
-		this->name = rhs.name;
-		for (int i = 0; i < this->inventorySize; i++) {
-			delete this->inventory[i];
-			rhs.inventory[i] == NULL ? this->inventory[i] = NULL :
-			this->inventory[i] = rhs.inventory[i]->clone();
+		for (int i = 0; i < this->memorySize; i++) {
+			delete this->memory[i];
+			rhs.memory[i] == NULL ? this->memory[i] = NULL :
+			this->memory[i] = rhs.memory[i]->clone();
 		}
 	}
 	return *this;
@@ -53,28 +43,42 @@ MateriaSource&	MateriaSource::operator=(MateriaSource const &rhs) {
 /* -------------------------------- DESTRUCTOR -------------------------------- */
 MateriaSource::~MateriaSource() {
 	std::cout << "MateriaSource destructor called" << std::endl;
-	for (int i = 0; i < this->inventorySize; i++) {
-		delete inventory[i];
+	for (int i = 0; i < this->memorySize; i++) {
+		delete memory[i];
 	}
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 
 void	MateriaSource::printAttributes(std::ostream &out) {
-	out << this->name << "\nInventory:\n";
-	for (int i = 0; i < this->inventorySize; i++) {
+	out << "\nMemory:\n";
+	for (int i = 0; i < this->memorySize; i++) {
 		out << "Slot " << i << ": ";
-		inventory[i] == NULL ? out << "[empty]\n" :
-		out << *inventory[i] << '\n';
+		memory[i] == NULL ? out << "[empty]\n" :
+		out << *memory[i] << '\n';
 	}
 }
 
-void		printAttributes(std::ostream &out);
-void		learnMateria(AMateria*);
-AMateria*	createMateria(const std::string& type);
+void		MateriaSource::learnMateria(AMateria* src) {
+	for (int i = 0; i < this->memorySize; i++) {
+		if (this->memory[i] == NULL) {
+			memory[i] = src->clone();
+			return ;
+		}
+	}
+}
+
+AMateria*	MateriaSource::createMateria(const std::string& type) {
+	for (int i = 0; i < this->memorySize; i++) {
+		if (this->memory[i] != NULL && this->memory[i]->getType() == type) {
+			return (memory[i]->clone());
+		}
+	}
+	return (NULL);
+}
 
 /* --------------------------------- OVERLOAD --------------------------------- */
-std::ostream&	operator<<(std::ostream &out, MateriaSource &materiaSource) {
-	materiaSource.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, MateriaSource &memorySource) {
+	memorySource.printAttributes(out);
 	return (out);
 }

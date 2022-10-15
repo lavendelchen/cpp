@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/16 00:25:39 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/16 00:56:11 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 #include "Character.hpp"
+#include "MateriaSource.hpp"
 
 #include <iostream>
 #include <string>
@@ -49,5 +50,18 @@ int main(void) {
 
 	laufey.unequip(0);
 	std::cout << laufey << '\n';
+
+	MateriaSource	source;
+	source.learnMateria(cube);
+	source.learnMateria(pill);
+	std::cout << source << '\n';
+
+	AMateria*	iWantACure = source.createMateria("cure");
+	AMateria*	iWantWeirdStuff = source.createMateria("kjefkjef");
+	std::cout << *iWantACure << '\n';
+	std::cout << iWantWeirdStuff << '\n';
+
 	delete pill;
+	delete iWantACure;
+	delete iWantWeirdStuff;
 }
