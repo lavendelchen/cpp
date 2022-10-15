@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/15 22:13:07 by shaas            ###   ########.fr       */
+/*   Created: 2022/10/15 22:11:50 by shaas             #+#    #+#             */
+/*   Updated: 2022/10/15 22:13:43 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
-#include "Cure.hpp"
-#include "Cure.hpp"
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
 
-#include <iostream>
-#include <string>
+# include <string>
+# include "AMateria.hpp"
 
-int main(void) {
-	Cure tabletten;
-	Cure saft(tabletten);
-	Cure zaepfchen;
-	zaepfchen = tabletten;
+class ICharacter {
+	public:
+		virtual ~ICharacter() {}
+		virtual const std::string& getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
+};
 
-	std::cout << zaepfchen << '\n';
-	std::cout << saft << '\n';
-	std::cout << tabletten << '\n';
-	std::cout << zaepfchen.getType() << '\n';
-	
-	AMateria* spritze = tabletten.clone();
-	delete spritze;
-}
+#endif
