@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/16 00:56:11 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/16 01:07:58 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <iostream>
 #include <string>
 
-int main(void) {
+void myTests(void) {
 	Character laufey("Laufey");
 	Character dodie(laufey);
 	dodie.setName("Dodie");
@@ -52,8 +52,8 @@ int main(void) {
 	std::cout << laufey << '\n';
 
 	MateriaSource	source;
-	source.learnMateria(cube);
-	source.learnMateria(pill);
+	source.learnMateria(new Ice());
+	source.learnMateria(new Cure());
 	std::cout << source << '\n';
 
 	AMateria*	iWantACure = source.createMateria("cure");
@@ -64,4 +64,34 @@ int main(void) {
 	delete pill;
 	delete iWantACure;
 	delete iWantWeirdStuff;
+}
+
+void testsFromSubject(void) {
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+
+	ICharacter* me = new Character("me");
+
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+
+	ICharacter* bob = new Character("bob");
+
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	delete bob;
+	delete me;
+	delete src;
+}
+
+int main(void) {
+	std::cout << "-----------MY TESTS-------------\n\n";
+	myTests();
+	std::cout << "\n-------------TESTS FROM SUBJECT---------\n\n";
+	testsFromSubject();
 }

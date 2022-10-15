@@ -62,7 +62,7 @@ void	MateriaSource::printAttributes(std::ostream &out) {
 void		MateriaSource::learnMateria(AMateria* src) {
 	for (int i = 0; i < this->memorySize; i++) {
 		if (this->memory[i] == NULL) {
-			memory[i] = src->clone();
+			memory[i] = src;
 			return ;
 		}
 	}
