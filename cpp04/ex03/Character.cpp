@@ -20,18 +20,31 @@ Character::Character() {
 	}
 }
 
+Character::Character(std::string name) {
+	std::cout << "Character name constructor called" << std::endl;
+	this->name = name;
+	for (int i = 0; i < this->inventorySize; i++) {
+		inventory[i] = NULL;
+	}
+}
+
 Character::Character(const Character &orig) {
 	std::cout << "Character copy constructor called" << std::endl;
+	this->name = orig.name;
 	for (int i = 0; i < this->inventorySize; i++) {
-		inventory[i] = orig.inventory[i];
+		orig.inventory[i] == NULL ? this->inventory[i] = NULL :
+		this->inventory[i] = orig.inventory[i]->clone();
 	}
 }
 
 Character&	Character::operator=(Character const &rhs) {
 	std::cout << "Character copy assignment operator called" << std::endl;
 	if (this != &rhs) {
+		this->name = rhs.name;
 		for (int i = 0; i < this->inventorySize; i++) {
-			inventory[i] = rhs.inventory[i];
+			delete this->inventory[i];
+			rhs.inventory[i] == NULL ? this->inventory[i] = NULL :
+			this->inventory[i] = rhs.inventory[i]->clone();
 		}
 	}
 	return *this;
@@ -40,12 +53,15 @@ Character&	Character::operator=(Character const &rhs) {
 /* -------------------------------- DESTRUCTOR -------------------------------- */
 Character::~Character() {
 	std::cout << "Character destructor called" << std::endl;
+	for (int i = 0; i < this->inventorySize; i++) {
+		delete inventory[i];
+	}
 }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 
 void	Character::printAttributes(std::ostream &out) {
-	out << "Inventory:\n";
+	out << this->name << "\nInventory:\n";
 	for (int i = 0; i < this->inventorySize; i++) {
 		out << "Slot " << i << ": ";
 		inventory[i] == NULL ? out << "[empty]\n" :
@@ -53,13 +69,21 @@ void	Character::printAttributes(std::ostream &out) {
 	}
 }
 
+void	Character::setName(std::string name) {
+	this->name = name;
+}
+
 const std::string&	Character::getName() const {
 	return (this->name);
 }
 
-/* flaw of this method that i'm too lazy to fix:
-1 item can be equipped multiple times, there is no check for that */
 void	Character::equip(AMateria* m) {
+	for (int i = 0; i < this->inventorySize; i++) {
+		if (this->inventory[i] == m) {
+			std::cout << "Materia already equipped." << std::endl;
+			return ;
+		}
+	}
 	for (int i = 0; i < this->inventorySize; i++) {
 		if (this->inventory[i] == NULL) {
 			inventory[i] = m;
@@ -68,6 +92,10 @@ void	Character::equip(AMateria* m) {
 	}
 }
 
+/* my way of handling the dumbass memory leaks is not having the character
+be responsible of them and notifying you with this note. take care of it in
+your main function darlin and turn ya brain on 
+idea: return the pointer.*/
 void	Character::unequip(int idx) {
 
 	if (idx >= this->inventorySize || idx < 0) {

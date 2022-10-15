@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/15 23:42:55 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/16 00:26:18 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ class Character: virtual public ICharacter {
 
 	public:
 		Character();
+		Character(std::string name);
 		Character(const Character &orig);
 		Character& operator=(const Character &rhs);
 		~Character();
 
 		void				printAttributes(std::ostream &out);
+		void				setName(std::string name);
 		const std::string&	getName() const;
 		void				equip(AMateria* m);
 		void				unequip(int idx);
