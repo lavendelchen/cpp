@@ -6,11 +6,11 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2022/10/16 00:48:00 by shaas            ###   ########.fr        #
+#    Updated: 2022/10/16 05:26:10 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = InterfaceAndRecap
+NAME = IWantToBeABureaucrat
 
 ISDOCKER := $(shell ls -a /)
 ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
@@ -23,7 +23,7 @@ CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 DIR_OBJ = obj/
 
-SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
+SRC = main.cpp Bureaucrat.cpp
 
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o)
 
@@ -31,7 +31,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CC_FLAGS) $(OBJ) -o $(NAME)
-	@printf $(MAGENTA)"$(NAME) created\n"$(RESET)
+	@printf $(DARKGRAY)"$(NAME) created\n"$(RESET)
 
 $(DIR_OBJ)%.o:	%.cpp
 	@mkdir -p $(dir $@)
@@ -49,7 +49,7 @@ fclean: clean
 re: fclean all
 
 exe:
-	@printf $(MAGENTA)
+	@printf $(DARKGRAY)
 	./$(NAME)
 	@printf $(RESET)
 
