@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/10 14:25:58 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/16 05:04:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Dog: virtual public Animal {
 		Dog();
 		Dog(Dog const &orig);
 		Dog& operator=(Dog const &rhs);
-		~Dog();
+		virtual ~Dog();
 
 		virtual void		printAttributes(std::ostream &out);
 		void				makeSound() const;

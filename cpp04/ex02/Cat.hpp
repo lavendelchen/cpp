@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:01:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/10 14:25:55 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/16 05:05:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Cat: virtual public Animal {
 		Cat();
 		Cat(Cat const &orig);
 		Cat& operator=(Cat const &rhs);
-		~Cat();
+		virtual ~Cat();
 
 		virtual void		printAttributes(std::ostream &out);
 		void				makeSound() const;
