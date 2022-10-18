@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/18 22:37:09 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/18 23:15:30 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
-std::ostream&	operator<<(std::ostream &out, Bureaucrat &character) {
-	character.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, Bureaucrat &bureaucrat) {
+	bureaucrat.printAttributes(out);
 	return (out);
 }

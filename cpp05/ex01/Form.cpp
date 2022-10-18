@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/18 23:15:20 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/18 23:16:22 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
-Bureaucrat::Bureaucrat(): name("Bureaucrat"), grade(this->highestGrade) { }
+Form::Form(): name("Form"), grade(this->highestGrade) { }
 
-Bureaucrat::Bureaucrat(std::string name, int grade): name(name) {
+Form::Form(std::string name, int grade): name(name) {
 	if (grade < this->highestGrade)
 		throw (GradeTooHighException());
 	if (grade > this->lowestGrade)
@@ -23,7 +23,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade): name(name) {
 	this->grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &orig): name(orig.name) {
+Form::Form(const Form &orig): name(orig.name) {
 	if (orig.grade < this->highestGrade)
 		throw (GradeTooHighException());
 	if (orig.grade > this->lowestGrade)
@@ -31,7 +31,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &orig): name(orig.name) {
 	this->grade = orig.grade;
 }
 
-Bureaucrat&	Bureaucrat::operator=(Bureaucrat const &rhs) {
+Form&	Form::operator=(Form const &rhs) {
 	if (this != &rhs) {
 		if (rhs.grade < this->highestGrade)
 			throw (GradeTooHighException());
@@ -43,57 +43,57 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat const &rhs) {
 }
 
 /* -------------------------------- DESTRUCTOR -------------------------------- */
-Bureaucrat::~Bureaucrat() { }
+Form::~Form() { }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 
-void	Bureaucrat::printAttributes(std::ostream &out) {
+void	Form::printAttributes(std::ostream &out) {
 	out	<< "Name: " << this->name 
 		<< ", Grade: " << this->grade;
 }
 
-const std::string&	Bureaucrat::getName(void) const {
+const std::string&	Form::getName(void) const {
 	return (this->name);
 }
 
-int	Bureaucrat::getGrade(void) const {
+int	Form::getGrade(void) const {
 	return (this->grade);
 }
 
-void	Bureaucrat::incGrade(void) {
+void	Form::incGrade(void) {
 	if (this->grade == this->highestGrade)
 		throw (GradeTooHighException());
 	this->grade--;
 }
 
-void	Bureaucrat::decGrade(void) {
+void	Form::decGrade(void) {
 	if (this->grade == this->lowestGrade)
 		throw (GradeTooLowException());
 	this->grade++;
 }
 
-void	Bureaucrat::incGrade(const int amount) {
+void	Form::incGrade(const int amount) {
 	if (this->grade - amount < this->highestGrade)
 		throw(GradeTooHighException());
 	this->grade -= amount;
 }
-void	Bureaucrat::decGrade(const int amount) {
+void	Form::decGrade(const int amount) {
 	if (this->grade + amount > this->lowestGrade)
 		throw(GradeTooLowException());
 	this->grade += amount;
 }
 
 /* --------------------------------- EXCEPTION METHODS --------------------------------- */
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
+const char* Form::GradeTooHighException::what() const throw() {
 	return ("Error: Grade too high 👆");
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
+const char* Form::GradeTooLowException::what() const throw() {
 	return ("Error: Grade too low 👇");
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
-std::ostream&	operator<<(std::ostream &out, Bureaucrat &bureaucrat) {
-	bureaucrat.printAttributes(out);
+std::ostream&	operator<<(std::ostream &out, Form &form) {
+	form.printAttributes(out);
 	return (out);
 }
