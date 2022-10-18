@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREACRAT_HPP
-# define BUREACRAT_HPP
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
 # include <string>
 # include <iostream>
+# include <exception>
 
 class Bureaucrat {
 	private:
@@ -30,7 +31,22 @@ class Bureaucrat {
 		Bureaucrat& operator=(const Bureaucrat &rhs);
 		~Bureaucrat();
 
-		void	printAttributes(std::ostream &out);
+		void				printAttributes(std::ostream &out);
+		const std::string&	getName(void) const;
+		int					getGrade(void) const;
+		void				incGrade(void);
+		void				decGrade(void);
+		void				incGrade(const int amount);
+		void				decGrade(const int amount);
+
+		class GradeTooHighException: public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class GradeTooLowException: public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 std::ostream&	operator<<(std::ostream &out, Bureaucrat &bureaucrat);
