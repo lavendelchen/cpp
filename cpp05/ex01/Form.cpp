@@ -6,38 +6,39 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/18 23:16:22 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:07:30 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
-Form::Form(): name("Form"), grade(this->highestGrade) { }
-
-Form::Form(std::string name, int grade): name(name) {
-	if (grade < this->highestGrade)
-		throw (GradeTooHighException());
-	if (grade > this->lowestGrade)
-		throw (GradeTooLowException());
-	this->grade = grade;
+Form::Form():
+name("Form"), signGrade(this->highestGrade), exeGrade(this->highestGrade) {
+	this->isSigned = false;
 }
 
-Form::Form(const Form &orig): name(orig.name) {
-	if (orig.grade < this->highestGrade)
+Form::Form(std::string name, int signGrade, int exeGrade, bool isSigned):
+name(name), signGrade(signGrade), exeGrade(exeGrade) {
+	if (signGrade < this->highestGrade || exeGrade < this->highestGrade)
 		throw (GradeTooHighException());
-	if (orig.grade > this->lowestGrade)
+	else if (signGrade > this->lowestGrade || exeGrade > this->lowestGrade)
 		throw (GradeTooLowException());
-	this->grade = orig.grade;
+	this->isSigned = isSigned;
+}
+
+Form::Form(const Form &orig):
+name(orig.name), signGrade(orig.signGrade), exeGrade(orig.exeGrade) {
+	if (signGrade < this->highestGrade || exeGrade < this->highestGrade)
+		throw (GradeTooHighException());
+	else if (signGrade > this->lowestGrade || exeGrade > this->lowestGrade)
+		throw (GradeTooLowException());
+	this->isSigned = orig.isSigned;
 }
 
 Form&	Form::operator=(Form const &rhs) {
 	if (this != &rhs) {
-		if (rhs.grade < this->highestGrade)
-			throw (GradeTooHighException());
-		if (rhs.grade > this->lowestGrade)
-			throw (GradeTooLowException());
-		this->grade = rhs.grade;
+		this->isSigned = rhs.isSigned;
 	}
 	return *this;
 }
@@ -46,41 +47,32 @@ Form&	Form::operator=(Form const &rhs) {
 Form::~Form() { }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
-
-void	Form::printAttributes(std::ostream &out) {
-	out	<< "Name: " << this->name 
-		<< ", Grade: " << this->grade;
+void	Form::printAttributes(std::ostream &out) const {
+	out	<< "NAME: " << this->name 
+		<< "\nGRADES:"
+		<< "\nSign Grade: " << this->signGrade
+		<< "\nExecution Grade: " << this->exeGrade;
+	if (this->isSigned == false)
+		out << "\nForm is NOT signed";
+	else
+		out << "\nForm IS signed";
+	out << '\n';
 }
 
 const std::string&	Form::getName(void) const {
 	return (this->name);
 }
 
-int	Form::getGrade(void) const {
-	return (this->grade);
+bool	Form::getSignStatus(void) const {
+	return (this->isSigned);
 }
 
-void	Form::incGrade(void) {
-	if (this->grade == this->highestGrade)
-		throw (GradeTooHighException());
-	this->grade--;
+int	Form::getSignGrade(void) const {
+	return (this->signGrade);
 }
 
-void	Form::decGrade(void) {
-	if (this->grade == this->lowestGrade)
-		throw (GradeTooLowException());
-	this->grade++;
-}
-
-void	Form::incGrade(const int amount) {
-	if (this->grade - amount < this->highestGrade)
-		throw(GradeTooHighException());
-	this->grade -= amount;
-}
-void	Form::decGrade(const int amount) {
-	if (this->grade + amount > this->lowestGrade)
-		throw(GradeTooLowException());
-	this->grade += amount;
+int	Form::getExeGrade(void) const {
+	return (this->exeGrade);
 }
 
 /* --------------------------------- EXCEPTION METHODS --------------------------------- */

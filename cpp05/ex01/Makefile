@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2022/10/18 22:53:55 by shaas            ###   ########.fr        #
+#    Updated: 2022/10/19 17:55:57 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 DIR_OBJ = obj/
 
-SRC = main.cpp Bureaucrat.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o)
 

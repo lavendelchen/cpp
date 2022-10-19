@@ -21,10 +21,11 @@ class Bureaucrat {
 	private:
 		const std::string	name;
 		int					grade;
+
+	public:
 		static const int	highestGrade = 1;
 		static const int	lowestGrade = 150;
 
-	public:
 		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat &orig);

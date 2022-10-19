@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/18 23:26:35 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:04:39 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,32 @@
 
 # include <string>
 # include <iostream>
-# include <exception>
+# include "Bureaucrat.hpp"
 
 # define SIGN 0
-# define EXECUTE 1
+# define EXE 1
 
 class Form {
 	private:
 		const std::string	name;
 		bool				isSigned;
-		const int			grade[2];
-		static const int	highestGrade = 1;
-		static const int	lowestGrade = 150;
+		const int			signGrade;
+		const int			exeGrade;
+		static const int	highestGrade = Bureaucrat::highestGrade;
+		static const int	lowestGrade = Bureaucrat::lowestGrade;
 
 	public:
 		Form();
-		Form(std::string name, int grade);
+		Form(std::string name, int signGrade, int exeGrade, bool isSigned);
 		Form(const Form &orig);
 		Form& operator=(const Form &rhs);
 		~Form();
 
-		void				printAttributes(std::ostream &out);
+		void				printAttributes(std::ostream &out) const;
 		const std::string&	getName(void) const;
 		bool				getSignStatus(void) const;
 		int					getSignGrade(void) const;
-		int					getExecutionGrade(void) const;
+		int					getExeGrade(void) const;
 
 		class GradeTooHighException: public std::exception {
 			public:

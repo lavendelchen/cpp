@@ -6,11 +6,12 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/18 22:51:23 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 17:56:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 #include <iostream>
 #include <string>
@@ -30,7 +31,6 @@ int main(void) {
 	std::cout << "-- Copy assignment operator test -- \n" << oscar << '\n';
 
 	// getter tests
-
 	std::cout << "\n-- getName & getGrade test -- \n" << angela.getName() << angela.getGrade() << '\n';
 
 	// exception tests

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/18 23:15:20 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 17:34:45 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(): name("Bureaucrat"), grade(this->highestGrade) { }
 Bureaucrat::Bureaucrat(std::string name, int grade): name(name) {
 	if (grade < this->highestGrade)
 		throw (GradeTooHighException());
-	if (grade > this->lowestGrade)
+	else if (grade > this->lowestGrade)
 		throw (GradeTooLowException());
 	this->grade = grade;
 }
@@ -26,7 +26,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade): name(name) {
 Bureaucrat::Bureaucrat(const Bureaucrat &orig): name(orig.name) {
 	if (orig.grade < this->highestGrade)
 		throw (GradeTooHighException());
-	if (orig.grade > this->lowestGrade)
+	else if (orig.grade > this->lowestGrade)
 		throw (GradeTooLowException());
 	this->grade = orig.grade;
 }
@@ -35,7 +35,7 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat const &rhs) {
 	if (this != &rhs) {
 		if (rhs.grade < this->highestGrade)
 			throw (GradeTooHighException());
-		if (rhs.grade > this->lowestGrade)
+		else if (rhs.grade > this->lowestGrade)
 			throw (GradeTooLowException());
 		this->grade = rhs.grade;
 	}
