@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:07:30 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:17:25 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ name("Form"), signGrade(this->highestGrade), exeGrade(this->highestGrade) {
 	this->isSigned = false;
 }
 
-Form::Form(std::string name, int signGrade, int exeGrade, bool isSigned):
+Form::Form(std::string name, bool isSigned, int signGrade, int exeGrade):
 name(name), signGrade(signGrade), exeGrade(exeGrade) {
 	if (signGrade < this->highestGrade || exeGrade < this->highestGrade)
 		throw (GradeTooHighException());
@@ -48,15 +48,15 @@ Form::~Form() { }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 void	Form::printAttributes(std::ostream &out) const {
-	out	<< "NAME: " << this->name 
-		<< "\nGRADES:"
-		<< "\nSign Grade: " << this->signGrade
-		<< "\nExecution Grade: " << this->exeGrade;
+	out	<< "NAME: " << this->name;
 	if (this->isSigned == false)
 		out << "\nForm is NOT signed";
 	else
 		out << "\nForm IS signed";
-	out << '\n';
+	out	<< "\nGRADES:"
+		<< "\nSign Grade: " << this->signGrade
+		<< "\nExecution Grade: " << this->exeGrade
+		<< '\n';
 }
 
 const std::string&	Form::getName(void) const {

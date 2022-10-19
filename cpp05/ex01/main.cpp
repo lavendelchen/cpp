@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 17:56:54 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:22:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,64 +18,68 @@
 
 int main(void) {
 	// constructor & overload tests
-	Bureaucrat	oscar;
-	Bureaucrat	angela("Angela", 34);
-	Bureaucrat	kevin(angela);
+	Form	red;
+	Form	blue("Blue Form", true, 37, 102);
+	Form	green(blue);
 
-	std::cout << "-- Default constructor test -- \n" << oscar << '\n';
-	std::cout << "-- Attribute constructor test -- \n" << angela << '\n';
-	std::cout << "-- Copy constructor test -- \n" << kevin << '\n';
+	std::cout << "-- Default constructor test -- \n" << red << '\n';
+	std::cout << "-- Attribute constructor test -- \n" << blue << '\n';
+	std::cout << "-- Copy constructor test -- \n" << green << '\n';
 
-	oscar = kevin;
+	red = green;
 
-	std::cout << "-- Copy assignment operator test -- \n" << oscar << '\n';
+	std::cout << "-- Copy assignment operator test -- \n" << red << '\n';
 
 	// getter tests
-	std::cout << "\n-- getName & getGrade test -- \n" << angela.getName() << angela.getGrade() << '\n';
+	std::cout << "\n-- getName test -- " << blue.getName() << '\n';
+	std::cout << "-- getSignStatus test -- " << blue.getSignStatus() << '\n';
+	std::cout << "-- getSignGrade test -- " << blue.getSignGrade() << '\n';
+	std::cout << "-- getExeGrade test -- " << blue.getExeGrade() << '\n';
 
-	// exception tests
-	int	wrongGrade = -40;
+	//exception tests
+	int	wrongSignGrade = -40;
+	int	wrongExeGrade = 1000;
 	try {
-		std::cout << "\n-- Attribute constructor exception test (wrongGrade is modifiable) -- \n";
-		Bureaucrat	wrong("Wrong", wrongGrade);
-	}
-	catch (std::exception& e) {
-		std::cout << e.what() << '\n';
-	}
-
-	try {
-		std::cout << "\n-- Default increase exception test -- \n";
-		Bureaucrat	creed("Creed", 2);
-		std::cout << creed << '\n';
-		creed.incGrade();
-		std::cout << creed << '\n';
-		creed.incGrade();
-		std::cout << creed << '\n';
-	}
-	catch (std::exception& e) {
-		std::cout << e.what() << '\n';
-	}
-	try {
-		std::cout << "\n-- Default decrease exception test -- \n";
-		Bureaucrat	meredith("Meredith", 149);
-		std::cout << meredith << '\n';
-		meredith.decGrade();
-		std::cout << meredith << '\n';
-		meredith.decGrade();
-		std::cout << meredith << '\n';
+		std::cout << "\n-- Attribute constructor exception test (wrongGrades are modifiable) -- \n";
+		Form	wrong("Wrong", false, wrongSignGrade, wrongExeGrade);
 	}
 	catch (std::exception& e) {
 		std::cout << e.what() << '\n';
 	}
 
-	int	amount = 200;
-	try {
-		std::cout << "\n-- Amount decrease & increase exception test (amount is modifiable & decGrade or incGrade can be used) -- \n";
-		Bureaucrat	ryan("Ryan", 75);
-		ryan.decGrade(amount);
-		ryan.incGrade(amount);
-	}
-	catch (std::exception& e) {
-		std::cout << e.what() << '\n';
-	}
+	// try {
+		// std::cout << "\n-- Default increase exception test -- \n";
+		// Form	creed("Creed", 2);
+		// std::cout << creed << '\n';
+		// creed.incGrade();
+		// std::cout << creed << '\n';
+		// creed.incGrade();
+		// std::cout << creed << '\n';
+	// }
+	// catch (std::exception& e) {
+		// std::cout << e.what() << '\n';
+	// }
+	// try {
+		// std::cout << "\n-- Default decrease exception test -- \n";
+		// Form	meredith("Meredith", 149);
+		// std::cout << meredith << '\n';
+		// meredith.decGrade();
+		// std::cout << meredith << '\n';
+		// meredith.decGrade();
+		// std::cout << meredith << '\n';
+	// }
+	// catch (std::exception& e) {
+		// std::cout << e.what() << '\n';
+	// }
+
+	// int	amount = 200;
+	// try {
+		// std::cout << "\n-- Amount decrease & increase exception test (amount is modifiable & decGrade or incGrade can be used) -- \n";
+		// Form	ryan("Ryan", 75);
+		// ryan.decGrade(amount);
+		// ryan.incGrade(amount);
+	// }
+	// catch (std::exception& e) {
+		// std::cout << e.what() << '\n';
+	// }
 }

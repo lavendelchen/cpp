@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:04:39 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:13:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Form {
 
 	public:
 		Form();
-		Form(std::string name, int signGrade, int exeGrade, bool isSigned);
+		Form(std::string name, bool isSigned, int signGrade, int exeGrade);
 		Form(const Form &orig);
 		Form& operator=(const Form &rhs);
 		~Form();
