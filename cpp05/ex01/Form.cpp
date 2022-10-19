@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:38:11 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:57:09 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 Form::Form():
-name("Form"), signGrade(this->lowestGrade), exeGrade(this->lowestGrade) {
+name("Form"), signGrade(Bureaucrat::lowestGrade), exeGrade(Bureaucrat::lowestGrade) {
 	this->isSigned = false;
 }
 
 Form::Form(std::string name, bool isSigned, int signGrade, int exeGrade):
 name(name), signGrade(signGrade), exeGrade(exeGrade) {
-	if (signGrade < this->highestGrade || exeGrade < this->highestGrade)
+	if (signGrade < Bureaucrat::highestGrade || exeGrade < Bureaucrat::highestGrade)
 		throw (GradeTooHighException());
-	else if (signGrade > this->lowestGrade || exeGrade > this->lowestGrade)
+	else if (signGrade > Bureaucrat::lowestGrade || exeGrade > Bureaucrat::lowestGrade)
 		throw (GradeTooLowException());
 	this->isSigned = isSigned;
 }
 
 Form::Form(const Form &orig):
 name(orig.name), signGrade(orig.signGrade), exeGrade(orig.exeGrade) {
-	if (signGrade < this->highestGrade || exeGrade < this->highestGrade)
+	if (signGrade < Bureaucrat::highestGrade || exeGrade < Bureaucrat::highestGrade)
 		throw (GradeTooHighException());
-	else if (signGrade > this->lowestGrade || exeGrade > this->lowestGrade)
+	else if (signGrade > Bureaucrat::lowestGrade || exeGrade > Bureaucrat::lowestGrade)
 		throw (GradeTooLowException());
 	this->isSigned = orig.isSigned;
 }

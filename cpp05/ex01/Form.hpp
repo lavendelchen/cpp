@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:26:57 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:55:58 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 # define SIGN 0
 # define EXE 1
 
+class Bureaucrat;
+
 class Form {
 	private:
 		const std::string	name;
 		bool				isSigned;
 		const int			signGrade;
 		const int			exeGrade;
-		static const int	highestGrade = Bureaucrat::highestGrade;
-		static const int	lowestGrade = Bureaucrat::lowestGrade;
 
 	public:
 		Form();

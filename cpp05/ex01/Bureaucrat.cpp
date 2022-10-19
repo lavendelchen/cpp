@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 17:34:18 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:47:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,17 @@ void	Bureaucrat::decGrade(const int amount) {
 	if (this->grade + amount > this->lowestGrade)
 		throw(GradeTooLowException());
 	this->grade += amount;
+}
+
+void	Bureaucrat::signForm(Form &form) const {
+	try {
+		form.beSigned(*this);
+		std::cout << this->getName() << " signed " << form.getName();
+	}
+	catch (std::exception &e) {
+		std::cout	<< this->getName() << " couldn't sign " << form.getName()
+					<< " because " << e.what() << '\n';
+	}
 }
 
 /* --------------------------------- EXCEPTION METHODS --------------------------------- */
