@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:17:25 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:38:11 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 Form::Form():
-name("Form"), signGrade(this->highestGrade), exeGrade(this->highestGrade) {
+name("Form"), signGrade(this->lowestGrade), exeGrade(this->lowestGrade) {
 	this->isSigned = false;
 }
 
@@ -73,6 +73,12 @@ int	Form::getSignGrade(void) const {
 
 int	Form::getExeGrade(void) const {
 	return (this->exeGrade);
+}
+
+void	Form::beSigned(const Bureaucrat& bureaucrat) {
+	if (bureaucrat.getGrade() > this->signGrade)
+		throw(GradeTooLowException());
+	this->isSigned = true;
 }
 
 /* --------------------------------- EXCEPTION METHODS --------------------------------- */

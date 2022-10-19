@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:13:40 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/19 18:26:57 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ class Form {
 		bool				getSignStatus(void) const;
 		int					getSignGrade(void) const;
 		int					getExeGrade(void) const;
+		void				beSigned(const Bureaucrat& bureaucrat);
 
 		class GradeTooHighException: public std::exception {
 			public:
