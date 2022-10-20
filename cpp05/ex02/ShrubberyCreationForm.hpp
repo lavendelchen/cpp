@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 21:07:47 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 21:58:01 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include "AForm.hpp"
 
 class ShrubberyCreationForm: virtual public AForm {
+	private:
+		std::string target;
+
 	public:
 		ShrubberyCreationForm();
-		ShrubberyCreationForm(bool isSigned);
+		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm &orig);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm &rhs);
 		~ShrubberyCreationForm();

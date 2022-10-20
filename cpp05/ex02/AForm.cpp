@@ -18,13 +18,13 @@ name("Form"), signGrade(Bureaucrat::lowestGrade), exeGrade(Bureaucrat::lowestGra
 	this->isSigned = false;
 }
 
-AForm::AForm(std::string name, bool isSigned, int signGrade, int exeGrade):
+AForm::AForm(std::string name, int signGrade, int exeGrade):
 name(name), signGrade(signGrade), exeGrade(exeGrade) {
 	if (signGrade < Bureaucrat::highestGrade || exeGrade < Bureaucrat::highestGrade)
 		throw (GradeTooHighException());
 	else if (signGrade > Bureaucrat::lowestGrade || exeGrade > Bureaucrat::lowestGrade)
 		throw (GradeTooLowException());
-	this->isSigned = isSigned;
+	this->isSigned = false;
 }
 
 AForm::AForm(const AForm &orig):

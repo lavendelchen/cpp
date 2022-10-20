@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 21:44:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 22:01:13 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class AForm {
 
 	public:
 		AForm();
-		AForm(std::string name, bool isSigned, int signGrade, int exeGrade);
+		AForm(std::string name, int signGrade, int exeGrade);
 		AForm(const AForm &orig);
 		AForm& operator=(const AForm &rhs);
 		virtual ~AForm();

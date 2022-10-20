@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 21:03:00 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 22:31:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	shrubberyCreationFormTests(void) {
 	std::cout << "\n\033[32mSHRUBBERY CREATION FORM\n";
 	// constructor & overload tests
 	ShrubberyCreationForm	maple;
-	ShrubberyCreationForm	birch(true);
+	ShrubberyCreationForm	birch("Birch");
 	ShrubberyCreationForm	oak(birch);
 
 	std::cout << "-- Default constructor test -- \n" << maple << "\n\n";

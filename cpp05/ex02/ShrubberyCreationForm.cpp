@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 21:46:24 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 22:34:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 ShrubberyCreationForm::ShrubberyCreationForm():
-	AForm("Shrubbery Creation Form", false, 145, 137) { }
+	AForm("Shrubbery Creation Form", 145, 137), target("?") { }
 
-ShrubberyCreationForm::ShrubberyCreationForm(bool isSigned): 
-	AForm("Shrubbery Creation Form", isSigned, 145, 137) { }
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target): 
+	AForm("Shrubbery Creation Form", 145, 137), target(target) { }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &orig):
-	AForm(orig) { }
+	AForm(orig), target(orig.target) { }
 
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rhs) {
-	if (this != &rhs) { }
+	if (this != &rhs) {
+		this->target = rhs.target;
+	}
 	return *this;
 }
 
@@ -33,11 +35,11 @@ ShrubberyCreationForm::~ShrubberyCreationForm() { }
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 void	ShrubberyCreationForm::printAttributes(std::ostream &out) const {
 	this->AForm::printAttributes(out);
+	out << "\nTarget: " << this->target;
 }
 
 void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	this->canBeExecuted(executor);
-	
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
