@@ -91,6 +91,6 @@ const char* AForm::GradeTooLowException::what() const throw() {
 
 /* --------------------------------- OVERLOAD --------------------------------- */
 std::ostream&	operator<<(std::ostream& out, AForm& aform) {
-	Aform.printAttributes(out);
+	aform.printAttributes(out);
 	return (out);
 }
