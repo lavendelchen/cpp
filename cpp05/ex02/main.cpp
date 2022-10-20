@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 23:30:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/21 00:57:14 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,25 @@ void	shrubberyCreationFormTests(void) {
 
 
 void	robotomyRequestFormTests(void) {
-	std::cout << "\n\033[32mSHRUBBERY CREATION FORM\n";
+	std::cout << "\n\033[90mROBOTOMY REQUEST FORM\n";
 	// constructor & overload tests
-	RobotomyRequestForm	street;
-	RobotomyRequestForm	garden("garden");
-	RobotomyRequestForm	lake(garden);
+	RobotomyRequestForm	lia;
+	RobotomyRequestForm	riley("Riley");
+	RobotomyRequestForm	jude(riley);
 
-	std::cout << "-- Default constructor test -- \n" << street << "\n\n";
-	std::cout << "-- Attribute constructor test -- \n" << garden << "\n\n";
-	std::cout << "-- Copy constructor test -- \n" << lake << "\n\n";
+	std::cout << "-- Default constructor test -- \n" << lia << "\n\n";
+	std::cout << "-- Attribute constructor test -- \n" << riley << "\n\n";
+	std::cout << "-- Copy constructor test -- \n" << jude << "\n\n";
 
-	street = lake;
+	lia = jude;
 
-	std::cout << "-- Copy assignment operator test -- \n" << street << "\n\n";
+	std::cout << "-- Copy assignment operator test -- \n" << lia << "\n\n";
 
-	int	bGrade = 130;
+	int	bGrade = 45;
 	std::cout << "-- executeForm test (bGrade is modifiable) -- \n";
-	Bureaucrat	b("The Gardener", bGrade);
-	b.signForm(garden);
-	b.executeForm(garden);
+	Bureaucrat	b("The Mechanic", bGrade);
+	b.signForm(riley);
+	b.executeForm(riley);
 	// show result of form execution!
 }
 

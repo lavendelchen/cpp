@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 23:04:52 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/21 00:51:59 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ShrubberyCreationForm::printAttributes(std::ostream &out) const {
 void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	this->canBeExecuted(executor);
 
-	std::ofstream	targetFile(this->target + "_shrubbery");
+	std::ofstream	targetFile((this->target + "_shrubbery").c_str());
 	targetFile	<< "               ,@@@@@@@,                 \n"
 				<< "       ,,,.   ,@@@@@@/@@,  .oo8888o.     \n"
 				<< "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o    \n"
