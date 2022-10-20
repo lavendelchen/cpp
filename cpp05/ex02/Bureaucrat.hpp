@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 20:31:41 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 20:51:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <string>
 # include <iostream>
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	private:
@@ -41,7 +41,7 @@ class Bureaucrat {
 		void				decGrade(void);
 		void				incGrade(const int amount);
 		void				decGrade(const int amount);
-		void				signForm(Form &form) const;
+		void				signForm(AForm &form) const;
 
 		class GradeTooHighException: public std::exception {
 			public:

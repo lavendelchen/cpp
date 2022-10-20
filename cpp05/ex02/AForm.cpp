@@ -50,9 +50,9 @@ AForm::~AForm() { }
 void	AForm::printAttributes(std::ostream &out) const {
 	out	<< "NAME: " << this->name;
 	if (this->isSigned == false)
-		out << "\nAForm is NOT signed";
+		out << "\nForm is NOT signed";
 	else
-		out << "\nAForm IS signed";
+		out << "\nForm IS signed";
 	out	<< "\nGRADES:"
 		<< "\nSign Grade: " << this->signGrade
 		<< "\nExecution Grade: " << this->exeGrade;

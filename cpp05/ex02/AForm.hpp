@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 20:31:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 21:07:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class AForm {
 		AForm(std::string name, bool isSigned, int signGrade, int exeGrade);
 		AForm(const AForm &orig);
 		AForm& operator=(const AForm &rhs);
-		~AForm();
+		virtual ~AForm();
 
 		void				printAttributes(std::ostream &out) const;
 		const std::string&	getName(void) const;
@@ -42,6 +42,7 @@ class AForm {
 		int					getSignGrade(void) const;
 		int					getExeGrade(void) const;
 		void				beSigned(const Bureaucrat& bureaucrat);
+		virtual void		execute(const Bureaucrat& executor) const = 0;
 
 		class GradeTooHighException: public std::exception {
 			public:
