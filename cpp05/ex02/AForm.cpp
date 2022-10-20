@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
-Form::Form():
+AForm::AForm():
 name("Form"), signGrade(Bureaucrat::lowestGrade), exeGrade(Bureaucrat::lowestGrade) {
 	this->isSigned = false;
 }
 
-Form::Form(std::string name, bool isSigned, int signGrade, int exeGrade):
+AForm::AForm(std::string name, bool isSigned, int signGrade, int exeGrade):
 name(name), signGrade(signGrade), exeGrade(exeGrade) {
 	if (signGrade < Bureaucrat::highestGrade || exeGrade < Bureaucrat::highestGrade)
 		throw (GradeTooHighException());
@@ -27,7 +27,7 @@ name(name), signGrade(signGrade), exeGrade(exeGrade) {
 	this->isSigned = isSigned;
 }
 
-Form::Form(const Form &orig):
+AForm::AForm(const AForm &orig):
 name(orig.name), signGrade(orig.signGrade), exeGrade(orig.exeGrade) {
 	if (signGrade < Bureaucrat::highestGrade || exeGrade < Bureaucrat::highestGrade)
 		throw (GradeTooHighException());
@@ -36,7 +36,7 @@ name(orig.name), signGrade(orig.signGrade), exeGrade(orig.exeGrade) {
 	this->isSigned = orig.isSigned;
 }
 
-Form&	Form::operator=(Form const &rhs) {
+AForm&	AForm::operator=(AForm const &rhs) {
 	if (this != &rhs) {
 		this->isSigned = rhs.isSigned;
 	}
@@ -44,53 +44,53 @@ Form&	Form::operator=(Form const &rhs) {
 }
 
 /* -------------------------------- DESTRUCTOR -------------------------------- */
-Form::~Form() { }
+AForm::~AForm() { }
 
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
-void	Form::printAttributes(std::ostream &out) const {
+void	AForm::printAttributes(std::ostream &out) const {
 	out	<< "NAME: " << this->name;
 	if (this->isSigned == false)
-		out << "\nForm is NOT signed";
+		out << "\nAForm is NOT signed";
 	else
-		out << "\nForm IS signed";
+		out << "\nAForm IS signed";
 	out	<< "\nGRADES:"
 		<< "\nSign Grade: " << this->signGrade
 		<< "\nExecution Grade: " << this->exeGrade;
 }
 
-const std::string&	Form::getName(void) const {
+const std::string&	AForm::getName(void) const {
 	return (this->name);
 }
 
-bool	Form::getSignStatus(void) const {
+bool	AForm::getSignStatus(void) const {
 	return (this->isSigned);
 }
 
-int	Form::getSignGrade(void) const {
+int	AForm::getSignGrade(void) const {
 	return (this->signGrade);
 }
 
-int	Form::getExeGrade(void) const {
+int	AForm::getExeGrade(void) const {
 	return (this->exeGrade);
 }
 
-void	Form::beSigned(const Bureaucrat& bureaucrat) {
+void	AForm::beSigned(const Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() > this->signGrade)
 		throw(GradeTooLowException());
 	this->isSigned = true;
 }
 
 /* --------------------------------- EXCEPTION METHODS --------------------------------- */
-const char* Form::GradeTooHighException::what() const throw() {
+const char* AForm::GradeTooHighException::what() const throw() {
 	return ("Error: Grade too high 👆");
 }
 
-const char* Form::GradeTooLowException::what() const throw() {
+const char* AForm::GradeTooLowException::what() const throw() {
 	return ("Error: Grade too low 👇");
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */
-std::ostream&	operator<<(std::ostream &out, Form &form) {
-	form.printAttributes(out);
+std::ostream&	operator<<(std::ostream& out, AForm& aform) {
+	Aform.printAttributes(out);
 	return (out);
 }

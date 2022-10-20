@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AAForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:55:58 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 20:25:38 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <string>
 # include <iostream>
@@ -22,7 +22,7 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 	private:
 		const std::string	name;
 		bool				isSigned;
@@ -30,11 +30,11 @@ class Form {
 		const int			exeGrade;
 
 	public:
-		Form();
-		Form(std::string name, bool isSigned, int signGrade, int exeGrade);
-		Form(const Form &orig);
-		Form& operator=(const Form &rhs);
-		~Form();
+		AForm();
+		AForm(std::string name, bool isSigned, int signGrade, int exeGrade);
+		AForm(const AForm &orig);
+		AForm& operator=(const AForm &rhs);
+		~AForm();
 
 		void				printAttributes(std::ostream &out) const;
 		const std::string&	getName(void) const;
@@ -53,6 +53,6 @@ class Form {
 		};
 };
 
-std::ostream&	operator<<(std::ostream &out, Form &form);
+std::ostream&	operator<<(std::ostream &out, AForm &aform);
 
 #endif
