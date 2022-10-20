@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:54:35 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 20:12:07 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int main(void) {
 
 	int	signGrade = 100;
 	std::cout << "\n-- signForm test (signGrade is modifiable) -- \n";
-	Form		f("Form", false, 75, 75);
+	Form		f("A Very Important Form", false, 75, 75);
 	Bureaucrat	b("Some Guy", signGrade);
 	b.signForm(f);
 }

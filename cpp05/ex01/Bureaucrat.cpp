@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:47:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 20:11:57 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	Bureaucrat::decGrade(const int amount) {
 void	Bureaucrat::signForm(Form &form) const {
 	try {
 		form.beSigned(*this);
-		std::cout << this->getName() << " signed " << form.getName();
+		std::cout << this->getName() << " signed " << form.getName() << '\n';
 	}
 	catch (std::exception &e) {
 		std::cout	<< this->getName() << " couldn't sign " << form.getName()
