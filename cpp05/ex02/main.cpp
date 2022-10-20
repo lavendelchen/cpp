@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 23:05:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 23:12:47 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	shrubberyCreationFormTests(void) {
 	std::cout << "\n\033[32mSHRUBBERY CREATION FORM\n";
 	// constructor & overload tests
 	ShrubberyCreationForm	street;
-	ShrubberyCreationForm	garden("Garden");
+	ShrubberyCreationForm	garden("garden");
 	ShrubberyCreationForm	lake(garden);
 
 	std::cout << "-- Default constructor test -- \n" << street << "\n\n";
@@ -31,10 +31,13 @@ void	shrubberyCreationFormTests(void) {
 
 	std::cout << "-- Copy assignment operator test -- \n" << street << "\n\n";
 
-	Bureaucrat	thisGuy("This guy", 30);
-
-	thisGuy.signForm(street);
-	thisGuy.executeForm(street);
+	int	bGrade = 146;
+	std::cout << "-- executeForm test (bGrade is modifiable) -- \n";
+	ShrubberyCreationForm	f("home");
+	Bureaucrat	b("Some Guy", bGrade);
+	b.signForm(f);
+	b.executeForm(f);
+	// show result of form execution!
 }
 
 int main(void) {
