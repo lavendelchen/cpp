@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 20:31:41 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 20:34:46 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
 # include <string>
 # include <iostream>
-# include "Form.hpp"
+# include "Bureaucrat.hpp"
 
-class Form;
+# define SIGN 0
+# define EXE 1
 
-class Bureaucrat {
+class Bureaucrat;
+
+class ShrubberyCreationForm {
 	private:
 		const std::string	name;
-		int					grade;
+		bool				isSigned;
+		const int			signGrade;
+		const int			exeGrade;
 
 	public:
-		static const int	highestGrade = 1;
-		static const int	lowestGrade = 150;
+		ShrubberyCreationForm();
+		ShrubberyCreationForm(std::string name, bool isSigned, int signGrade, int exeGrade);
+		ShrubberyCreationForm(const ShrubberyCreationForm &orig);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm &rhs);
+		~ShrubberyCreationForm();
 
-		Bureaucrat();
-		Bureaucrat(std::string name, int grade);
-		Bureaucrat(const Bureaucrat &orig);
-		Bureaucrat& operator=(const Bureaucrat &rhs);
-		~Bureaucrat();
-
-		void				printAttributes(std::ostream &out);
+		void				printAttributes(std::ostream &out) const;
 		const std::string&	getName(void) const;
-		int					getGrade(void) const;
-		void				incGrade(void);
-		void				decGrade(void);
-		void				incGrade(const int amount);
-		void				decGrade(const int amount);
-		void				signForm(Form &form) const;
+		bool				getSignStatus(void) const;
+		int					getSignGrade(void) const;
+		int					getExeGrade(void) const;
+		void				beSigned(const Bureaucrat& bureaucrat);
 
 		class GradeTooHighException: public std::exception {
 			public:
@@ -53,6 +53,6 @@ class Bureaucrat {
 		};
 };
 
-std::ostream&	operator<<(std::ostream &out, Bureaucrat &bureaucrat);
+std::ostream&	operator<<(std::ostream &out, ShrubberyCreationForm &form);
 
 #endif
