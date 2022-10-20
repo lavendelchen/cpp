@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 22:56:38 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 23:05:34 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	shrubberyCreationFormTests(void) {
 
 	Bureaucrat	thisGuy("This guy", 30);
 
-	thisGuy.signForm(garden);
-	garden.execute(thisGuy);
+	thisGuy.signForm(street);
+	thisGuy.executeForm(street);
 }
 
 int main(void) {

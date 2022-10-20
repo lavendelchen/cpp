@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 20:51:55 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 23:02:53 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class Bureaucrat {
 		void				incGrade(const int amount);
 		void				decGrade(const int amount);
 		void				signForm(AForm &form) const;
+		void				executeForm(const AForm& form);
 
 		class GradeTooHighException: public std::exception {
 			public:

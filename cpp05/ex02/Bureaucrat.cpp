@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 20:52:08 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 23:04:19 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,17 @@ void	Bureaucrat::signForm(AForm &form) const {
 	}
 	catch (std::exception &e) {
 		std::cout	<< this->getName() << " couldn't sign " << form.getName()
+					<< " because " << e.what() << '\n';
+	}
+}
+
+void	Bureaucrat::executeForm(const AForm& form) {
+	try {
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << '\n';
+	}
+	catch (std::exception &e) {
+		std::cout	<< this->getName() << " couldn't execute " << form.getName()
 					<< " because " << e.what() << '\n';
 	}
 }
