@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 22:41:15 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 22:56:38 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	shrubberyCreationFormTests(void) {
 	street = lake;
 
 	std::cout << "-- Copy assignment operator test -- \n" << street << "\n\n";
+
+	Bureaucrat	thisGuy("This guy", 30);
+
+	thisGuy.signForm(garden);
+	garden.execute(thisGuy);
 }
 
 int main(void) {
