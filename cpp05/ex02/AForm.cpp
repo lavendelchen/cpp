@@ -46,6 +46,14 @@ AForm&	AForm::operator=(AForm const &rhs) {
 /* -------------------------------- DESTRUCTOR -------------------------------- */
 AForm::~AForm() { }
 
+/* --------------------------------- PROTECTED METHODS --------------------------------- */
+void	AForm::canBeExecuted(const Bureaucrat& executor) const {
+	if (this->isSigned == false)
+		throw (IsNotSignedException());
+	else if (executor.getGrade() > this->exeGrade)
+		throw(GradeTooLowException());
+}
+
 /* --------------------------------- PUBLIC METHODS --------------------------------- */
 void	AForm::printAttributes(std::ostream &out) const {
 	out	<< "NAME: " << this->name;
@@ -87,6 +95,10 @@ const char* AForm::GradeTooHighException::what() const throw() {
 
 const char* AForm::GradeTooLowException::what() const throw() {
 	return ("Error: Grade too low 👇");
+}
+
+const char* AForm::IsNotSignedException::what() const throw() {
+	return ("Error: Form not signed 📝");
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */

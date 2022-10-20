@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 21:07:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 21:44:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ class AForm {
 		const int			signGrade;
 		const int			exeGrade;
 
+	protected:
+		void	canBeExecuted(const Bureaucrat& executor) const;
+
 	public:
 		AForm();
 		AForm(std::string name, bool isSigned, int signGrade, int exeGrade);
@@ -49,6 +52,10 @@ class AForm {
 				const char* what() const throw();
 		};
 		class GradeTooLowException: public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class IsNotSignedException: public std::exception {
 			public:
 				const char* what() const throw();
 		};
