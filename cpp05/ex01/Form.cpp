@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/19 18:57:09 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 20:14:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	Form::printAttributes(std::ostream &out) const {
 		out << "\nForm IS signed";
 	out	<< "\nGRADES:"
 		<< "\nSign Grade: " << this->signGrade
-		<< "\nExecution Grade: " << this->exeGrade
-		<< '\n';
+		<< "\nExecution Grade: " << this->exeGrade;
 }
 
 const std::string&	Form::getName(void) const {

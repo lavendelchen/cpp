@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 20:12:07 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 20:17:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int main(void) {
 	Form	blue("Blue Form", true, 37, 102);
 	Form	green(blue);
 
-	std::cout << "-- Default constructor test -- \n" << red << '\n';
-	std::cout << "-- Attribute constructor test -- \n" << blue << '\n';
-	std::cout << "-- Copy constructor test -- \n" << green << '\n';
+	std::cout << "-- Default constructor test -- \n" << red << "\n\n";
+	std::cout << "-- Attribute constructor test -- \n" << blue << "\n\n";
+	std::cout << "-- Copy constructor test -- \n" << green << "\n\n";
 
 	red = green;
 
-	std::cout << "-- Copy assignment operator test -- \n" << red << '\n';
+	std::cout << "-- Copy assignment operator test -- \n" << red << "\n\n";
 
 	// getter tests
-	std::cout << "\n-- getName test -- " << blue.getName() << '\n';
+	std::cout << "-- getName test -- " << blue.getName() << '\n';
 	std::cout << "-- getSignStatus test -- " << blue.getSignStatus() << '\n';
 	std::cout << "-- getSignGrade test -- " << blue.getSignGrade() << '\n';
 	std::cout << "-- getExeGrade test -- " << blue.getExeGrade() << '\n';
@@ -52,4 +52,5 @@ int main(void) {
 	Form		f("A Very Important Form", false, 75, 75);
 	Bureaucrat	b("Some Guy", signGrade);
 	b.signForm(f);
+	std::cout << f << '\n';
 }
