@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 23:27:42 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/21 01:35:14 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ void	RobotomyRequestForm::printAttributes(std::ostream &out) const {
 
 void	RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	this->canBeExecuted(executor);
+	std::cout << "*bzzzzzzzz* *brrrrrrrrr* *wruuuuuuummmm*\n";
+	std::srand(time(NULL));
+	int	isSuccess = std::rand() % 2;
+	if (isSuccess)
+		std::cout << this->target << " has been successfully robotomized\n";
+	else
+		std::cout << "Robotomy has failed\n";
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */

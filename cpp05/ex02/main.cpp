@@ -6,12 +6,13 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/21 00:57:14 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/21 01:40:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
 #include <iostream>
@@ -40,7 +41,6 @@ void	shrubberyCreationFormTests(void) {
 	// show result of form execution!
 }
 
-
 void	robotomyRequestFormTests(void) {
 	std::cout << "\n\033[90mROBOTOMY REQUEST FORM\n";
 	// constructor & overload tests
@@ -64,7 +64,32 @@ void	robotomyRequestFormTests(void) {
 	// show result of form execution!
 }
 
+void	presidentialPardonFormTests(void) {
+	std::cout << "\n\033[35mPRESIDENTIAL PARDON FORM\n";
+	// constructor & overload tests
+	PresidentialPardonForm	toni;
+	PresidentialPardonForm	jakob("Jakob");
+	PresidentialPardonForm	gio(jakob);
+
+	std::cout << "-- Default constructor test -- \n" << toni << "\n\n";
+	std::cout << "-- Attribute constructor test -- \n" << jakob << "\n\n";
+	std::cout << "-- Copy constructor test -- \n" << gio << "\n\n";
+
+	toni = gio;
+
+	std::cout << "-- Copy assignment operator test -- \n" << toni << "\n\n";
+
+	int	bGrade = 5;
+	std::cout << "-- executeForm test (bGrade is modifiable) -- \n";
+	Bureaucrat	b("The Politician", bGrade);
+	b.signForm(jakob);
+	b.executeForm(jakob);
+	// show result of form execution!
+}
+
 int main(void) {
 	shrubberyCreationFormTests();
 	robotomyRequestFormTests();
+	presidentialPardonFormTests();
+	return (0);
 }
