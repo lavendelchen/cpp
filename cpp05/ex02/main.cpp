@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 22:31:40 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/20 22:41:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,39 @@
 void	shrubberyCreationFormTests(void) {
 	std::cout << "\n\033[32mSHRUBBERY CREATION FORM\n";
 	// constructor & overload tests
-	ShrubberyCreationForm	maple;
-	ShrubberyCreationForm	birch("Birch");
-	ShrubberyCreationForm	oak(birch);
+	ShrubberyCreationForm	street;
+	ShrubberyCreationForm	garden("Garden");
+	ShrubberyCreationForm	lake(garden);
 
-	std::cout << "-- Default constructor test -- \n" << maple << "\n\n";
-	std::cout << "-- Attribute constructor test -- \n" << birch << "\n\n";
-	std::cout << "-- Copy constructor test -- \n" << oak << "\n\n";
+	std::cout << "-- Default constructor test -- \n" << street << "\n\n";
+	std::cout << "-- Attribute constructor test -- \n" << garden << "\n\n";
+	std::cout << "-- Copy constructor test -- \n" << lake << "\n\n";
 
-	maple = oak;
+	street = lake;
 
-	std::cout << "-- Copy assignment operator test -- \n" << maple << "\n\n";
+	std::cout << "-- Copy assignment operator test -- \n" << street << "\n\n";
 }
 
 int main(void) {
 	shrubberyCreationFormTests();
 	// constructor & overload tests
-	// ShrubberyCreationForm	maple;
-	// ShrubberyCreationForm	birch(true);
-	// ShrubberyCreationForm	oak(birch);
+	// ShrubberyCreationForm	street;
+	// ShrubberyCreationForm	garden(true);
+	// ShrubberyCreationForm	lake(garden);
 
-	// std::cout << "-- Default constructor test -- \n" << maple << "\n\n";
-	// std::cout << "-- Attribute constructor test -- \n" << birch << "\n\n";
-	// std::cout << "-- Copy constructor test -- \n" << oak << "\n\n";
+	// std::cout << "-- Default constructor test -- \n" << street << "\n\n";
+	// std::cout << "-- Attribute constructor test -- \n" << garden << "\n\n";
+	// std::cout << "-- Copy constructor test -- \n" << lake << "\n\n";
 
-	// maple = oak;
+	// street = lake;
 
-	// std::cout << "-- Copy assignment operator test -- \n" << maple << "\n\n";
+	// std::cout << "-- Copy assignment operator test -- \n" << street << "\n\n";
 
 	// getter tests
-	// std::cout << "-- getName test -- " << birch.getName() << '\n';
-	// std::cout << "-- getSignStatus test -- " << birch.getSignStatus() << '\n';
-	// std::cout << "-- getSignGrade test -- " << birch.getSignGrade() << '\n';
-	// std::cout << "-- getExeGrade test -- " << birch.getExeGrade() << '\n';
+	// std::cout << "-- getName test -- " << garden.getName() << '\n';
+	// std::cout << "-- getSignStatus test -- " << garden.getSignStatus() << '\n';
+	// std::cout << "-- getSignGrade test -- " << garden.getSignGrade() << '\n';
+	// std::cout << "-- getExeGrade test -- " << garden.getExeGrade() << '\n';
 
 	//exception tests
 	// try {
