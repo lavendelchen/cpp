@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/21 01:35:14 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/21 02:33:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 RobotomyRequestForm::RobotomyRequestForm():
-	AForm("Robotomy Request Form", 72, 45) { }
+	AForm("Robotomy Request", 72, 45) { }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target): 
-	AForm("Robotomy Request Form", 72, 45), target(target) { }
+	AForm("Robotomy Request", 72, 45), target(target) { }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &orig):
 	AForm(orig), target(orig.target) { }
@@ -47,6 +47,10 @@ void	RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 		std::cout << this->target << " has been successfully robotomized\n";
 	else
 		std::cout << "Robotomy has failed\n";
+}
+
+AForm*	RobotomyRequestForm::createNew(std::string target) {
+	return (new RobotomyRequestForm(target));
 }
 
 /* --------------------------------- OVERLOAD --------------------------------- */

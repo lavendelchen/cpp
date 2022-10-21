@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/21 02:31:47 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/21 02:55:18 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
 # include <string>
 # include <iostream>
-# include <cstdlib>
-# include <ctime>
 # include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 
-class RobotomyRequestForm: virtual public AForm {
+class AForm;
+
+class Intern {
 	private:
-		std::string target;
+		static const std::string formName[];
 
 	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(std::string target);
-		RobotomyRequestForm(const RobotomyRequestForm &orig);
-		RobotomyRequestForm& operator=(const RobotomyRequestForm &rhs);
-		~RobotomyRequestForm();
+		Intern();
+		Intern(const Intern &orig);
+		Intern& operator=(const Intern &rhs);
+		~Intern();
 
-		void			printAttributes(std::ostream &out) const;
-		void			execute(const Bureaucrat& executor) const;
-		static AForm*	createNew(std::string target);
+		AForm* makeForm(std::string formName, std::string formTarget) const;
 };
-
-std::ostream&	operator<<(std::ostream &out, RobotomyRequestForm &form);
 
 #endif
