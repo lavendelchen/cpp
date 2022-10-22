@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/21 02:33:28 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/22 02:07:21 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 RobotomyRequestForm::RobotomyRequestForm():
-	AForm("Robotomy Request", 72, 45) { }
+	AForm("Robotomy Request", 72, 45), target("Unknown target") { }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target): 
 	AForm("Robotomy Request", 72, 45), target(target) { }

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/21 02:33:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/22 02:07:27 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
 ShrubberyCreationForm::ShrubberyCreationForm():
-	AForm("Shrubbery Creation", 145, 137) { }
+	AForm("Shrubbery Creation", 145, 137), target("Unknown target") { }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target): 
 	AForm("Shrubbery Creation", 145, 137), target(target) { }
