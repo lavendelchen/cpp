@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/20 20:17:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/22 02:00:39 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int main(void) {
 	// constructor & overload tests
 	Form	red;
-	Form	blue("Blue Form", true, 37, 102);
+	Form	blue("Blue Form", 37, 102);
 	Form	green(blue);
 
 	std::cout << "-- Default constructor test -- \n" << red << "\n\n";
@@ -41,7 +41,7 @@ int main(void) {
 		int	wrongSignGrade = -40;
 		int	wrongExeGrade = 1000;
 		std::cout << "\n-- Attribute constructor exception test (wrongGrades are modifiable) -- \n";
-		Form	wrong("Wrong", false, wrongSignGrade, wrongExeGrade);
+		Form	wrong("Wrong", wrongSignGrade, wrongExeGrade);
 	}
 	catch (std::exception& e) {
 		std::cout << e.what() << '\n';
@@ -49,7 +49,7 @@ int main(void) {
 
 	int	signGrade = 100;
 	std::cout << "\n-- signForm test (signGrade is modifiable) -- \n";
-	Form		f("A Very Important Form", false, 75, 75);
+	Form		f("A Very Important Form", 75, 75);
 	Bureaucrat	b("Some Guy", signGrade);
 	b.signForm(f);
 	std::cout << f << '\n';
