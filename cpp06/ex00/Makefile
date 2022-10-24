@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2022/10/22 02:16:54 by shaas            ###   ########.fr        #
+#    Updated: 2022/10/22 19:42:43 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ re: fclean all
 
 exe:
 	@printf $(CYAN)
-	./$(NAME)
+	./$(NAME) $(arg)
 	@printf $(RESET)
 
 both: $(NAME) exe
