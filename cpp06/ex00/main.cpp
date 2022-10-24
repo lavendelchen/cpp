@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/24 03:54:59 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/24 21:28:10 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,32 @@ class InvalidArgumentError: public std::exception {
 		}
 };
 
+bool	isSpecialFloat(char *arg) {
+	if (strcmp(arg, "+inff") == 0 ||
+		strcmp(arg, "-inff") == 0 ||
+		strcmp(arg, "nanf") == 0)
+		return true;
+	return false;
+}
+
+bool	isSpecialDouble(char *arg) {
+	if (strcmp(arg, "+inf") == 0 ||
+		strcmp(arg, "-inf") == 0 ||
+		strcmp(arg, "nan") == 0)
+		return true;
+	return false;
+}
+
 short	findType(char* arg) {
 	if (strlen(arg) == 1 && !isdigit(arg[0])) {
 		if (!isprint(arg[0]))
 			throw InvalidArgumentError();
 		return CHAR;
 	}
+	else if (isSpecialFloat(arg))
+		return FLOAT;
+	else if (isSpecialDouble(arg))
+		return DOUBLE;
 	else if (arg[0] == '-' || isdigit(arg[0])) {
 		bool	periodFound = false;
 		int i = 1;
@@ -73,16 +93,35 @@ int main(int argnum, char *arg[]) {
 	switch (type) {
 		case CHAR: std::cout << "CHAR\n";
 			c = arg[1][0];
+			i = static_cast<int>(c);
+			f = static_cast<float>(c);
+			d = static_cast<double>(c);
 			break;
 		case INT: std::cout << "INT\n";
 			i = atoi(arg[1]);
+			c = static_cast<char>(i);
+			f = static_cast<float>(i);
+			d = static_cast<double>(i);
 			break;
 		case FLOAT: std::cout << "FLOAT\n";
+			if (isSpecialFloat(arg[1]))
+				f = Spec
 			f = atof(arg[1]);
+			c = static_cast<char>(f);
+			i = static_cast<int>(f);
+			d = static_cast<double>(f);
 			break;
 		case DOUBLE: std::cout << "DOUBLE\n";
 			d = atof(arg[1]);
+			c = static_cast<char>(d);
+			i = static_cast<int>(d);
+			f = static_cast<float>(d);
 			break;
 	}
+	isprint(c) ? std::cout << "\nchar: " << c : std::cout << "\nchar: Non displayable";
+	std::cout << "\nint: " << i;
+	std::cout << "\nfloat: " << f;
+	std::cout << "\ndouble: " << d;
+	std::cout << '\n';
 	return 0;
 }
