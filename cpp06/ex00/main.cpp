@@ -6,15 +6,15 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/25 18:18:18 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/25 18:18:49 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Conversion.hpp"
 
-int main(int argnum, char *arg[]) {
+int main(int argNum, char *arg[]) {
 	try {
-		if (argnum != 2)
+		if (argNum != 2)
 			throw(std::runtime_error("Error: 1 argument needed"));
 
 		tTypes types;
