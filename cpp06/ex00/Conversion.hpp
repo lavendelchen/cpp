@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:09:27 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/25 18:14:39 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:26:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
+#include <climits>
 #include <iomanip>
 
 enum types {

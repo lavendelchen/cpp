@@ -6,11 +6,11 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/25 19:20:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:25:12 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdint>
+#include <stdint.h>
 #include <string>
 #include <iostream>
 
