@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:10:35 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/25 18:12:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/25 18:48:45 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ short	findArgType(char* arg, tTypes& types) {
 		}
 		if (periodFound == false)
 			return INT;
-		if (arg[strlen(arg) - 1] != '.' && *(strchr(arg, '.') - 1) != '-') {
+		if (arg[strlen(arg) - 1] != '.'
+			&& *(strchr(arg, '.') - 1) != '-'
+			&& *(strchr(arg, '.') + 1) != 'f') {
 			if (arg[strlen(arg) - 1] == 'f')
 				return FLOAT;
 			return DOUBLE;
