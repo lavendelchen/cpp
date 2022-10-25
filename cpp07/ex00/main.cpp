@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/25 20:59:20 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/25 21:05:01 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(void) {
 	int e = 5;
 	int f = 5;
 
-	std::cout << &e <<" || "<< &f << '\n';
-	std::cout << &min(e, f) << '\n';
-	std::cout << &min(f, e) << '\n';
+	std::cout << "e = " << &e << ", " << "f = " << &f << '\n';
+	std::cout << "min( e, f ) = " << &min(e, f) << '\n';
+	std::cout << "min( f, e ) = " << &min(f, e) << '\n';
 	return 0;
 }
