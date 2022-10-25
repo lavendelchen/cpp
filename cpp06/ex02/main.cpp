@@ -6,13 +6,14 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/25 20:15:37 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:22:39 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdint>
+#include <cstdlib>
 #include <string>
 #include <iostream>
+#include <typeinfo>
 
 #include "Base.hpp"
 #include "A.hpp"
@@ -26,8 +27,8 @@ enum ABC {
 };
 
 Base*	generate(void) {
-	std::srand(time(NULL));
-	int	ABC = std::rand() % 3;
+	srand(time(NULL));
+	int	ABC = rand() % 3;
 	switch(ABC) {
 		case CASE_A: std::cout << "A generated!\n";
 			return new A();
