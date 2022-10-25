@@ -6,11 +6,11 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2022/10/22 19:42:43 by shaas            ###   ########.fr        #
+#    Updated: 2022/10/25 18:15:13 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScalarTypeCoversion
+NAME = Conversion
 
 ISDOCKER := $(shell ls -a /)
 ifeq ( , $(findstring .dockerenv, $(ISDOCKER)))
@@ -23,7 +23,7 @@ CC_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 DIR_OBJ = obj/
 
-SRC =	main.cpp
+SRC =	main.cpp findArgType.cpp convert.cpp print.cpp
 
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o)
 
