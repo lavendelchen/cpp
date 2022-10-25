@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:13:41 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/25 18:14:18 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:05:24 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print(short argType, tTypes &types) {
 		std::cout << "\nint: impossible";
 	else
 		std::cout << "\nint: " << types.i;
-	std::cout << "\nfloat: " << std::fixed << std::setprecision(1) << types.f << 'f';
-	std::cout << "\ndouble: " << std::fixed << std::setprecision(1) << types.d;
+	std::cout << "\nfloat: " << std::fixed << types.f << 'f';
+	std::cout << "\ndouble: " << std::fixed << types.d;
 	std::cout << '\n';
 }
