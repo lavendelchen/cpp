@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/29 17:09:20 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/29 18:08:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,40 @@
 
 # include <string>
 # include <iostream>
-# include <vector>
 # include <algorithm>
+# include <stack>
 
-class MutantStack {
+template <typename T>
+class MutantStack: public std::stack<T> {
 	private:
-		unsigned int		maxElements;
-		std::vector<int>	elements;
 
 	public:
-		MutantStack();
-		MutantStack(unsigned int n);
-		MutantStack(const MutantStack &orig);
-		MutantStack& operator=(const MutantStack &rhs);
-		~MutantStack();
-
-		void	addNumber(int num);
-		void	addRangeOfNumbers(std::vector<int>::const_iterator start,
-									std::vector<int>::const_iterator end);
-		int		shortestMutantStack(void);
-		int		longestMutantStack(void) const;
-
-		class MutantStackOverflowException: public std::exception {
-			public:
-				const char* what() const throw();
+		MutantStack(): std::stack<T>() {};
+		MutantStack(const MutantStack &orig): std::stack<T>(orig) {};
+		MutantStack& operator=(const MutantStack &rhs) {
+			if (this != &rhs) {
+				this->c = rhs.c;
+			}
+			return *this;
 		};
-		class TooFewNumbersException: public std::exception {
-			public:
-				const char* what() const throw();
-		};
+		~MutantStack() {};
+
+		/* ITERATORS */
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		iterator begin() { return this->c.begin(); }
+		iterator end() { return this->c.end(); }
+	
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+		const_iterator begin() const { this->c.begin(); }
+		const_iterator end() const { this->c.end(); }
+	
+		typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
+		reverse_iterator rbegin() { return this->c.rbegin(); }
+		reverse_iterator rend() { return this->c.rend(); }
+	
+		typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
+		const_reverse_iterator rbegin() const { return this->c.rbegin(); }
+		const_reverse_iterator rend() const { return this->c.rend(); }
 };
 
 #endif

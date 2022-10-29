@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2022/10/29 17:07:37 by shaas            ###   ########.fr        #
+#    Updated: 2022/10/29 18:07:13 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 DIR_OBJ = obj/
 
-SRC =	main.cpp MutantStack.cpp
+SRC =	main.cpp
 
 OBJ = $(SRC:%.cpp=$(DIR_OBJ)%.o)
 
