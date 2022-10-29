@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.cpp                                           :+:      :+:    :+:   */
+/*   MutantStack.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/29 06:22:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/29 17:08:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
+#include "MutantStack.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
-Span::Span(): maxElements(0) {
+MutantStack::MutantStack(): maxElements(0) {
 	this->elements.reserve(this->maxElements);
 }
 
-Span::Span(unsigned int n): maxElements(n) {
+MutantStack::MutantStack(unsigned int n): maxElements(n) {
 	this->elements.reserve(this->maxElements);
 }
 
-Span::Span(const Span &orig): maxElements(orig.maxElements), elements(orig.elements) { }
+MutantStack::MutantStack(const MutantStack &orig): maxElements(orig.maxElements), elements(orig.elements) { }
 
-Span&	Span::operator=(const Span &rhs) {
+MutantStack&	MutantStack::operator=(const MutantStack &rhs) {
 	if (this != &rhs) {
 		this->maxElements = rhs.maxElements;
 		this->elements = rhs.elements;
@@ -32,25 +32,25 @@ Span&	Span::operator=(const Span &rhs) {
 }
 
 /* -------------------------------- DESTRUCTOR -------------------------------- */
-Span::~Span() { }
+MutantStack::~MutantStack() { }
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
-void	Span::addNumber(int num) {
+void	MutantStack::addNumber(int num) {
 	if (this->elements.size() >= this->maxElements)
-		throw SpanOverflowException();
+		throw MutantStackOverflowException();
 	this->elements.push_back(num);
 }
 
-void	Span::addRangeOfNumbers(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end) {
+void	MutantStack::addRangeOfNumbers(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end) {
 	while (start < end) {
 		if (this->elements.size() >= this->maxElements)
-			throw SpanOverflowException();
+			throw MutantStackOverflowException();
 		this->elements.push_back(*start);
 		start++;
 	}
 }
 
-int	Span::shortestSpan(void) {
+int	MutantStack::shortestMutantStack(void) {
 	if (this->maxElements <= 1)
 		throw TooFewNumbersException();
 
@@ -66,7 +66,7 @@ int	Span::shortestSpan(void) {
 	return shortest;
 }
 
-int	Span::longestSpan(void) const {
+int	MutantStack::longestMutantStack(void) const {
 	if (this->maxElements <= 1)
 		throw TooFewNumbersException();
 
@@ -76,10 +76,10 @@ int	Span::longestSpan(void) const {
 }
 
 /* -------------------------------- EXCEPTION METHODS -------------------------------- */
-const char* Span::SpanOverflowException::what() const throw() {
-	return "Error: Span is already full";
+const char* MutantStack::MutantStackOverflowException::what() const throw() {
+	return "Error: MutantStack is already full";
 }
 
-const char* Span::TooFewNumbersException::what() const throw() {
+const char* MutantStack::TooFewNumbersException::what() const throw() {
 	return "Error: Not enough numbers to find span";
 }
