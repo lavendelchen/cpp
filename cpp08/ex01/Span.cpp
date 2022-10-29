@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/29 06:22:10 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/29 19:01:14 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	Span::addRangeOfNumbers(std::vector<int>::const_iterator start, std::vector
 }
 
 int	Span::shortestSpan(void) {
-	if (this->maxElements <= 1)
+	if (this->elements.size() <= 1)
 		throw TooFewNumbersException();
 
 	std::sort(this->elements.begin(), this->elements.end());
@@ -67,7 +67,7 @@ int	Span::shortestSpan(void) {
 }
 
 int	Span::longestSpan(void) const {
-	if (this->maxElements <= 1)
+	if (this->elements.size() <= 1)
 		throw TooFewNumbersException();
 
 	int max = *std::max_element(this->elements.begin(), this->elements.end());
@@ -77,7 +77,7 @@ int	Span::longestSpan(void) const {
 
 /* -------------------------------- EXCEPTION METHODS -------------------------------- */
 const char* Span::SpanOverflowException::what() const throw() {
-	return "Error: Span is already full";
+	return "Error: Span class is already full";
 }
 
 const char* Span::TooFewNumbersException::what() const throw() {
