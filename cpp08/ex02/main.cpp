@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/29 18:10:32 by shaas            ###   ########.fr       */
+/*   Updated: 2022/10/29 18:19:43 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,25 @@
 
 int main()
 {
-	MutantStack<int> mutant;
-	for (int i = 0; i < 5; i++) {
-		mutant.push(i);
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << std::endl;
+	mstack.pop();
+	std::cout << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	//[...]
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite) {
+		std::cout << *it << std::endl;
+		++it;
 	}
-
-	MutantStack<int>::const_iterator iter = mutant.begin();
-	for (; iter != mutant.end(); iter++) {
-		std::cout << *iter << '\n';
-	}
+	std::stack<int> s(mstack);
+	return 0;
 }
