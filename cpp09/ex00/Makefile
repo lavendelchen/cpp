@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2023/05/11 21:19:35 by shaas            ###   ########.fr        #
+#    Updated: 2023/05/22 14:56:00 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ fclean: clean
 
 re: fclean all
 
+# make exe arg=xyz
 exe:
 	@printf $(BLUE)
 	./$(NAME) $(arg)

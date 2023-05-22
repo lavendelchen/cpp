@@ -13,36 +13,17 @@
 #include "BitcoinExchange.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
-BitcoinExchange::BitcoinExchange(): databaseFile("data.csv") { }
+BitcoinExchange::BitcoinExchange() { }
 
-BitcoinExchange::BitcoinExchange(std::string inputFile): databaseFile("data.csv") {
-	std::ifstream	fileStream(inputFile);
-	if (!fileStream.is_open()) {
-		throw CannotOpenFileException();
-	}
-	this->inputFile = inputFile;
-	this->parseDatabase();
-	
+BitcoinExchange::BitcoinExchange(std::string databaseFile) {
+	this->parseDatabase(databaseFile);
 }
 
-	// std::ifstream	fileStream(fileName);
-	// if (fileStream.is_open() == false) {
-	// 	cerr	<< "\e[31mError: " << fileName
-	// 				<< " couldn't be opened\e[0m" << endl;
-	// 	return (true);
-	// }
-
-	// stringstream	fileStringStream;
-	// fileStringStream << fileStream.rdbuf();
-	// fileContent = fileStringStream.str();
-	// return (false);
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &orig): maxElements(orig.maxElements), elements(orig.elements) { }
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &orig): database(orig.database) { }
 
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange &rhs) {
 	if (this != &rhs) {
-		this->maxElements = rhs.maxElements;
-		this->elements = rhs.elements;
+		this->database = rhs.database;
 	}
 	return *this;
 }
@@ -51,18 +32,43 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange &rhs) {
 BitcoinExchange::~BitcoinExchange() { }
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
-void	BitcoinExchange::parseDatabase(void) {
-	std::ifstream	dataStream(this->databaseFile);
+void	BitcoinExchange::parseDatabase(std::string &databaseFile) {
+	std::ifstream	dataStream(databaseFile.c_str());
 	if (!dataStream.is_open()) {
 		throw CannotOpenFileException();
 	}
 
 	std::string	buffer;
-	std::getline(dataStream, buffer, '\n');
-	while (std::getline(dataStream, buffer, ',')) {
-		
+	int			date;
+	//float		rate;
+
+	std::getline(dataStream, buffer);
+	while (std::getline(dataStream, buffer)) {
+		date = dateIntConverter(buffer);
+		date = date + 1;
+		//this->database.insert(std::pair<std::)
 	}
 	
+}
+
+int		BitcoinExchange::dateIntConverter(std::string dateString) {
+	int buffer;
+	int	result;
+	std::stringstream	dateStream(dateString);
+
+	dateStream >> buffer;
+	result = buffer * 10000;
+
+	dateStream.seekg(dateString.find('-')+1);
+	dateStream >> buffer;
+	result += buffer * 100;
+
+	dateStream.seekg(dateString.rfind('-')+1);
+	dateStream >> buffer;
+	result += buffer;
+
+	std::cout << "INT: " << result << '\n';
+	return (result);
 }
 
 /* -------------------------------- EXCEPTION METHODS -------------------------------- */
