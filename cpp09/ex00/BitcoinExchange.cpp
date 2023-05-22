@@ -31,22 +31,31 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange &rhs) {
 /* -------------------------------- DESTRUCTOR -------------------------------- */
 BitcoinExchange::~BitcoinExchange() { }
 
-/* -------------------------------- PUBLIC METHODS -------------------------------- */
+/* -------------------------------- PRIVATE METHODS -------------------------------- */
 void	BitcoinExchange::parseDatabase(std::string &databaseFile) {
 	std::ifstream	dataStream(databaseFile.c_str());
 	if (!dataStream.is_open()) {
 		throw CannotOpenFileException();
 	}
 
-	std::string	buffer;
-	int			date;
-	//float		rate;
+	std::string			buffer;
+	std::stringstream	bufferStream;
+	int					date;
+	float				rate;
 
 	std::getline(dataStream, buffer);
 	while (std::getline(dataStream, buffer)) {
 		date = dateIntConverter(buffer);
-		date = date + 1;
-		//this->database.insert(std::pair<std::)
+
+		bufferStream.clear();
+		bufferStream << buffer.substr(buffer.find(',')+1);
+		bufferStream >> rate;
+
+		this->database.insert(std::pair<int, float>(date, rate));
+	}
+
+	for (std::map<int, float>::iterator i = database.begin(); i != database.end(); i++) {
+		std::cout << i->first << " | " << i->second << '\n';
 	}
 	
 }
@@ -67,8 +76,27 @@ int		BitcoinExchange::dateIntConverter(std::string dateString) {
 	dateStream >> buffer;
 	result += buffer;
 
-	std::cout << "INT: " << result << '\n';
 	return (result);
+}
+
+/* -------------------------------- PUBLIC METHODS -------------------------------- */
+void	BitcoinExchange::doYaThing(std::string inputFile) {
+	if (this->database.empty())
+		throw EmptyDatabaseException();
+	std::ifstream	inputStream(inputFile.c_str());
+	if (!inputStream.is_open()) {
+		throw CannotOpenFileException();
+	}
+
+	std::string	buffer;
+	std::getline(inputStream, buffer);
+	while (std::getline(inputStream, buffer)) {
+		int i = 0;
+		for (;buffer[i] != '-'; ) {
+			if (!std::isdigit(buffer[i]))
+				throw BadInputErrorException(buffer.substr())
+		}
+	}
 }
 
 /* -------------------------------- EXCEPTION METHODS -------------------------------- */
@@ -76,6 +104,17 @@ const char*	BitcoinExchange::CannotOpenFileException::what() const throw() {
 	return "Error: Could not open file";
 }
 
-const char*	BitcoinExchange::TooFewNumbersException::what() const throw() {
-	return "Error: Not enough numbers to find span";
+const char*	BitcoinExchange::EmptyDatabaseException::what() const throw() {
+	return "Error: no data could be extracted from the database file, so no values can be evaluated.";
+}
+
+const char*	BitcoinExchange::InputFileErrorException::what() const throw() {
+	return "Error: This line has some problem.";
+}
+
+BitcoinExchange::BadInputErrorException(std::string badInput): InputFileErrorException() {
+	this->badInput = badInput;
+}
+const char*	BitcoinExchange::BadInputErrorException::what() const throw() {
+	return ("Error: bad input => " + this->badInput).c_str();
 }
