@@ -79,6 +79,38 @@ int		BitcoinExchange::dateIntConverter(std::string dateString) {
 	return (result);
 }
 
+void	BitcoinExchange::checkFormatErrors(std::string& line) {
+	unsigned long i					= 0;
+	unsigned long separatorIndex	= line.find(" | ");
+	unsigned long valueLength		= 0;
+
+	if (separatorIndex == std::string::npos)
+		throw BadInputErrorException(line);
+	for (;line[i] != '-'; i++) {
+		if (!std::isdigit(line[i]))
+			throw BadInputErrorException(line);
+	}
+	i++;
+	for (;line[i] != '-'; i++) {
+		if (!std::isdigit(line[i]))
+			throw BadInputErrorException(line);
+	}
+	i++;
+	for (;i < separatorIndex; i++) {
+		if (!std::isdigit(line[i]))
+			throw BadInputErrorException(line);
+	}
+	i+=3;
+	if (line[i] == '-')
+		throw NegativeNumberErrorException();
+	for (;line[i] != '\0'; i++, valueLength++) {
+		if (!std::isdigit(line[i]))
+			throw BadInputErrorException(line);
+	}
+	if (valueLength > 10)
+		throw LargeNumberErrorException();
+}
+
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
 void	BitcoinExchange::doYaThing(std::string inputFile) {
 	if (this->database.empty())
@@ -90,11 +122,13 @@ void	BitcoinExchange::doYaThing(std::string inputFile) {
 
 	std::string	buffer;
 	std::getline(inputStream, buffer);
+
 	while (std::getline(inputStream, buffer)) {
-		int i = 0;
-		for (;buffer[i] != '-'; ) {
-			if (!std::isdigit(buffer[i]))
-				throw BadInputErrorException(buffer.substr())
+		try {
+			this->checkFormatErrors(buffer);
+		}
+		catch (InputFileErrorException& e) {
+			std::cout << e.what() << '\n';
 		}
 	}
 }
@@ -108,13 +142,16 @@ const char*	BitcoinExchange::EmptyDatabaseException::what() const throw() {
 	return "Error: no data could be extracted from the database file, so no values can be evaluated.";
 }
 
-const char*	BitcoinExchange::InputFileErrorException::what() const throw() {
-	return "Error: This line has some problem.";
+BitcoinExchange::InputFileErrorException():
+	std::logic_error("Error: This line has some problem.") {}
+
+BitcoinExchange::BadInputErrorException(const std::string& badInput):
+	std::logic_error("Error: bad input => " + badInput) {}
+
+const char*	BitcoinExchange::LargeNumberErrorException::what() const throw() {
+	return "Error: too large a number.";
 }
 
-BitcoinExchange::BadInputErrorException(std::string badInput): InputFileErrorException() {
-	this->badInput = badInput;
-}
-const char*	BitcoinExchange::BadInputErrorException::what() const throw() {
-	return ("Error: bad input => " + this->badInput).c_str();
+const char*	BitcoinExchange::NegativeNumberErrorException::what() const throw() {
+	return "Error: not a positive number.";
 }

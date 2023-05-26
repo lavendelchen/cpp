@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 23:58:54 by shaas             #+#    #+#             */
-/*   Updated: 2023/05/22 19:22:19 by shaas            ###   ########.fr       */
+/*   Updated: 2023/05/26 21:39:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ class BitcoinExchange {
 	private:
 		std::map<int, float>	database;
 
-		void	parseDatabase(std::string &databaseFile);
+		void	parseDatabase(std::string& databaseFile);
 		int		dateIntConverter(std::string dateString);
+		void	checkFormatErrors(std::string& line);
 
 		BitcoinExchange();
 
@@ -45,15 +46,21 @@ class BitcoinExchange {
 			public:
 				const char* what() const throw();
 		};
-		class InputFileErrorException: public std::exception {
+
+		class InputFileErrorException: public std::logic_error {
+			public:
+				InputFileErrorException();
+		};
+		class BadInputErrorException: public InputFileErrorException {
+			public:
+				BadInputErrorException(const std::string& badInput);
+		};
+		class LargeNumberErrorException: public InputFileErrorException {
 			public:
 				const char* what() const throw();
 		};
-		class BadInputErrorException: public InputFileErrorException {
-			private:
-				std::string	badInput;
+		class NegativeNumberErrorException: public InputFileErrorException {
 			public:
-				BadInputErrorException(std::string badInput);
 				const char* what() const throw();
 		};
 };
