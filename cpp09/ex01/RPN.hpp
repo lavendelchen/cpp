@@ -1,49 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 22:15:51 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/29 06:15:37 by shaas            ###   ########.fr       */
+/*   Created: 2022/10/27 23:58:54 by shaas             #+#    #+#             */
+/*   Updated: 2023/05/30 21:09:44 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#ifndef RPN_HPP
+# define RPN_HPP
 
-# include <string>
+# include <string> //remove!
 # include <iostream>
-# include <vector>
-# include <algorithm>
+# include <sstream>
+# include <fstream>
+# include <stack>
+# include <cctype>
 
-class Span {
+class RPN {
 	private:
-		unsigned int		maxElements;
-		std::vector<int>	elements;
+		bool	isOperator(char c);
+		void	operate(std::stack<int>& operands, char operatorr);
 
 	public:
-		Span();
-		Span(unsigned int n);
-		Span(const Span &orig);
-		Span& operator=(const Span &rhs);
-		~Span();
+		RPN();
+		RPN(const RPN &orig);
+		RPN& operator=(const RPN &rhs);
+		~RPN();
 
-		void	addNumber(int num);
-		void	addRangeOfNumbers(std::vector<int>::const_iterator start,
-									std::vector<int>::const_iterator end);
-		int		shortestSpan(void);
-		int		longestSpan(void) const;
-
-		class SpanOverflowException: public std::exception {
-			public:
-				const char* what() const throw();
-		};
-		class TooFewNumbersException: public std::exception {
-			public:
-				const char* what() const throw();
-		};
+		int	calculate(const std::string expression);
 };
 
 #endif
