@@ -63,8 +63,6 @@ int	RPN::calculate(const std::string expression) {
 
 	for (int i = 0; expression[i] != '\0'; i++) {
 		if (std::isdigit(expression[i])) {
-			if (operands.size() >= 2)
-				throw std::logic_error("Error: Too many operands, not enough operators.");
 			operands.push(expression[i] - 48);
 		}
 		else if (isOperator(expression[i])) {
@@ -82,6 +80,8 @@ int	RPN::calculate(const std::string expression) {
 			throw std::logic_error("Error: Expected space after operator or single-digit operand.");
 	}
 
+	if (operands.size() > 1)
+				throw std::logic_error("Error: Too many operands, not enough operators.");
 	return (operands.top());
 }
 
