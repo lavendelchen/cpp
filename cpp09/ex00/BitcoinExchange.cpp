@@ -32,7 +32,7 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange &rhs) {
 BitcoinExchange::~BitcoinExchange() { }
 
 /* -------------------------------- PRIVATE METHODS -------------------------------- */
-void	BitcoinExchange::parseDatabase(std::string &databaseFile) {
+void	BitcoinExchange::parseDatabase(const std::string &databaseFile) {
 	std::ifstream	dataStream(databaseFile.c_str());
 	if (!dataStream.is_open()) {
 		throw CannotOpenFileException();
@@ -59,7 +59,7 @@ void	BitcoinExchange::parseDatabase(std::string &databaseFile) {
 	} */
 }
 
-int		BitcoinExchange::dateIntConverter(std::string dateString) {
+int		BitcoinExchange::dateIntConverter(const std::string dateString) {
 	int buffer;
 	int	result;
 	std::stringstream	dateStream(dateString);
@@ -82,7 +82,7 @@ int		BitcoinExchange::dateIntConverter(std::string dateString) {
 	return (result);
 }
 
-void	BitcoinExchange::checkFormatErrors(std::string& line) {
+void	BitcoinExchange::checkFormatErrors(const std::string& line) {
 	unsigned long i					= 0;
 	unsigned long separatorIndex	= line.find(" | ");
 	unsigned long valueLength		= 0;
@@ -122,7 +122,7 @@ void	BitcoinExchange::checkFormatErrors(std::string& line) {
 		throw LargeNumberErrorException();
 }
 
-float	BitcoinExchange::stringToFloat(std::string floatString) {
+float	BitcoinExchange::stringToFloat(const std::string floatString) {
 	float				floatFloat;
 	std::stringstream	floatStream(floatString);
 
@@ -132,7 +132,7 @@ float	BitcoinExchange::stringToFloat(std::string floatString) {
 	return floatFloat;
 }
 
-float	BitcoinExchange::findExchangeRate(int date) {
+float	BitcoinExchange::findExchangeRate(const int date) {
 	std::map<int, float>::iterator	lowerBound;
 	lowerBound = this->database.lower_bound(date);
 
@@ -146,7 +146,7 @@ float	BitcoinExchange::findExchangeRate(int date) {
 }
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
-void	BitcoinExchange::doYaThing(std::string inputFile) {
+void	BitcoinExchange::doYaThing(const std::string inputFile) {
 	if (this->database.empty())
 		throw EmptyDatabaseException();
 	std::ifstream	inputStream(inputFile.c_str());

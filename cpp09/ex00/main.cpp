@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2023/05/29 17:25:42 by shaas            ###   ########.fr       */
+/*   Updated: 2023/05/30 03:35:52 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char* argv[]) {
 		exchange.doYaThing(argv[1]);
 	} catch (std::exception& e) {
 		std::cout << "Database " << e.what() << '\n';
+		return (1);
 	}
-	return 0;
+	return (0);
 }

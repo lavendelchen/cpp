@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 23:58:54 by shaas             #+#    #+#             */
-/*   Updated: 2023/05/30 03:08:56 by shaas            ###   ########.fr       */
+/*   Updated: 2023/05/30 03:37:55 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ class BitcoinExchange {
 	private:
 		std::map<int, float>	database;
 
-		void	parseDatabase(std::string& databaseFile);
-		int		dateIntConverter(std::string dateString);
-		void	checkFormatErrors(std::string& line);
-		float	stringToFloat(std::string floatString);
-		float	findExchangeRate(int date);
+		void	parseDatabase(const std::string& databaseFile);
+		int		dateIntConverter(const std::string dateString);
+		void	checkFormatErrors(const std::string& line);
+		float	stringToFloat(const std::string floatString);
+		float	findExchangeRate(const int date);
 
 		BitcoinExchange();
 
 	public:
-		BitcoinExchange(std::string databaseFile);
+		BitcoinExchange(const std::string databaseFile);
 		BitcoinExchange(const BitcoinExchange &orig);
 		BitcoinExchange& operator=(const BitcoinExchange &rhs);
 		~BitcoinExchange();
 
-		void	doYaThing(std::string inputFile);
+		void	doYaThing(const std::string inputFile);
 
 		class CannotOpenFileException: public std::exception {
 			public:
