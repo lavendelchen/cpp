@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 23:58:54 by shaas             #+#    #+#             */
-/*   Updated: 2023/05/26 21:39:33 by shaas            ###   ########.fr       */
+/*   Updated: 2023/05/30 03:08:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class BitcoinExchange {
 		void	parseDatabase(std::string& databaseFile);
 		int		dateIntConverter(std::string dateString);
 		void	checkFormatErrors(std::string& line);
+		float	stringToFloat(std::string floatString);
+		float	findExchangeRate(int date);
 
 		BitcoinExchange();
 
@@ -47,19 +49,25 @@ class BitcoinExchange {
 				const char* what() const throw();
 		};
 
-		class InputFileErrorException: public std::logic_error {
+		class LineProcessingException: public std::logic_error {
 			public:
-				InputFileErrorException();
+				LineProcessingException();
+				LineProcessingException(const std::string& whatArg);
 		};
-		class BadInputErrorException: public InputFileErrorException {
+		class BadInputErrorException: public LineProcessingException {
 			public:
 				BadInputErrorException(const std::string& badInput);
 		};
-		class LargeNumberErrorException: public InputFileErrorException {
+		class LargeNumberErrorException: public LineProcessingException {
 			public:
 				const char* what() const throw();
 		};
-		class NegativeNumberErrorException: public InputFileErrorException {
+		class NegativeNumberErrorException: public LineProcessingException {
+			public:
+				const char* what() const throw();
+		};
+
+		class NoEarlierDateException: public LineProcessingException {
 			public:
 				const char* what() const throw();
 		};

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2023/05/22 16:12:58 by shaas            ###   ########.fr       */
+/*   Updated: 2023/05/29 17:25:42 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char* argv[]) {
 		BitcoinExchange exchange("data.csv");
 		exchange.doYaThing(argv[1]);
 	} catch (std::exception& e) {
-		std::cout << e.what() << '\n';
+		std::cout << "Database " << e.what() << '\n';
 	}
 	return 0;
 }
