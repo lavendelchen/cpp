@@ -28,18 +28,51 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &rhs) {
 PmergeMe::~PmergeMe() { }
 
 /* -------------------------------- PRIVATE METHODS -------------------------------- */
+void	PmergeMe::inputParsing(char* input[], std::deque<int>& sequence) {
+	std::stringstream	inputStream;
+
+	long long	buffer;
+	for (int i = 0, j; input[i] != NULL; i++) {
+		for (j = 0; input[i][j] != '\0'; j++) {
+			if (!std::isdigit(input[i][j]))
+				throw std::logic_error("Error: Each argument should be a positive integer");
+		}
+		if (j > 10 || j <= 0)
+			throw std::logic_error("Error: Either you gave a too big number or an empty string");
+		inputStream.str(input[i]);
+		inputStream >> buffer;
+		inputStream.clear();
+		if (buffer > INT_MAX)
+			throw std::logic_error("Error: Integers must be in int range");
+		if (std::find(sequence.begin(), sequence.end(), buffer) != sequence.end())
+			throw std::logic_error("Error: No duplicates please");
+		sequence.push_back(buffer);
+	}
+	for (std::deque<int>::iterator i = sequence.begin(); i != sequence.end(); i++) {
+		std::cout << '[' << *i << "] ";
+	}
+}
+
+void	PmergeMe::mergeMe_deque(char* input[]) {
+	std::deque<int>	sequence;
+
+	inputParsing(input, sequence);
+}
+
+void	PmergeMe::mergeMe_vector(char* input[]) {
+	(void)input;
+}
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
-void	PmergeMe::mergeMe(char* intSequence[]) {
-
-	//check for duplicates at insertion
-	//check if is positive number
-	//check if too big
-	std::cout << "Before:	";
-	for (int i = 0; intSequence[i] != NULL; i++) {
-		std::cout << intSequence[i] << ' ';
-	}
-	std::cout << '\n';
+void	PmergeMe::mergeMe(char* input[]) {
+	//maybe do template or overload?
+	mergeMe_deque(input);
+	//mergeMe_vector(input);
+	//std::cout << "Before:	";
+	//for (int i = 0; input[i] != NULL; i++) {
+	//	std::cout << input[i] << ' ';
+	//}
+	//std::cout << '\n';
 }
 
 /* -------------------------------- EXCEPTION METHODS -------------------------------- */

@@ -13,13 +13,21 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <string> // remove // check for cpp98
+# include <string> // check for cpp98
 # include <iostream>
-# include <vector>
 # include <deque>
+# include <vector>
+# include <cctype>
+# include <sstream>
+# include <limits.h>
+# include <algorithm>
 
 class PmergeMe {
 	private:
+		void	inputErrorCheck(char* input[]);
+		void	mergeMe_deque(char* input[]);
+		void	mergeMe_vector(char* input[]);
+		void	inputParsing(char* input[], std::deque<int>& sequence);
 
 	public:
 		PmergeMe();
@@ -27,7 +35,7 @@ class PmergeMe {
 		PmergeMe& operator=(const PmergeMe &rhs);
 		~PmergeMe();
 
-		void	mergeMe(char* intSequence[]);
+		void	mergeMe(char* input[]);
 };
 
 #endif
