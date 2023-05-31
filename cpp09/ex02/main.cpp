@@ -6,24 +6,23 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2023/05/31 15:45:45 by shaas            ###   ########.fr       */
+/*   Updated: 2023/05/31 16:08:58 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
 int	main(int argc, char* argv[]) {
-	if (argc != 2) {
-		std::cout << "Error: Please provide one expresson." << std::endl;
+	if (argc < 2) {
+		std::cout << "Error: Please provide a sequence of positive integers." << std::endl;
 		return (1);
 	}
 
 	try {
-		RPN rpn;
-		int	result = rpn.calculate(argv[1]);
-		std::cout << result << '\n';
+		PmergeMe merger;
+		merger.mergeMe(&argv[1]);
 	} catch (std::exception& e) {
 		std::cout << e.what() << '\n';
 		return (1);

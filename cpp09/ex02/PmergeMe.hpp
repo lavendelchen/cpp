@@ -13,15 +13,13 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <string> // remove
+# include <string> // remove // check for cpp98
 # include <iostream>
-# include <stack>
-# include <cctype>
+# include <vector>
+# include <deque>
 
 class PmergeMe {
 	private:
-		bool	isOperator(char c);
-		void	operate(std::stack<int>& operands, char operatorr);
 
 	public:
 		PmergeMe();
@@ -29,7 +27,7 @@ class PmergeMe {
 		PmergeMe& operator=(const PmergeMe &rhs);
 		~PmergeMe();
 
-		int	calculate(const std::string expression);
+		void	mergeMe(char* intSequence[]);
 };
 
 #endif
