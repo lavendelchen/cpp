@@ -28,6 +28,7 @@ class PmergeMe {
 		void	mergeMe_deque(char* input[]);
 		void	mergeMe_vector(char* input[]);
 		void	inputParsing(char* input[], std::deque<int>& sequence);
+		bool	isSorted(const std::deque<int>& sequence);
 
 	public:
 		PmergeMe();

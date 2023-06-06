@@ -28,6 +28,18 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &rhs) {
 PmergeMe::~PmergeMe() { }
 
 /* -------------------------------- PRIVATE METHODS -------------------------------- */
+bool	PmergeMe::isSorted(const std::deque<int>& sequence) {
+	std::deque<int>::const_iterator i = sequence.cbegin();
+	std::deque<int>::const_iterator after_i = ++sequence.cbegin();
+	std::deque<int>::const_iterator end = sequence.cend();
+
+	for (;after_i != end; i++, after_i++) {
+		if (*i >= *after_i)
+			return (false);
+	}
+	return (true);
+}
+
 void	PmergeMe::inputParsing(char* input[], std::deque<int>& sequence) {
 	std::stringstream	inputStream;
 
@@ -57,6 +69,10 @@ void	PmergeMe::mergeMe_deque(char* input[]) {
 	std::deque<int>	sequence;
 
 	inputParsing(input, sequence);
+	if (isSorted(sequence) == true) {
+		std::cout << "IS SORTED\n";
+		return;
+	}
 }
 
 void	PmergeMe::mergeMe_vector(char* input[]) {
