@@ -28,10 +28,10 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &rhs) {
 PmergeMe::~PmergeMe() { }
 
 /* -------------------------------- PRIVATE METHODS -------------------------------- */
-bool	PmergeMe::isSorted(const std::deque<int>& sequence) {
-	std::deque<int>::const_iterator i = sequence.cbegin();
-	std::deque<int>::const_iterator after_i = ++sequence.cbegin();
-	std::deque<int>::const_iterator end = sequence.cend();
+bool	PmergeMe::isSorted(std::deque<int>& sequence) {
+	std::deque<int>::const_iterator i = sequence.begin();
+	std::deque<int>::const_iterator after_i = ++sequence.begin();
+	std::deque<int>::const_iterator end = sequence.end();
 
 	for (;after_i != end; i++, after_i++) {
 		if (*i >= *after_i)
@@ -60,8 +60,10 @@ void	PmergeMe::inputParsing(char* input[], std::deque<int>& sequence) {
 			throw std::logic_error("Error: No duplicates please");
 		sequence.push_back(buffer);
 	}
+	std::cout << "Before:	";
+	std::cout << "After:	";
 	for (std::deque<int>::iterator i = sequence.begin(); i != sequence.end(); i++) {
-		std::cout << '[' << *i << "] ";
+		std::cout << ' ' << *i;
 	}
 }
 
@@ -69,7 +71,7 @@ void	PmergeMe::mergeMe_deque(char* input[]) {
 	std::deque<int>	sequence;
 
 	inputParsing(input, sequence);
-	if (isSorted(sequence) == true) {
+	if (isSorted(sequence) == true) { // should we use? not sure
 		std::cout << "IS SORTED\n";
 		return;
 	}
