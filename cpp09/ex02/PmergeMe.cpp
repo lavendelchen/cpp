@@ -28,19 +28,24 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &rhs) {
 PmergeMe::~PmergeMe() { }
 
 /* -------------------------------- PRIVATE METHODS -------------------------------- */
-bool	PmergeMe::isSorted(std::deque<int>& sequence) {
-	std::deque<int>::const_iterator i = sequence.begin();
-	std::deque<int>::const_iterator after_i = ++sequence.begin();
-	std::deque<int>::const_iterator end = sequence.end();
+void	PmergeMe::mergeMe_deque(char* input[]) {
+	SortDeque	sequence;
+	SortDeque	mainChain;
 
-	for (;after_i != end; i++, after_i++) {
-		if (*i >= *after_i)
-			return (false);
+	inputParsing(input, sequence);
+	printSequence("Before", sequence);
+	if (!isSorted(sequence)) { // should we use? not sure
+		std::cout << "IS NOT SORTED\n";
+		FJMI(sequence, mainChain);
 	}
-	return (true);
+	printSequence("After", mainChain);
 }
 
-void	PmergeMe::inputParsing(char* input[], std::deque<int>& sequence) {
+void	PmergeMe::mergeMe_vector(char* input[]) {
+	(void)input;
+}
+
+void	PmergeMe::inputParsing(char* input[], SortDeque& sequence) {
 	std::stringstream	inputStream;
 
 	long long	buffer;
@@ -56,29 +61,61 @@ void	PmergeMe::inputParsing(char* input[], std::deque<int>& sequence) {
 		inputStream.clear();
 		if (buffer > INT_MAX)
 			throw std::logic_error("Error: Integers must be in int range");
-		if (std::find(sequence.begin(), sequence.end(), buffer) != sequence.end())
+
+		std::pair<int,int>	newElement(buffer, 0);
+		if (std::find(sequence.begin(), sequence.end(), newElement) != sequence.end())
 			throw std::logic_error("Error: No duplicates please");
-		sequence.push_back(buffer);
-	}
-	std::cout << "Before:	";
-	std::cout << "After:	";
-	for (std::deque<int>::iterator i = sequence.begin(); i != sequence.end(); i++) {
-		std::cout << ' ' << *i;
+		sequence.push_back(newElement);
 	}
 }
 
-void	PmergeMe::mergeMe_deque(char* input[]) {
-	std::deque<int>	sequence;
-
-	inputParsing(input, sequence);
-	if (isSorted(sequence) == true) { // should we use? not sure
-		std::cout << "IS SORTED\n";
-		return;
+void	PmergeMe::printSequence(std::string printBefore, SortDeque& sequence) {
+	std::cout << printBefore << ":	";
+	for (SortDeque::const_iterator i = sequence.begin(); i != sequence.end(); i++) {
+		std::cout << ' ' << i->first;
 	}
+	std::cout << '\n';
 }
 
-void	PmergeMe::mergeMe_vector(char* input[]) {
-	(void)input;
+bool	PmergeMe::isSorted(SortDeque& sequence) {
+	SortDeque::const_iterator i = sequence.begin();
+	SortDeque::const_iterator after_i = ++sequence.begin();
+	SortDeque::const_iterator end = sequence.end();
+
+	for (;after_i != end; i++, after_i++) {
+		if (i->first >= after_i->first)
+			return (false);
+	}
+	return (true);
+}
+
+void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair for mainChain?
+	SortDeque greaterSequence = sortPairs(sequence);
+	FJMI(greaterSequence, mainChain);
+}
+
+SortDeque	PmergeMe::sortPairs(SortDeque& sequence) {
+	SortDeque	greaterSequence;
+
+	SortDeque::iterator sortFirst = sequence.begin();
+	SortDeque::iterator sortSecond = ++sequence.begin();
+	SortDeque::iterator end;
+	switch (sequence.size() % 2) {
+		case 0: end = sequence.end(); break;
+		case 1: end = --sequence.end(); break;
+	}
+
+	for (; sortFirst != end; sortFirst+=2, sortSecond+=2) {
+		if (sortFirst->first < sortSecond->first) {
+			sortFirst->second = sortSecond->first; // or index it, not sure yet
+			greaterSequence.push_back(*sortSecond);
+		}
+		else {
+			sortSecond->second = sortFirst->first; // or index it, not sure yet
+			greaterSequence.push_back(*sortFirst);
+		}
+	}
+	return (greaterSequence);
 }
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
