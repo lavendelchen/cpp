@@ -38,7 +38,7 @@ void	PmergeMe::mergeMe_deque(char* input[]) {
 		std::cout << "IS NOT SORTED\n";
 		FJMI(sequence, mainChain);
 	}
-	printSequence("After", mainChain);
+	printSequence("After", sequence);
 }
 
 void	PmergeMe::mergeMe_vector(char* input[]) {
@@ -72,7 +72,7 @@ void	PmergeMe::inputParsing(char* input[], SortDeque& sequence) {
 void	PmergeMe::printSequence(std::string printBefore, SortDeque& sequence) {
 	std::cout << printBefore << ":	";
 	for (SortDeque::const_iterator i = sequence.begin(); i != sequence.end(); i++) {
-		std::cout << ' ' << i->first;
+		std::cout << ' ' << i->first << "-" << i->second;
 	}
 	std::cout << '\n';
 }
@@ -91,7 +91,22 @@ bool	PmergeMe::isSorted(SortDeque& sequence) {
 
 void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair for mainChain?
 	SortDeque greaterSequence = sortPairs(sequence);
-	FJMI(greaterSequence, mainChain);
+	if (sequence.size() >= 2)
+		FJMI(greaterSequence, mainChain);
+	binaryInsert(sequence, mainChain);
+}
+
+void	PmergeMe::binaryInsert(SortDeque& sequence, SortDeque& mainChain) {
+	SortDeque::iterator end = sequence.end();
+	SortDeque::iterator i = sequence.begin();
+	int	middle = mainChain.size() / 2;
+
+	for (; i != end; i++) {
+		if (mainChain[middle] > i->first)
+			middle /= 2;
+		else
+			middle += middle / 2;
+	}
 }
 
 SortDeque	PmergeMe::sortPairs(SortDeque& sequence) {

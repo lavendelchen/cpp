@@ -34,6 +34,7 @@ class PmergeMe {
 		bool		isSorted(SortDeque& sequence);
 		void		printSequence(std::string printBefore, SortDeque& sequence);
 		SortDeque	sortPairs(SortDeque& sequence);
+		void		binaryInsert(SortDeque& sequence, SortDeque& mainChain);
 
 		/* stands for Ford-Johnson Merge-Insertion. it's the actual algorithm. */
 		void	FJMI(SortDeque& sequence, SortDeque& mainChain);
