@@ -21,20 +21,29 @@
 # include <sstream>
 # include <limits.h>
 # include <algorithm>
-//#include <utility>
+# include <memory>
 
-typedef std::deque<std::pair<int,int> > SortDeque;
+struct ValueData {
+	int						value;
+	ValueData*				higher;
+	std::deque<ValueData*>	lower;
+
+	bool	operator==(const ValueData &rhs);
+};
+
+
+typedef std::deque<ValueData*> SortDeque;
 
 class PmergeMe {
 	private:
-		void		inputErrorCheck(char* input[]);
-		void		mergeMe_deque(char* input[]);
-		void		mergeMe_vector(char* input[]);
-		void		inputParsing(char* input[], SortDeque& sequence);
-		bool		isSorted(SortDeque& sequence);
-		void		printSequence(std::string printBefore, SortDeque& sequence);
-		SortDeque	sortPairs(SortDeque& sequence);
-		void		binaryInsert(SortDeque& sequence, SortDeque& mainChain);
+		void	inputErrorCheck(char* input[]);
+		void	mergeMe_deque(char* input[]);
+		void	mergeMe_vector(char* input[]);
+		void	inputParsing(char* input[], SortDeque& sequence);
+		bool	isSorted(SortDeque& sequence);
+		void	printSequence(std::string printBefore, SortDeque& sequence);
+		void	makePairs(SortDeque& sequence, SortDeque& greaterSequence);
+		void	binaryInsert(SortDeque& sequence, SortDeque& mainChain);
 
 		/* stands for Ford-Johnson Merge-Insertion. it's the actual algorithm. */
 		void	FJMI(SortDeque& sequence, SortDeque& mainChain);

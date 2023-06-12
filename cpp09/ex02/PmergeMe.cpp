@@ -59,12 +59,17 @@ void	PmergeMe::inputParsing(char* input[], SortDeque& sequence) {
 		inputStream.str(input[i]);
 		inputStream >> buffer;
 		inputStream.clear();
+
 		if (buffer > INT_MAX)
 			throw std::logic_error("Error: Integers must be in int range");
+		for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
+			if ((*i)->value == buffer)
+				throw std::logic_error("Error: No duplicates please");
+		}
 
-		std::pair<int,int>	newElement(buffer, 0);
-		if (std::find(sequence.begin(), sequence.end(), newElement) != sequence.end())
-			throw std::logic_error("Error: No duplicates please");
+		ValueData* newElement = new ValueData;
+		newElement->value = buffer;
+		newElement->higher = NULL;
 		sequence.push_back(newElement);
 	}
 }
@@ -72,7 +77,7 @@ void	PmergeMe::inputParsing(char* input[], SortDeque& sequence) {
 void	PmergeMe::printSequence(std::string printBefore, SortDeque& sequence) {
 	std::cout << printBefore << ":	";
 	for (SortDeque::const_iterator i = sequence.begin(); i != sequence.end(); i++) {
-		std::cout << ' ' << i->first << "-" << i->second;
+		std::cout << ' ' << (*i)->value;
 	}
 	std::cout << '\n';
 }
@@ -83,35 +88,32 @@ bool	PmergeMe::isSorted(SortDeque& sequence) {
 	SortDeque::const_iterator end = sequence.end();
 
 	for (;after_i != end; i++, after_i++) {
-		if (i->first >= after_i->first)
+		if ((*i)->value >= (*after_i)->value)
 			return (false);
 	}
 	return (true);
 }
 
 void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair for mainChain?
-	SortDeque greaterSequence = sortPairs(sequence);
+	SortDeque greaterSequence;
+
+	makePairs(sequence, greaterSequence); // put in if as well?
+	std::cout << "\n\nNEW ITERATION\n";
+	for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
+		std::cout	<< "\n[" << (*i)->value << "]: "
+					<< "HIGHER: " << ((*i)->higher == NULL? -1 : (*i)->higher->value)
+					<< " LOWER: ";
+		for (SortDeque::iterator j = (*i)->lower.begin(); j != (*i)->lower.end(); j++) {
+			std::cout << (*j)->value << ' ';
+		}
+	}
+	std::cout << '\n';
 	if (sequence.size() >= 2)
 		FJMI(greaterSequence, mainChain);
-	binaryInsert(sequence, mainChain);
+	//binaryInsert(sequence, mainChain);
 }
 
-void	PmergeMe::binaryInsert(SortDeque& sequence, SortDeque& mainChain) {
-	SortDeque::iterator end = sequence.end();
-	SortDeque::iterator i = sequence.begin();
-	int	middle = mainChain.size() / 2;
-
-	for (; i != end; i++) {
-		if (mainChain[middle] > i->first)
-			middle /= 2;
-		else
-			middle += middle / 2;
-	}
-}
-
-SortDeque	PmergeMe::sortPairs(SortDeque& sequence) {
-	SortDeque	greaterSequence;
-
+void	PmergeMe::makePairs(SortDeque& sequence, SortDeque& greaterSequence) {
 	SortDeque::iterator sortFirst = sequence.begin();
 	SortDeque::iterator sortSecond = ++sequence.begin();
 	SortDeque::iterator end;
@@ -121,17 +123,35 @@ SortDeque	PmergeMe::sortPairs(SortDeque& sequence) {
 	}
 
 	for (; sortFirst != end; sortFirst+=2, sortSecond+=2) {
-		if (sortFirst->first < sortSecond->first) {
-			sortFirst->second = sortSecond->first; // or index it, not sure yet
-			greaterSequence.push_back(*sortSecond);
+		if ((*sortFirst)->value > (*sortSecond)->value) {
+
+			(*sortFirst)->lower.push_back((*sortSecond));
+			(*sortSecond)->higher = *sortFirst;
+			greaterSequence.push_back(*sortFirst);
+
+			std::iter_swap(sortFirst, sortSecond);
 		}
 		else {
-			sortSecond->second = sortFirst->first; // or index it, not sure yet
-			greaterSequence.push_back(*sortFirst);
+
+			(*sortSecond)->lower.push_back((*sortFirst));
+			(*sortFirst)->higher = *sortSecond;
+			greaterSequence.push_back(*sortSecond);
 		}
 	}
-	return (greaterSequence);
 }
+
+//void	PmergeMe::binaryInsert(SortDeque& sequence, SortDeque& mainChain) {
+//	SortDeque::iterator end = sequence.end();
+//	SortDeque::iterator i = sequence.begin();
+//	int	middle = mainChain.size() / 2;
+//
+//	for (; i != end; i++) {
+//		if (mainChain[middle] > i->first)
+//			middle /= 2;
+//		else
+//			middle += middle / 2;
+//	}
+//}
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
 void	PmergeMe::mergeMe(char* input[]) {
@@ -143,6 +163,14 @@ void	PmergeMe::mergeMe(char* input[]) {
 	//	std::cout << input[i] << ' ';
 	//}
 	//std::cout << '\n';
+}
+
+/* -------------------------------- OVERLOADS -------------------------------- */
+
+bool	ValueData::operator==(ValueData const &rhs) {
+	if (this->value == rhs.value)
+		return (true);
+	return (false);
 }
 
 /* -------------------------------- EXCEPTION METHODS -------------------------------- */
