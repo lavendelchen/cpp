@@ -20,8 +20,6 @@
 # include <cctype>
 # include <sstream>
 # include <limits.h>
-# include <algorithm>
-# include <memory>
 
 struct ValueData {
 	int						value;
@@ -31,6 +29,8 @@ struct ValueData {
 	/* careful! this will delete the returned value from the list */
 	ValueData*	getNewestLower(void);
 
+	ValueData();
+	ValueData(ValueData* lower);
 	bool	operator==(const ValueData &rhs);
 };
 
@@ -45,9 +45,10 @@ class PmergeMe {
 		void	inputParsing(char* input[], SortDeque& sequence);
 		bool	isSorted(SortDeque& sequence);
 		void	printSequence(std::string printBefore, SortDeque& sequence);
-		void	makePairs(SortDeque& sequence, SortDeque& greaterSequence);
-		void	binaryInsert(SortDeque& sequence, SortDeque& mainChain);
+		void	makePairs(SortDeque& sequence, SortDeque& greaterSequence, ValueData*& oddLeftover);
+		void	binaryInsert(SortDeque& mainChain, ValueData*& oddLeftover);
 		void	printData(SortDeque& sequence);
+		void	binarySearch(SortDeque& mainChain, int higherIndex, ValueData* toSort);
 
 		/* stands for Ford-Johnson Merge-Insertion. it's the actual algorithm. */
 		void	FJMI(SortDeque& sequence, SortDeque& mainChain);

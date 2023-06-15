@@ -24,6 +24,14 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe &rhs) {
 	return *this;
 }
 
+ValueData::ValueData() { }
+
+ValueData::ValueData(ValueData* lower) {
+	this->value = -1;
+	this->higher = NULL;
+	this->lower.push_back(lower);
+}
+
 /* -------------------------------- DESTRUCTOR -------------------------------- */
 PmergeMe::~PmergeMe() { }
 
@@ -34,7 +42,7 @@ void	PmergeMe::mergeMe_deque(char* input[]) {
 
 	inputParsing(input, sequence);
 	printSequence("Before", sequence);
-	if (!isSorted(sequence)) { // should we use? not sure
+	if (true) {//!isSorted(sequence)) { // should we use? not sure
 		std::cout << "IS NOT SORTED\n";
 		FJMI(sequence, mainChain);
 	}
@@ -74,6 +82,118 @@ void	PmergeMe::inputParsing(char* input[], SortDeque& sequence) {
 	}
 }
 
+void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair for mainChain?
+	SortDeque	greaterSequence;
+	ValueData*	oddLeftover;
+
+	if (sequence.size() > 1) {
+		makePairs(sequence, greaterSequence, oddLeftover); // put in if as well?
+		//printData(sequence);
+		FJMI(greaterSequence, mainChain);
+	}
+	else {
+		mainChain.push_back(sequence[0]);
+		return;
+	}
+	mainChain.insert(mainChain.begin(), mainChain[0]->getNewestLower());
+	
+	if (mainChain.size() > 2)
+		binaryInsert(mainChain, oddLeftover);
+}
+
+void	PmergeMe::makePairs(SortDeque& sequence, SortDeque& greaterSequence, ValueData*& oddLeftover) {
+	SortDeque::iterator sortFirst = sequence.begin();
+	SortDeque::iterator sortSecond = ++sequence.begin();
+	SortDeque::iterator end;
+	switch (sequence.size() % 2) {
+		case 0:
+			oddLeftover = NULL;
+			end = sequence.end();
+			break;
+		case 1:
+			oddLeftover = sequence.back();
+			end = --sequence.end();
+			break;
+	}
+
+	for (; sortFirst != end; sortFirst+=2, sortSecond+=2) {
+		if ((*sortFirst)->value > (*sortSecond)->value) {
+
+			(*sortFirst)->lower.push_back((*sortSecond));
+			(*sortSecond)->higher = *sortFirst;
+			greaterSequence.push_back(*sortFirst);
+		}
+		else {
+
+			(*sortSecond)->lower.push_back((*sortFirst));
+			(*sortFirst)->higher = *sortSecond;
+			greaterSequence.push_back(*sortSecond);
+		}
+	}
+}
+
+void	PmergeMe::binaryInsert(SortDeque& mainChain, ValueData*& oddLeftover) {
+	SortDeque	toSort = mainChain;
+	ValueData	oddData(oddLeftover);
+	if (oddLeftover != NULL) {
+		toSort.push_back(&oddData);
+	}
+	std::cout << "\nMAIN CHAIN ";
+	printData(mainChain);
+	std::cout << "\nTO_SORT ";
+	printData(toSort);
+
+	int num = toSort.size();
+	int	powerOfTwo = 2;
+	int groupSize = 2;
+	int firstIndex = 2;
+	int	lastIndex = 3; // need all those variables?
+	SortDeque::iterator i;
+
+	std::cout << "\nwe will binary sort in this order\n";
+	while (firstIndex < num) {
+		if (lastIndex >= num) {
+			lastIndex = num-1;
+			groupSize = lastIndex - firstIndex + 1;
+		}
+
+		i = toSort.begin()+lastIndex;
+		for (;lastIndex >= firstIndex; lastIndex--, i--) {
+			binarySearch(mainChain, lastIndex, (*i)->getNewestLower());
+		}
+
+		firstIndex+=groupSize;
+		powerOfTwo*=2;
+		groupSize = powerOfTwo - groupSize;
+		std::cout << " GROUP SIZE [" << groupSize << ']';
+		lastIndex = firstIndex + groupSize - 1;
+	}
+	std::cout << '\n';
+}
+
+void	PmergeMe::binarySearch(SortDeque& mainChain, int higherIndex, ValueData* toSort) {
+	int			mIndex = higherIndex / 2;
+	ValueData*	mElement = mainChain[mIndex];
+
+	while (true) {
+		if (mElement)
+	}
+}
+
+/* --> UTILS */
+
+void	PmergeMe::printData(SortDeque& sequence) {
+	for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
+		std::cout	<< "\n[" << (*i)->value << "]: "
+					<< "HIGHER: " << ((*i)->higher == NULL? -1 : (*i)->higher->value)
+					<< " LOWER: ";
+		for (SortDeque::iterator j = (*i)->lower.begin(); j != (*i)->lower.end(); j++) {
+			std::cout << (*j)->value << ' ';
+		}
+	}
+	std::cout << '\n';
+}
+
 void	PmergeMe::printSequence(std::string printBefore, SortDeque& sequence) {
 	std::cout << printBefore << ":	";
 	for (SortDeque::const_iterator i = sequence.begin(); i != sequence.end(); i++) {
@@ -93,77 +213,6 @@ bool	PmergeMe::isSorted(SortDeque& sequence) {
 	}
 	return (true);
 }
-
-void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair for mainChain?
-	SortDeque greaterSequence;
-
-	if (sequence.size() > 1) {
-		makePairs(sequence, greaterSequence); // put in if as well?
-		FJMI(greaterSequence, mainChain);
-	}
-	else {
-		mainChain.push_back(sequence[0]);
-		return;
-	}
-	printData(mainChain);
-	mainChain.insert(mainChain.begin(), mainChain[0]->getNewestLower());
-	printData(mainChain);
-	
-	binaryInsert(sequence, mainChain);
-}
-
-void	PmergeMe::printData(SortDeque& sequence) {
-	std::cout << "\n\nNEW ITERATION\n";
-	for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
-		std::cout	<< "\n[" << (*i)->value << "]: "
-					<< "HIGHER: " << ((*i)->higher == NULL? -1 : (*i)->higher->value)
-					<< " LOWER: ";
-		for (SortDeque::iterator j = (*i)->lower.begin(); j != (*i)->lower.end(); j++) {
-			std::cout << (*j)->value << ' ';
-		}
-	}
-	std::cout << '\n';
-}
-
-void	PmergeMe::makePairs(SortDeque& sequence, SortDeque& greaterSequence) {
-	SortDeque::iterator sortFirst = sequence.begin();
-	SortDeque::iterator sortSecond = ++sequence.begin();
-	SortDeque::iterator end;
-	switch (sequence.size() % 2) {
-		case 0: end = sequence.end(); break;
-		case 1: end = --sequence.end(); break;
-	}
-
-	for (; sortFirst != end; sortFirst+=2, sortSecond+=2) {
-		if ((*sortFirst)->value > (*sortSecond)->value) {
-
-			(*sortFirst)->lower.push_back((*sortSecond));
-			(*sortSecond)->higher = *sortFirst;
-			greaterSequence.push_back(*sortFirst);
-
-			std::iter_swap(sortFirst, sortSecond);
-		}
-		else {
-
-			(*sortSecond)->lower.push_back((*sortFirst));
-			(*sortFirst)->higher = *sortSecond;
-			greaterSequence.push_back(*sortSecond);
-		}
-	}
-}
-
-//void	PmergeMe::binaryInsert(SortDeque& sequence, SortDeque& mainChain) {
-//	SortDeque::iterator end = sequence.end();
-//	SortDeque::iterator i = sequence.begin();
-//	int	middle = mainChain.size() / 2;
-//
-//	for (; i != end; i++) {
-//		if (mainChain[middle] > i->first)
-//			middle /= 2;
-//		else
-//			middle += middle / 2;
-//	}
-//}
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
 void	PmergeMe::mergeMe(char* input[]) {
