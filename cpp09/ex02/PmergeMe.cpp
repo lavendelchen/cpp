@@ -47,6 +47,10 @@ void	PmergeMe::mergeMe_deque(char* input[]) {
 		FJMI(sequence, mainChain);
 	}
 	printSequence("After", mainChain);
+
+	for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
+		delete *i;
+	}
 }
 
 void	PmergeMe::mergeMe_vector(char* input[]) {
