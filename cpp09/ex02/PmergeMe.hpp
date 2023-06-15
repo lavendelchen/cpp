@@ -20,6 +20,7 @@
 # include <cctype>
 # include <sstream>
 # include <limits.h>
+# include <algorithm>
 
 struct ValueData {
 	int						value;
@@ -48,7 +49,7 @@ class PmergeMe {
 		void	makePairs(SortDeque& sequence, SortDeque& greaterSequence, ValueData*& oddLeftover);
 		void	binaryInsert(SortDeque& mainChain, ValueData*& oddLeftover);
 		void	printData(SortDeque& sequence);
-		void	binarySearch(SortDeque& mainChain, int higherIndex, ValueData* toSort);
+		void	binarySearch(SortDeque& mainChain, ValueData* higher, ValueData* toSort);
 
 		/* stands for Ford-Johnson Merge-Insertion. it's the actual algorithm. */
 		void	FJMI(SortDeque& sequence, SortDeque& mainChain);

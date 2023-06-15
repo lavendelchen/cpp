@@ -148,18 +148,18 @@ void	PmergeMe::binaryInsert(SortDeque& mainChain, ValueData*& oddLeftover) {
 	int groupSize = 2;
 	int firstIndex = 2;
 	int	lastIndex = 3; // need all those variables?
-	SortDeque::iterator i;
+	SortDeque::iterator	i;
 
-	std::cout << "\nwe will binary sort in this order\n";
 	while (firstIndex < num) {
-		if (lastIndex >= num) {
+		if (lastIndex >= num)
 			lastIndex = num-1;
-			groupSize = lastIndex - firstIndex + 1;
-		}
 
 		i = toSort.begin()+lastIndex;
 		for (;lastIndex >= firstIndex; lastIndex--, i--) {
-			binarySearch(mainChain, lastIndex, (*i)->getNewestLower());
+			if ((*i)->value == -1)
+				binarySearch(mainChain, NULL, (*i)->getNewestLower());
+			else
+				binarySearch(mainChain, *i, (*i)->getNewestLower());
 		}
 
 		firstIndex+=groupSize;
@@ -171,13 +171,32 @@ void	PmergeMe::binaryInsert(SortDeque& mainChain, ValueData*& oddLeftover) {
 	std::cout << '\n';
 }
 
-void	PmergeMe::binarySearch(SortDeque& mainChain, int higherIndex, ValueData* toSort) {
-	int			mIndex = higherIndex / 2;
-	ValueData*	mElement = mainChain[mIndex];
+void	PmergeMe::binarySearch(SortDeque& mainChain, ValueData* higher, ValueData* toSort) {
+	int			higherIndex;
+	if (higher == NULL)
+		higherIndex = mainChain.size()-1;
+	else
+		higherIndex = std::find(mainChain.begin(), mainChain.end(), higher) - mainChain.begin();
 
-	while (true) {
-		if (mElement)
+	int			lowerIndex	= 0;
+	int			mIndex;
+	ValueData*	mElement;
+
+	while (higherIndex != lowerIndex) {
+		mIndex = ((higherIndex + lowerIndex) / 2) + ((higherIndex + lowerIndex) % 2);
+		mElement = mainChain[mIndex];
+		//std::cout << "SEGFAULTTTTTTTTTTTTTTTTT\n";
+		if (toSort->value < mElement->value)
+			higherIndex = mIndex - 1;
+		else
+			lowerIndex = mIndex;
 	}
+	if (toSort->value < mainChain[higherIndex]->value)
+		mainChain.insert(mainChain.begin()+higherIndex, toSort);
+	else
+		mainChain.insert(mainChain.begin()+higherIndex+1, toSort);
+	std::cout << "\nMAIN CHAIN ";
+	printData(mainChain);
 }
 
 /* --> UTILS */
@@ -198,6 +217,7 @@ void	PmergeMe::printSequence(std::string printBefore, SortDeque& sequence) {
 	std::cout << printBefore << ":	";
 	for (SortDeque::const_iterator i = sequence.begin(); i != sequence.end(); i++) {
 		std::cout << ' ' << (*i)->value;
+		//std::cout << " \"" << (*i)->value << "\",";
 	}
 	std::cout << '\n';
 }

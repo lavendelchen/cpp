@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 23:59:35 by shaas             #+#    #+#              #
-#    Updated: 2023/05/31 15:48:30 by shaas            ###   ########.fr        #
+#    Updated: 2023/06/15 23:09:01 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ else
 	CC = g++
 endif
 
-CC_FLAGS = -Wall -Wextra -Werror -std=c++98
+CC_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 DIR_OBJ = obj/
 
