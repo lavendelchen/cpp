@@ -25,8 +25,11 @@
 
 struct ValueData {
 	int						value;
-	ValueData*				higher;
+	ValueData*				higher; // don't think we need lol
 	std::deque<ValueData*>	lower;
+
+	/* careful! this will delete the returned value from the list */
+	ValueData*	getNewestLower(void);
 
 	bool	operator==(const ValueData &rhs);
 };
@@ -44,6 +47,7 @@ class PmergeMe {
 		void	printSequence(std::string printBefore, SortDeque& sequence);
 		void	makePairs(SortDeque& sequence, SortDeque& greaterSequence);
 		void	binaryInsert(SortDeque& sequence, SortDeque& mainChain);
+		void	printData(SortDeque& sequence);
 
 		/* stands for Ford-Johnson Merge-Insertion. it's the actual algorithm. */
 		void	FJMI(SortDeque& sequence, SortDeque& mainChain);

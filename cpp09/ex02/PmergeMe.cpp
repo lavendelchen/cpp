@@ -38,7 +38,7 @@ void	PmergeMe::mergeMe_deque(char* input[]) {
 		std::cout << "IS NOT SORTED\n";
 		FJMI(sequence, mainChain);
 	}
-	printSequence("After", sequence);
+	printSequence("After", mainChain);
 }
 
 void	PmergeMe::mergeMe_vector(char* input[]) {
@@ -97,7 +97,22 @@ bool	PmergeMe::isSorted(SortDeque& sequence) {
 void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair for mainChain?
 	SortDeque greaterSequence;
 
-	makePairs(sequence, greaterSequence); // put in if as well?
+	if (sequence.size() > 1) {
+		makePairs(sequence, greaterSequence); // put in if as well?
+		FJMI(greaterSequence, mainChain);
+	}
+	else {
+		mainChain.push_back(sequence[0]);
+		return;
+	}
+	printData(mainChain);
+	mainChain.insert(mainChain.begin(), mainChain[0]->getNewestLower());
+	printData(mainChain);
+	
+	binaryInsert(sequence, mainChain);
+}
+
+void	PmergeMe::printData(SortDeque& sequence) {
 	std::cout << "\n\nNEW ITERATION\n";
 	for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
 		std::cout	<< "\n[" << (*i)->value << "]: "
@@ -108,9 +123,6 @@ void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair fo
 		}
 	}
 	std::cout << '\n';
-	if (sequence.size() >= 2)
-		FJMI(greaterSequence, mainChain);
-	//binaryInsert(sequence, mainChain);
 }
 
 void	PmergeMe::makePairs(SortDeque& sequence, SortDeque& greaterSequence) {
@@ -163,6 +175,15 @@ void	PmergeMe::mergeMe(char* input[]) {
 	//	std::cout << input[i] << ' ';
 	//}
 	//std::cout << '\n';
+}
+
+ValueData*	ValueData::getNewestLower(void) {
+	if (this->lower.empty())
+		return (NULL);
+
+	ValueData* newestLower = this->lower.back();
+	this->lower.pop_back();
+	return (newestLower);
 }
 
 /* -------------------------------- OVERLOADS -------------------------------- */
