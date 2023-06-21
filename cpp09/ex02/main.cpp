@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/21 20:39:45 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/21 20:47:05 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ int	main(int argc, char* argv[]) {
 }
 
 // last number gets deleted????? only at 3 elements! + 7 + 12 ... no idea what the pattrn is there lol but should be resolvable with debugger
-// add clock
 // check valgrind
 // check pdf
