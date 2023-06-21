@@ -1,63 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                           :+:      :+:    :+:   */
+/*   PmergeMe.tpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2022/10/29 19:01:14 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/21 20:36:46 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PMERGEME_TPP
+# define PMERGEME_TPP
 
 #include "PmergeMe.hpp"
 
 /* ------------------------------- CONSTRUCTOR --------------------------------*/
-PmergeMe::PmergeMe() { }
+template <typename Sorter, typename ValueData>
+PmergeMe<Sorter,ValueData>::PmergeMe() { }
 
-PmergeMe::PmergeMe(const PmergeMe &orig) {
+template <typename Sorter, typename ValueData>
+PmergeMe<Sorter,ValueData>::PmergeMe(const PmergeMe<Sorter,ValueData> &orig) {
 	(void)orig;
 }
 
-PmergeMe&	PmergeMe::operator=(const PmergeMe &rhs) {
+template <typename Sorter, typename ValueData>
+PmergeMe<Sorter,ValueData>&	PmergeMe<Sorter,ValueData>::operator=(const PmergeMe<Sorter,ValueData> &rhs) {
 	if (this != &rhs) { }
 	return *this;
 }
 
-ValueData::ValueData() { }
-
-ValueData::ValueData(ValueData* lower) {
-	this->value = -1;
-	this->higher = NULL;
-	this->lower.push_back(lower);
-}
-
 /* -------------------------------- DESTRUCTOR -------------------------------- */
-PmergeMe::~PmergeMe() { }
+template <typename Sorter, typename ValueData>
+PmergeMe<Sorter,ValueData>::~PmergeMe() { }
 
 /* -------------------------------- PRIVATE METHODS -------------------------------- */
-void	PmergeMe::mergeMe_deque(char* input[]) {
-	SortDeque	sequence;
-	SortDeque	mainChain;
-
-	inputParsing(input, sequence);
-	printSequence("Before", sequence);
-	if (true) {//!isSorted(sequence)) { // should we use? not sure
-		std::cout << "IS NOT SORTED\n";
-		FJMI(sequence, mainChain);
-	}
-	printSequence("After", mainChain);
-
-	for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
-		delete *i;
-	}
-}
-
-void	PmergeMe::mergeMe_vector(char* input[]) {
-	(void)input;
-}
-
-void	PmergeMe::inputParsing(char* input[], SortDeque& sequence) {
+template <typename Sorter, typename ValueData>
+void	PmergeMe<Sorter,ValueData>::inputParsing(char* input[], Sorter& sequence) {
 	std::stringstream	inputStream;
 
 	long long	buffer;
@@ -74,25 +53,24 @@ void	PmergeMe::inputParsing(char* input[], SortDeque& sequence) {
 
 		if (buffer > INT_MAX)
 			throw std::logic_error("Error: Integers must be in int range");
-		for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
+		for (typename Sorter::iterator i = sequence.begin(); i != sequence.end(); i++) {
 			if ((*i)->value == buffer)
 				throw std::logic_error("Error: No duplicates please");
 		}
 
 		ValueData* newElement = new ValueData;
 		newElement->value = buffer;
-		newElement->higher = NULL;
 		sequence.push_back(newElement);
 	}
 }
 
-void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair for mainChain?
-	SortDeque	greaterSequence;
+template <typename Sorter, typename ValueData>
+void	PmergeMe<Sorter,ValueData>::FJMI(Sorter& sequence, Sorter& mainChain) {
+	Sorter	greaterSequence;
 	ValueData*	oddLeftover;
 
 	if (sequence.size() > 1) {
-		makePairs(sequence, greaterSequence, oddLeftover); // put in if as well?
-		//printData(sequence);
+		makePairs(sequence, greaterSequence, oddLeftover);
 		FJMI(greaterSequence, mainChain);
 	}
 	else {
@@ -105,10 +83,11 @@ void	PmergeMe::FJMI(SortDeque& sequence, SortDeque& mainChain) { // need pair fo
 		binaryInsert(mainChain, oddLeftover);
 }
 
-void	PmergeMe::makePairs(SortDeque& sequence, SortDeque& greaterSequence, ValueData*& oddLeftover) {
-	SortDeque::iterator sortFirst = sequence.begin();
-	SortDeque::iterator sortSecond = ++sequence.begin();
-	SortDeque::iterator end;
+template <typename Sorter, typename ValueData>
+void	PmergeMe<Sorter,ValueData>::makePairs(Sorter& sequence, Sorter& greaterSequence, ValueData*& oddLeftover) {
+	typename Sorter::iterator sortFirst = sequence.begin();
+	typename Sorter::iterator sortSecond = ++sequence.begin();
+	typename Sorter::iterator end;
 	switch (sequence.size() % 2) {
 		case 0:
 			oddLeftover = NULL;
@@ -122,37 +101,34 @@ void	PmergeMe::makePairs(SortDeque& sequence, SortDeque& greaterSequence, ValueD
 
 	for (; sortFirst != end; sortFirst+=2, sortSecond+=2) {
 		if ((*sortFirst)->value > (*sortSecond)->value) {
-
 			(*sortFirst)->lower.push_back((*sortSecond));
-			(*sortSecond)->higher = *sortFirst;
 			greaterSequence.push_back(*sortFirst);
 		}
 		else {
-
 			(*sortSecond)->lower.push_back((*sortFirst));
-			(*sortFirst)->higher = *sortSecond;
 			greaterSequence.push_back(*sortSecond);
 		}
 	}
 }
 
-void	PmergeMe::binaryInsert(SortDeque& mainChain, ValueData*& oddLeftover) {
-	SortDeque	toSort = mainChain;
+template <typename Sorter, typename ValueData>
+void	PmergeMe<Sorter,ValueData>::binaryInsert(Sorter& mainChain, ValueData*& oddLeftover) {
+	Sorter	toSort = mainChain;
 	ValueData	oddData(oddLeftover);
 	if (oddLeftover != NULL) {
 		toSort.push_back(&oddData);
 	}
-	std::cout << "\nMAIN CHAIN ";
-	printData(mainChain);
-	std::cout << "\nTO_SORT ";
-	printData(toSort);
+	//std::cout << "\nMAIN CHAIN ";
+	//printData(mainChain);
+	//std::cout << "\nTO_SORT ";
+	//printData(toSort);
 
 	int num = toSort.size();
 	int	powerOfTwo = 2;
 	int groupSize = 2;
 	int firstIndex = 2;
-	int	lastIndex = 3; // need all those variables?
-	SortDeque::iterator	i;
+	int	lastIndex = 3;
+	typename Sorter::iterator	i;
 
 	while (firstIndex < num) {
 		if (lastIndex >= num)
@@ -169,13 +145,12 @@ void	PmergeMe::binaryInsert(SortDeque& mainChain, ValueData*& oddLeftover) {
 		firstIndex+=groupSize;
 		powerOfTwo*=2;
 		groupSize = powerOfTwo - groupSize;
-		std::cout << " GROUP SIZE [" << groupSize << ']';
 		lastIndex = firstIndex + groupSize - 1;
 	}
-	std::cout << '\n';
 }
 
-void	PmergeMe::binarySearch(SortDeque& mainChain, ValueData* higher, ValueData* toSort) {
+template <typename Sorter, typename ValueData>
+void	PmergeMe<Sorter,ValueData>::binarySearch(Sorter& mainChain, ValueData* higher, ValueData* toSort) {
 	int			higherIndex;
 	if (higher == NULL)
 		higherIndex = mainChain.size()-1;
@@ -189,7 +164,6 @@ void	PmergeMe::binarySearch(SortDeque& mainChain, ValueData* higher, ValueData* 
 	while (higherIndex != lowerIndex) {
 		mIndex = ((higherIndex + lowerIndex) / 2) + ((higherIndex + lowerIndex) % 2);
 		mElement = mainChain[mIndex];
-		//std::cout << "SEGFAULTTTTTTTTTTTTTTTTT\n";
 		if (toSort->value < mElement->value)
 			higherIndex = mIndex - 1;
 		else
@@ -199,37 +173,37 @@ void	PmergeMe::binarySearch(SortDeque& mainChain, ValueData* higher, ValueData* 
 		mainChain.insert(mainChain.begin()+higherIndex, toSort);
 	else
 		mainChain.insert(mainChain.begin()+higherIndex+1, toSort);
-	std::cout << "\nMAIN CHAIN ";
-	printData(mainChain);
+	//std::cout << "\nMAIN CHAIN ";
+	//printData(mainChain);
 }
 
 /* --> UTILS */
-
-void	PmergeMe::printData(SortDeque& sequence) {
-	for (SortDeque::iterator i = sequence.begin(); i != sequence.end(); i++) {
-		std::cout	<< "\n[" << (*i)->value << "]: "
-					<< "HIGHER: " << ((*i)->higher == NULL? -1 : (*i)->higher->value)
-					<< " LOWER: ";
-		for (SortDeque::iterator j = (*i)->lower.begin(); j != (*i)->lower.end(); j++) {
+template <typename Sorter, typename ValueData>
+void	PmergeMe<Sorter,ValueData>::printData(Sorter& sequence) {
+	for (typename Sorter::iterator i = sequence.begin(); i != sequence.end(); i++) {
+		std::cout << "\n[" << (*i)->value << "]: " << " LOWER: ";
+		for (typename Sorter::iterator j = (*i)->lower.begin(); j != (*i)->lower.end(); j++) {
 			std::cout << (*j)->value << ' ';
 		}
 	}
 	std::cout << '\n';
 }
 
-void	PmergeMe::printSequence(std::string printBefore, SortDeque& sequence) {
+template <typename Sorter, typename ValueData>
+void	PmergeMe<Sorter,ValueData>::printSequence(std::string printBefore, Sorter& sequence) {
 	std::cout << printBefore << ":	";
-	for (SortDeque::const_iterator i = sequence.begin(); i != sequence.end(); i++) {
+	for (typename Sorter::const_iterator i = sequence.begin(); i != sequence.end(); i++) {
 		std::cout << ' ' << (*i)->value;
 		//std::cout << " \"" << (*i)->value << "\",";
 	}
 	std::cout << '\n';
 }
 
-bool	PmergeMe::isSorted(SortDeque& sequence) {
-	SortDeque::const_iterator i = sequence.begin();
-	SortDeque::const_iterator after_i = ++sequence.begin();
-	SortDeque::const_iterator end = sequence.end();
+template <typename Sorter, typename ValueData>
+bool	PmergeMe<Sorter,ValueData>::isSorted(Sorter& sequence) {
+	typename Sorter::const_iterator i = sequence.begin();
+	typename Sorter::const_iterator after_i = ++sequence.begin();
+	typename Sorter::const_iterator end = sequence.end();
 
 	for (;after_i != end; i++, after_i++) {
 		if ((*i)->value >= (*after_i)->value)
@@ -238,33 +212,64 @@ bool	PmergeMe::isSorted(SortDeque& sequence) {
 	return (true);
 }
 
-/* -------------------------------- PUBLIC METHODS -------------------------------- */
-void	PmergeMe::mergeMe(char* input[]) {
-	//maybe do template or overload?
-	mergeMe_deque(input);
-	//mergeMe_vector(input);
-	//std::cout << "Before:	";
-	//for (int i = 0; input[i] != NULL; i++) {
-	//	std::cout << input[i] << ' ';
-	//}
-	//std::cout << '\n';
+template <typename Sorter, typename ValueData>
+unsigned long	PmergeMe<Sorter,ValueData>::calculateTsToNsec(timespec ts)
+{
+	unsigned long	nsec;
+
+	nsec = ts.tv_sec;
+	nsec *= 1000000000;
+	nsec = nsec + ts.tv_nsec;
+	return (nsec);
 }
 
-ValueData*	ValueData::getNewestLower(void) {
-	if (this->lower.empty())
-		return (NULL);
+template <typename Sorter, typename ValueData>
+unsigned long	PmergeMe<Sorter,ValueData>::getCurrTime(void)
+{
+	timespec				ts;
+	static unsigned long	startTime;
+	unsigned long			currTime;
 
-	ValueData* newestLower = this->lower.back();
-	this->lower.pop_back();
-	return (newestLower);
+	if (clock_gettime(CLOCK_REALTIME, &ts) != 0)
+		throw std::logic_error("clock_gettime not working properly :(");
+	if (startTime == 0)
+	{
+		startTime = calculateTsToNsec(ts);
+		return (0);
+	}
+	currTime = calculateTsToNsec(ts);
+	return ((currTime - startTime) / 1000);
+}
+
+/* -------------------------------- PUBLIC METHODS -------------------------------- */
+template <typename Sorter, typename ValueData>
+unsigned long	PmergeMe<Sorter,ValueData>::mergeMe(char* input[], bool print) {
+	getCurrTime();
+	
+	Sorter	sequence;
+	Sorter	mainChain;
+
+	inputParsing(input, sequence);
+	if (print)
+		printSequence("Before", sequence);
+	if (!isSorted(sequence)) {
+		FJMI(sequence, mainChain);
+		if (print)
+			printSequence("After", mainChain);
+	}
+	else {
+		if (print)
+			printSequence("After", sequence);
+	}
+
+	for (typename Sorter::iterator i = sequence.begin(); i != sequence.end(); i++) {
+		delete *i;
+	}
+	return (getCurrTime());
 }
 
 /* -------------------------------- OVERLOADS -------------------------------- */
 
-bool	ValueData::operator==(ValueData const &rhs) {
-	if (this->value == rhs.value)
-		return (true);
-	return (false);
-}
-
 /* -------------------------------- EXCEPTION METHODS -------------------------------- */
+
+#endif
