@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/22 17:28:21 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 18:43:34 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void	PmergeMe<Sorter,ValueData>::binarySearch(Sorter& mainChain, ValueData* high
 		mainChain.insert(mainChain.begin()+higherIndex, toSort);
 	else
 		mainChain.insert(mainChain.begin()+higherIndex+1, toSort);
-	//std::cout << "\nMAIN CHAIN ";
+	//std::cout << "\nMAIN CHAIN BINARY";
 	//printData(mainChain);
 }
 
