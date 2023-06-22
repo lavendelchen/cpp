@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/21 19:09:38 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 21:46:54 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,32 @@ ValueData_vector::ValueData_vector(ValueData_vector* lower) {
 	this->lower.push_back(lower);
 }
 
+ValueData_deque::ValueData_deque(const ValueData_deque &orig):
+								value(orig.value), lower(orig.lower) { }
+
+ValueData_vector::ValueData_vector(const ValueData_vector &orig):
+								value(orig.value), lower(orig.lower) { }
+
+ValueData_deque&	ValueData_deque::operator=(const ValueData_deque &rhs) {
+	if (this != &rhs) {
+		this->value = rhs.value;
+		this->lower = rhs.lower;
+	}
+	return *this;
+}
+
+ValueData_vector&	ValueData_vector::operator=(const ValueData_vector &rhs) {
+	if (this != &rhs) {
+		this->value = rhs.value;
+		this->lower = rhs.lower;
+	}
+	return *this;
+}
+
 /* -------------------------------- DESTRUCTOR -------------------------------- */
+ValueData_deque::~ValueData_deque() { }
+
+ValueData_vector::~ValueData_vector() { }
 
 /* -------------------------------- PRIVATE METHODS -------------------------------- */
 

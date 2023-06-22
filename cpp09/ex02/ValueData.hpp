@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 23:58:54 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/22 17:14:24 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 21:48:27 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ struct ValueData_deque {
 
 	ValueData_deque();
 	ValueData_deque(ValueData_deque* lower);
+	ValueData_deque(const ValueData_deque &orig);
+	ValueData_deque& operator=(const ValueData_deque &rhs);
+	~ValueData_deque();
 	bool	operator==(const ValueData_deque &rhs);
 };
 
@@ -38,6 +41,9 @@ struct ValueData_vector{
 
 	ValueData_vector();
 	ValueData_vector(ValueData_vector* lower);
+	ValueData_vector& operator=(const ValueData_vector &rhs);
+	ValueData_vector(const ValueData_vector &orig);
+	~ValueData_vector();
 	bool	operator==(const ValueData_vector &rhs);
 };
 
