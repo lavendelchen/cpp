@@ -17,6 +17,8 @@
 # include <iostream>
 # include <sstream>
 # include <ctime>
+# include <climits>
+# include <algorithm>
 # include "ValueData.hpp"
 
 template <typename Sorter, typename ValueData>
@@ -30,8 +32,8 @@ class PmergeMe {
 		void			binaryInsert(Sorter& mainChain, ValueData*& oddLeftover);
 		void			printData(Sorter& sequence);
 		void			binarySearch(Sorter& mainChain, ValueData* higher, ValueData* toSort);
-		unsigned long	getCurrTime(void);
 		unsigned long	calculateTsToNsec(timespec ts);
+		unsigned long	getCurrTime(void);
 
 		/* stands for Ford-Johnson Merge-Insertion. it's the actual algorithm. */
 		void	FJMI(Sorter& sequence, Sorter& mainChain);

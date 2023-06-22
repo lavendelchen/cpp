@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/21 20:47:05 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 18:35:07 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	main(int argc, char* argv[]) {
 		unsigned long timeTaken;
 		
 		PmergeMe<std::deque<ValueData_deque*>, ValueData_deque> merger;
-		timeTaken = merger.mergeMe(&argv[1], true);
-		std::cout << "Time to process a range of " << argc-1 << " elements with std::deque : " << timeTaken << " us\n";
+		timeTaken = merger.mergeMe(&argv[1], true); //set both to false to eliminate print time from comparison.
+		std::cout << "Time to process a range of " << argc-1 << " elements with std::deque :	" << timeTaken << " us\n";
 
 		PmergeMe<std::vector<ValueData_vector*>, ValueData_vector> merger2;
 		timeTaken = merger2.mergeMe(&argv[1], false);
-		std::cout << "Time to process a range of " << argc-1 << " elements with std::vector : " << timeTaken << " us\n";
+		std::cout << "Time to process a range of " << argc-1 << " elements with std::vector :	" << timeTaken << " us\n";
 	} catch (std::exception& e) {
 		std::cerr << e.what() << '\n';
 		return (1);

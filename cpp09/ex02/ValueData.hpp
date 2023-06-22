@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 23:58:54 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/21 19:30:47 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 17:14:24 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <deque>
 # include <vector>
+# include <cstddef>
 
 struct ValueData_deque {
 	int								value;

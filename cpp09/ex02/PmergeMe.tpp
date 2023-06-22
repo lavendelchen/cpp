@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/21 20:36:46 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 17:28:21 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,25 +226,17 @@ unsigned long	PmergeMe<Sorter,ValueData>::calculateTsToNsec(timespec ts)
 template <typename Sorter, typename ValueData>
 unsigned long	PmergeMe<Sorter,ValueData>::getCurrTime(void)
 {
-	timespec				ts;
-	static unsigned long	startTime;
-	unsigned long			currTime;
+	timespec	ts;
 
 	if (clock_gettime(CLOCK_REALTIME, &ts) != 0)
 		throw std::logic_error("clock_gettime not working properly :(");
-	if (startTime == 0)
-	{
-		startTime = calculateTsToNsec(ts);
-		return (0);
-	}
-	currTime = calculateTsToNsec(ts);
-	return ((currTime - startTime) / 1000);
+	return (calculateTsToNsec(ts) / 1000);
 }
 
 /* -------------------------------- PUBLIC METHODS -------------------------------- */
 template <typename Sorter, typename ValueData>
 unsigned long	PmergeMe<Sorter,ValueData>::mergeMe(char* input[], bool print) {
-	getCurrTime();
+	unsigned long startTime = getCurrTime();
 	
 	Sorter	sequence;
 	Sorter	mainChain;
@@ -265,7 +257,7 @@ unsigned long	PmergeMe<Sorter,ValueData>::mergeMe(char* input[], bool print) {
 	for (typename Sorter::iterator i = sequence.begin(); i != sequence.end(); i++) {
 		delete *i;
 	}
-	return (getCurrTime());
+	return (getCurrTime() - startTime);
 }
 
 /* -------------------------------- OVERLOADS -------------------------------- */
