@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/22 21:08:11 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 21:30:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char* argv[]) {
 		std::cout	<< "Time to process a range of " << argc-1 << " elements with std::vector : "
 					<< std::setw(10) << timeTaken << " us\n";
 	} catch (std::exception& e) {
-		std::cerr << e.what() << '\n';
 		return (1);
 	}
 	return (0);

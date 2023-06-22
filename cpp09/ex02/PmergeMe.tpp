@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/22 20:52:23 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 21:30:11 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,17 +248,25 @@ unsigned long	PmergeMe<Sorter,ValueData>::mergeMe(char* input[], bool print) {
 	Sorter	sequence;
 	Sorter	mainChain;
 
-	inputParsing(input, sequence);
-	if (print)
-		printSequence("Before", sequence);
-	if (!isSorted(sequence)) {
-		FJMI(sequence, mainChain);
+	try {
+		inputParsing(input, sequence);
 		if (print)
-			printSequence("After", mainChain);
-	}
-	else {
-		if (print)
-			printSequence("After", sequence);
+			printSequence("Before", sequence);
+		if (!isSorted(sequence)) {
+			FJMI(sequence, mainChain);
+			if (print)
+				printSequence("After", mainChain);
+		}
+		else {
+			if (print)
+				printSequence("After", sequence);
+		}
+	} catch  (std::exception& e) {
+		for (typename Sorter::iterator i = sequence.begin(); i != sequence.end(); i++) {
+			delete *i;
+		}
+		std::cerr << e.what() << '\n';
+		throw (e);
 	}
 
 	for (typename Sorter::iterator i = sequence.begin(); i != sequence.end(); i++) {
