@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:02:02 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/22 18:43:34 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/22 20:52:23 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	PmergeMe<Sorter,ValueData>::FJMI(Sorter& sequence, Sorter& mainChain) {
 	Sorter	greaterSequence;
 	ValueData*	oddLeftover;
 
+	//std::cout << "NEW ITERATION\n";
+	//std::cout << "sequence\n";
+	//printData(sequence);
 	if (sequence.size() > 1) {
 		makePairs(sequence, greaterSequence, oddLeftover);
 		FJMI(greaterSequence, mainChain);
@@ -77,10 +80,14 @@ void	PmergeMe<Sorter,ValueData>::FJMI(Sorter& sequence, Sorter& mainChain) {
 		mainChain.push_back(sequence[0]);
 		return;
 	}
+	//std::cout << "main chain\n";
+	//printData(mainChain);
 	mainChain.insert(mainChain.begin(), mainChain[0]->getNewestLower());
-	
-	if (mainChain.size() > 2)
+
+	if (sequence.size() > 2)
 		binaryInsert(mainChain, oddLeftover);
+	//std::cout << "main chain\n";
+	//printData(mainChain);
 }
 
 template <typename Sorter, typename ValueData>
