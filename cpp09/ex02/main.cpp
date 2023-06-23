@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 20:45:53 by shaas             #+#    #+#             */
-/*   Updated: 2023/06/22 21:30:15 by shaas            ###   ########.fr       */
+/*   Updated: 2023/06/23 15:26:03 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,4 @@ int	main(int argc, char* argv[]) {
 	return (0);
 }
 
-// last number gets deleted????? only at 3 elements! + 7 + 12 ... no idea what the pattrn is there lol but should be resolvable with debugger
-// check valgrind
-// check pdf
+// check pdf for whole cpp module
